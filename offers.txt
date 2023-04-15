@@ -1,0 +1,5 @@
+France_(Paris)	EGY_Cairo_(CAI)	4	20	510
+Russia_(Moscow)	EGY_Luxor_(LXR)	6	30	350
+EGY_Luxor_(LXR)	EGY_Sharm_Elshekh_(SSH)	0	53	130
+Canada_(Ottawa)	EGY_Cairo_(CAI)	11	30	800
+Saudi_Arabia_(Riyadh)	EGY_Cairo_(CAI)	2	40	150
