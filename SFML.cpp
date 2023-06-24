@@ -507,61 +507,61 @@ int main()
 
 void textureAndFonts()
 {
-    bg1.loadFromFile("D:/sfml pic/bg1.png");
-    bg2.loadFromFile("D:/sfml pic/bg2.png");
-    bg3.loadFromFile("D:/sfml pic/bg3.png");
-    background4.loadFromFile("D:/sfml pic/bg4.png");
-    bg5.loadFromFile("D:/sfml pic/bg5.png");
-    background6.loadFromFile("D:/sfml pic/bg6.png");
-    bg7.loadFromFile("D:/sfml pic/bg7.png");
-    bg8.loadFromFile("D:/sfml pic/bg8.png");
-    bg9.loadFromFile("D:/sfml pic/bg9.png");
-    bg10.loadFromFile("D:/sfml pic/bg10.png");
-    background11.loadFromFile("D:/sfml pic/bg11.png");
-    bg12.loadFromFile("D:/sfml pic/bg12.png");
-    bg13.loadFromFile("D:/sfml pic/bg13.png");
-    bg14.loadFromFile("D:/sfml pic/bg14.png");
-    background15.loadFromFile("D:/sfml pic/bg15.png");
-    background16.loadFromFile("D:/sfml pic/bg16.png");
-    bg17.loadFromFile("D:/sfml pic/bg17.png");
-    bg18.loadFromFile("D:/sfml pic/bg18.png");
-    bg19.loadFromFile("D:/sfml pic/bg19.png");
-    bg20.loadFromFile("D:/sfml pic/bg20.png");
-    bg21.loadFromFile("D:/sfml pic/bg21.png");
-    bg22.loadFromFile("D:/sfml pic/bg22.png");
-    bg23.loadFromFile("D:/sfml pic/bg23.png");
-    bg24.loadFromFile("D:/sfml pic/bg24.png");
-    bg25.loadFromFile("D:/sfml pic/bg25.png");
-    bg26.loadFromFile("D:/sfml pic/bg26.png");
-    bg27.loadFromFile("D:/sfml pic/bg27.png");
-    bg28.loadFromFile("D:/sfml pic/bg28.png");
-    bg29.loadFromFile("D:/sfml pic/bg29.png");
-    bg30.loadFromFile("D:/sfml pic/bg30.png");
-    bg31.loadFromFile("D:/sfml pic/bg31.png");
-    bg32.loadFromFile("D:/sfml pic/bg32.png");
-    bg33.loadFromFile("D:/sfml pic/bg33.png");
-    bg34.loadFromFile("D:/sfml pic/bg34.png");
-    bg35.loadFromFile("D:/sfml pic/bg35.png");
-    bg36.loadFromFile("D:/sfml pic/bg36.png");
-    bg37.loadFromFile("D:/sfml pic/bg37.png");
+    bg1.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg1.png");
+    bg2.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg2.png");
+    bg3.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg3.png");
+    background4.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg4.png");
+    bg5.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg5.png");
+    background6.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg6.png");
+    bg7.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg7.png");
+    bg8.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg8.png");
+    bg9.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg9.png");
+    bg10.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg10.png");
+    background11.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg11.png");
+    bg12.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg12.png");
+    bg13.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg13.png");
+    bg14.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg14.png");
+    background15.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg15.png");
+    background16.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg16.png");
+    bg17.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg17.png");
+    bg18.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg18.png");
+    bg19.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg19.png");
+    bg20.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg20.png");
+    bg21.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg21.png");
+    bg22.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg22.png");
+    bg23.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg23.png");
+    bg24.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg24.png");
+    bg25.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg25.png");
+    bg26.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg26.png");
+    bg27.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg27.png");
+    bg28.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg28.png");
+    bg29.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg29.png");
+    bg30.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg30.png");
+    bg31.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg31.png");
+    bg32.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg32.png");
+    bg33.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg33.png");
+    bg34.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg34.png");
+    bg35.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg35.png");
+    bg36.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg36.png");
+    bg37.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg37.png");
 
-    inputbox.loadFromFile("D:/sfml pic/inputbox.png");
-    transbox.loadFromFile("D:/sfml pic/transbox.png");
-    desbox.loadFromFile("D:/sfml pic/desbox.png");
-    offersblock.loadFromFile("D:/sfml pic/offersblock.png");
-    tripsblock.loadFromFile("D:/sfml pic/tripsblock.png");
-    passengersblock.loadFromFile("D:/sfml pic/passengersblock.png");
-    block.loadFromFile("D:/sfml pic/block.png");
-    add.loadFromFile("D:/sfml pic/add.png");
-    edit.loadFromFile("D:/sfml pic/edit.png");
-    del.loadFromFile("D:/sfml pic/delete.png");
-    dep.loadFromFile("D:/sfml pic/pic1.png");
-    price.loadFromFile("D:/sfml pic/pic2.png");
+    inputbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/inputbox.png");
+    transbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/transbox.png");
+    desbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/desbox.png");
+    offersblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/offersblock.png");
+    tripsblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/tripsblock.png");
+    passengersblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/passengersblock.png");
+    block.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/block.png");
+    add.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/add.png");
+    edit.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/edit.png");
+    del.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/delete.png");
+    dep.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/pic1.png");
+    price.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/pic2.png");
 
-    f1.loadFromFile("D:/v.c++/sfml/Fonts/arialbd.ttf");
-    f2.loadFromFile("D:/v.c++/sfml/Fonts/cambriai.ttf");
-    f3.loadFromFile("D:/v.c++/sfml/Fonts/andlso.ttf");
-    f4.loadFromFile("D:/v.c++/sfml/Fonts/times.ttf");
+    f1.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
+    f2.loadFromFile("C:/Windows/Fonts/cambriai.ttf");
+    f3.loadFromFile("C:/Windows/Fonts/andlso.ttf");
+    f4.loadFromFile("C:/Windows/Fonts/times.ttf");
 }
 
 void drawpage1(PAGE1 page1) {
@@ -3879,7 +3879,7 @@ void set_page_36(PAGE36& page36)
         }
         if (MouseRect.getGlobalBounds().intersects(page36.back.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            ///////////////////////////////////
+            ////////////////////
         }
         while (window.pollEvent(event))
         {
