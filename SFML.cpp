@@ -507,7 +507,7 @@ int main()
 
 void textureAndFonts()
 {
-    //loser
+    //the real loser is you 
     bg1.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg1.png");
     bg2.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg2.png");
     bg3.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg3.png");
