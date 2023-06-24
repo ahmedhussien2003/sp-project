@@ -1,0 +1,57 @@
+hussam
+
+    bg1.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg1.png");
+    bg2.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg2.png");
+    bg3.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg3.png");
+    background4.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg4.png");
+    bg5.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg5.png");
+    background6.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg6.png");
+    bg7.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg7.png");
+    bg8.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg8.png");
+    bg9.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg9.png");
+    bg10.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg10.png");
+    background11.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg11.png");
+    bg12.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg12.png");
+    bg13.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg13.png");
+    bg14.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg14.png");
+    background15.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg15.png");
+    background16.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg16.png");
+    bg17.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg17.png");
+    bg18.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg18.png");
+    bg19.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg19.png");
+    bg20.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg20.png");
+    bg21.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg21.png");
+    bg22.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg22.png");
+    bg23.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg23.png");
+    bg24.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg24.png");
+    bg25.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg25.png");
+    bg26.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg26.png");
+    bg27.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg27.png");
+    bg28.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg28.png");
+    bg29.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg29.png");
+    bg30.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg30.png");
+    bg31.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg31.png");
+    bg32.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg32.png");
+    bg33.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg33.png");
+    bg34.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg34.png");
+    bg35.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg35.png");
+    bg36.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg36.png");
+    bg37.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg37.png");
+
+    inputbox.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/inputbox.png");
+    transbox.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/transbox.png");
+    desbox.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/desbox.png");
+    offersblock.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/offersblock.png");
+    tripsblock.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/tripsblock.png");
+    passengersblock.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/passengersblock.png");
+    block.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/block.png");
+    add.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/add.png");
+    edit.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/edit.png");
+    del.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/delete.png");
+    dep.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/pic1.png");
+    price.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/pic2.png");
+
+    f1.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
+    f2.loadFromFile("C:/Windows/Fonts/cambriai.ttf");
+    f3.loadFromFile("C:/Windows/Fonts/andlso.ttf");
+    f4.loadFromFile("C:/Windows/Fonts/times.ttf");
