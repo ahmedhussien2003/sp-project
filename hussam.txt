@@ -1,4 +1,4 @@
-hussam
+
 
     bg1.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg1.png");
     bg2.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg2.png");
@@ -37,7 +37,7 @@ hussam
     bg35.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg35.png");
     bg36.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg36.png");
     bg37.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg37.png");
-
+//
     inputbox.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/inputbox.png");
     transbox.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/transbox.png");
     desbox.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/desbox.png");
@@ -50,7 +50,7 @@ hussam
     del.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/delete.png");
     dep.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/pic1.png");
     price.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/pic2.png");
-
+//
     f1.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
     f2.loadFromFile("C:/Windows/Fonts/cambriai.ttf");
     f3.loadFromFile("C:/Windows/Fonts/andlso.ttf");
