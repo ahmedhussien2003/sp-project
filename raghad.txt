@@ -35,7 +35,7 @@
     bg35.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg35.png");
     bg36.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg36.png");
     bg37.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg37.png");
-//
+
     inputbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/inputbox.png");
     transbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/transbox.png");
     desbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/desbox.png");
@@ -48,7 +48,7 @@
     del.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/delete.png");
     dep.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/pic1.png");
     price.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/pic2.png");
-//
+
     f1.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
     f2.loadFromFile("C:/Windows/Fonts/cambriai.ttf");
     f3.loadFromFile("C:/Windows/Fonts/andlso.ttf");

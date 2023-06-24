@@ -1,4 +1,4 @@
-  bg1.loadFromFile("D:/sfml pic/bg1.png");
+    bg1.loadFromFile("D:/sfml pic/bg1.png");
     bg2.loadFromFile("D:/sfml pic/bg2.png");
     bg3.loadFromFile("D:/sfml pic/bg3.png");
     background4.loadFromFile("D:/sfml pic/bg4.png");
