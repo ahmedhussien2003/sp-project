@@ -510,23 +510,22 @@ int main()
     //setpage10(page10);
     //Set_page_11(page11);
     //setpage12(page12);
-   //set_page_13(page13);
+    //set_page_13(page13);
     //set_page14(page14);
     //setpage19(page19);
-   // setpage20(page20);
+    //setpage20(page20);
     //setpage21(page21);
     //set_page_22(page22);
     //setpage23(page23);
+    //set_page_24(page24);
     //setpage26(page26);
     //set_page_29(page29);
     //setpage30(page30);
     //set_page_31(page31);
     //setpage33(page33);
     setpage34(page34);
-    set_page_35(page35);
-    set_page_36(page36);
-
-
+    //set_page_35(page35);
+    //set_page_36(page36);
 
     return 0;
 }
@@ -587,7 +586,7 @@ void textureAndFonts()
     f1.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
     f2.loadFromFile("C:/Windows/Fonts/cambriai.ttf");
     f3.loadFromFile("C:/Windows/Fonts/andlso.ttf");
-    f4.loadFromFile("C:/Windows/Fonts/times.ttf"
+    f4.loadFromFile("C:/Windows/Fonts/times.ttf");
 }
 
 void drawpage1(PAGE1 page1) {
@@ -936,7 +935,8 @@ void Set_page_4(PAGE4& page4)
     PAGE5 page5;
     PAGE6 page6;
     PAGE8 page8;
-    PAGE26 page26;
+    PAGE23 page23;
+    //PAGE2 page2;
 
     page4.bg4.setTexture(background4);
     page4.bg4.setScale(1.8, 1.8);
@@ -1021,7 +1021,7 @@ void Set_page_4(PAGE4& page4)
         }
         if (MouseRect.getGlobalBounds().intersects(page4.NewReservation.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage26(page26);
+            setpage23(page23);
 
         }
         if (MouseRect.getGlobalBounds().intersects(page4.MyTrips.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
@@ -1116,6 +1116,7 @@ void Draw_page_6(PAGE6 page6)
 void Set_page_6(PAGE6& page6)
 {
     PAGE7 page7;
+
     page6.bg6.setTexture(background6);
     page6.bg6.setScale(1.9, 2);
     page6.bg6.setPosition(1920 / 2 - 10, 1080 / 2);
@@ -1208,9 +1209,16 @@ void setpage7(PAGE7& page7)
     const float SCROLLBAR_RANGE = SCROLLBAR_HEIGHT - SLIDER_HEIGHT;
     float sliderPosition = 0;
 
+    MouseRect.setFillColor(sf::Color::Black);
+    Mouse ms;
     while (window.isOpen())
     {
-        sf::Event event;
+        Event event;
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
+        if (MouseRect.getGlobalBounds().intersects(page7.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            Set_page_4(page4);
+        }
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
@@ -1247,7 +1255,7 @@ void setpage7(PAGE7& page7)
                 }
             }
         }
-
+        window.draw(MouseRect);
         window.clear();
         window.draw(page7.background);
         for (int i = 0; i < 5; i++)
@@ -1258,28 +1266,6 @@ void setpage7(PAGE7& page7)
         window.draw(page7.back_t);
         window.draw(scrollbar);
         window.draw(slider);
-        window.display();
-    }
-    MouseRect.setFillColor(sf::Color::Black);
-    Mouse ms;
-    while (window.isOpen())
-    {
-        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
-        Event event;
-
-        if (MouseRect.getGlobalBounds().intersects(page7.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
-        {
-            Set_page_4(page4);
-        }
-
-        while (window.pollEvent(event))
-        {
-            if (event.type == Event::Closed)
-            {
-                window.close();
-            }
-        }
-        window.draw(MouseRect);
         window.display();
     }
 }
@@ -1308,7 +1294,7 @@ void setpage8(PAGE8& page8) {
     page8.background.setOrigin(0, 0);
 
     page8.Block1.setTexture(block);
-    page8.Block1.setPosition(800, 900);
+    page8.Block1.setPosition(800, 790);
     page8.Block1.setScale(1.9, 1.5);
     page8.Block1.setOrigin(0, 0);
 
@@ -2445,7 +2431,7 @@ void setpage19(PAGE19& page19) {
     page19.background.setOrigin(0, 0);
 
     page19.Block1.setTexture(transbox);
-    page19.Block1.setPosition(1250, 600);
+    page19.Block1.setPosition(1250, 550);
     page19.Block1.setScale(2, 1.8);
     page19.Block1.setOrigin(0, 0);
 
@@ -2456,7 +2442,7 @@ void setpage19(PAGE19& page19) {
     page19.cash.setString("Cash");
 
     page19.Block2.setTexture(transbox);
-    page19.Block2.setPosition(400, 600);
+    page19.Block2.setPosition(400, 550);
     page19.Block2.setScale(2, 1.8);
     page19.Block2.setOrigin(0, 0);
 
@@ -2841,9 +2827,16 @@ void setpage23(PAGE23& page23)
     const float SCROLLBAR_RANGE = SCROLLBAR_HEIGHT - SLIDER_HEIGHT;
     float sliderPosition = 0;
 
+    MouseRect.setFillColor(sf::Color::Black);
+    Mouse ms;
     while (window.isOpen())
     {
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
         sf::Event event;
+        if (MouseRect.getGlobalBounds().intersects(page23.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            Set_page_4(page4);
+        }
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
@@ -2883,6 +2876,7 @@ void setpage23(PAGE23& page23)
         }
 
         window.clear();
+        window.draw(MouseRect);
         window.draw(page23.background);
         for (int i = 0; i < 10; i++)
         {
@@ -2896,28 +2890,6 @@ void setpage23(PAGE23& page23)
         window.draw(page23.back_t);
         window.draw(scrollbar);
         window.draw(slider);
-        window.display();
-    }
-    MouseRect.setFillColor(sf::Color::Black);
-    Mouse ms;
-    while (window.isOpen())
-    {
-        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
-        Event event;
-
-        if (MouseRect.getGlobalBounds().intersects(page23.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
-        {
-            Set_page_4(page4);
-        }
-
-        while (window.pollEvent(event))
-        {
-            if (event.type == Event::Closed)
-            {
-                window.close();
-            }
-        }
-        window.draw(MouseRect);
         window.display();
     }
 }
@@ -3812,9 +3784,11 @@ void drawpage34(PAGE34 page34) {
     window.draw(page34.Departure);
 
 }
-void setpage34(PAGE34& page34) {
+void setpage34(PAGE34& page34)
+{
     PAGE35 page35;
     PAGE36 page36;
+    PAGE30 page30;
 
     page34.background.setTexture(bg34);
     page34.background.setScale(2, 2.5);
@@ -3871,23 +3845,21 @@ void setpage34(PAGE34& page34) {
         {
             set_page_36(page36);
         }
-
+        if (MouseRect.getGlobalBounds().intersects(page34.Block1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            setpage30(page30);
+        }
         while (window.pollEvent(event))
         {
-
             if (event.type == Event::Closed)
             {
                 window.close();
             }
-
-
         }
         window.draw(MouseRect);
         window.clear();
         drawpage34(page34);
         window.display();
-
-
     }
 }
 
