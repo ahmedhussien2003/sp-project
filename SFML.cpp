@@ -519,11 +519,11 @@ int main()
     //setpage23(page23);
     //set_page_24(page24);
     //setpage26(page26);
-    //set_page_29(page29);
-    //setpage30(page30);
+    set_page_29(page29);
+    setpage30(page30);
     //set_page_31(page31);
     //setpage33(page33);
-    setpage34(page34);
+    //setpage34(page34);
     //set_page_35(page35);
     //set_page_36(page36);
 
@@ -532,56 +532,56 @@ int main()
 
 void textureAndFonts()
 {
-    bg1.loadFromFile("D:/sfml pic/bg1.png");
-    bg2.loadFromFile("D:/sfml pic/bg2.png");
-    bg3.loadFromFile("D:/sfml pic/bg3.png");
-    background4.loadFromFile("D:/sfml pic/bg4.png");
-    bg5.loadFromFile("D:/sfml pic/bg5.png");
-    background6.loadFromFile("D:/sfml pic/bg6.png");
-    bg7.loadFromFile("D:/sfml pic/bg7.png");
-    bg8.loadFromFile("D:/sfml pic/bg8.png");
-    bg9.loadFromFile("D:/sfml pic/bg9.png");
-    bg10.loadFromFile("D:/sfml pic/bg10.png");
-    background11.loadFromFile("D:/sfml pic/bg11.png");
-    bg12.loadFromFile("D:/sfml pic/bg12.png");
-    bg13.loadFromFile("D:/sfml pic/bg13.png");
-    bg14.loadFromFile("D:/sfml pic/bg14.png");
-    background15.loadFromFile("D:/sfml pic/bg15.png");
-    background16.loadFromFile("D:/sfml pic/bg16.png");
-    bg17.loadFromFile("D:/sfml pic/bg17.png");
-    bg18.loadFromFile("D:/sfml pic/bg18.png");
-    bg19.loadFromFile("D:/sfml pic/bg19.png");
-    bg20.loadFromFile("D:/sfml pic/bg20.png");
-    bg21.loadFromFile("D:/sfml pic/bg21.png");
-    bg22.loadFromFile("D:/sfml pic/bg22.png");
-    bg23.loadFromFile("D:/sfml pic/bg23.png");
-    bg24.loadFromFile("D:/sfml pic/bg24.png");
-    bg25.loadFromFile("D:/sfml pic/bg25.png");
-    bg26.loadFromFile("D:/sfml pic/bg26.png");
-    bg27.loadFromFile("D:/sfml pic/bg27.png");
-    bg28.loadFromFile("D:/sfml pic/bg28.png");
-    bg29.loadFromFile("D:/sfml pic/bg29.png");
-    bg30.loadFromFile("D:/sfml pic/bg30.png");
-    bg31.loadFromFile("D:/sfml pic/bg31.png");
-    bg32.loadFromFile("D:/sfml pic/bg32.png");
-    bg33.loadFromFile("D:/sfml pic/bg33.png");
-    bg34.loadFromFile("D:/sfml pic/bg34.png");
-    bg35.loadFromFile("D:/sfml pic/bg35.png");
-    bg36.loadFromFile("D:/sfml pic/bg36.png");
-    bg37.loadFromFile("D:/sfml pic/bg37.png");
+    bg1.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg1.png");
+    bg2.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg2.png");
+    bg3.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg3.png");
+    background4.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg4.png");
+    bg5.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg5.png");
+    background6.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg6.png");
+    bg7.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg7.png");
+    bg8.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg8.png");
+    bg9.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg9.png");
+    bg10.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg10.png");
+    background11.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg11.png");
+    bg12.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg12.png");
+    bg13.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg13.png");
+    bg14.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg14.png");
+    background15.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg15.png");
+    background16.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg16.png");
+    bg17.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg17.png");
+    bg18.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg18.png");
+    bg19.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg19.png");
+    bg20.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg20.png");
+    bg21.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg21.png");
+    bg22.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg22.png");
+    bg23.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg23.png");
+    bg24.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg24.png");
+    bg25.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg25.png");
+    bg26.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg26.png");
+    bg27.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg27.png");
+    bg28.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg28.png");
+    bg29.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg29.png");
+    bg30.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg30.png");
+    bg31.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg31.png");
+    bg32.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg32.png");
+    bg33.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg33.png");
+    bg34.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg34.png");
+    bg35.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg35.png");
+    bg36.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg36.png");
+    bg37.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg37.png");
 
-    inputbox.loadFromFile("D:/sfml pic/inputbox.png");
-    transbox.loadFromFile("D:/sfml pic/transbox.png");
-    desbox.loadFromFile("D:/sfml pic/desbox.png");
-    offersblock.loadFromFile("D:/sfml pic/offersblock.png");
-    tripsblock.loadFromFile("D:/sfml pic/tripsblock.png");
-    passengersblock.loadFromFile("D:/sfml pic/passengersblock.png");
-    block.loadFromFile("D:/sfml pic/block.png");
-    add.loadFromFile("D:/sfml pic/add.png");
-    edit.loadFromFile("D:/sfml pic/edit.png");
-    del.loadFromFile("D:/sfml pic/delete.png");
-    dep.loadFromFile("D:/sfml pic/pic1.png");
-    price.loadFromFile("D:/sfml pic/pic2.png");
+    inputbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/inputbox.png");
+    transbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/transbox.png");
+    desbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/desbox.png");
+    offersblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/offersblock.png");
+    tripsblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/tripsblock.png");
+    passengersblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/passengersblock.png");
+    block.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/block.png");
+    add.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/add.png");
+    edit.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/edit.png");
+    del.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/delete.png");
+    dep.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/pic1.png");
+    price.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/pic2.png");
 
     f1.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
     f2.loadFromFile("C:/Windows/Fonts/cambriai.ttf");
@@ -2436,9 +2436,9 @@ void setpage19(PAGE19& page19) {
     page19.Block1.setOrigin(0, 0);
 
     page19.cash.setFont(f2);
-    page19.cash.setCharacterSize(45);
+    page19.cash.setCharacterSize(48);
     page19.cash.setFillColor(Color(38, 34, 98));
-    page19.cash.setPosition(page19.Block1.getPosition().x + 100, page19.Block1.getPosition().y + 10);
+    page19.cash.setPosition(page19.Block1.getPosition().x + 100, page19.Block1.getPosition().y + 14);
     page19.cash.setString("Cash");
 
     page19.Block2.setTexture(transbox);
@@ -2447,9 +2447,9 @@ void setpage19(PAGE19& page19) {
     page19.Block2.setOrigin(0, 0);
 
     page19.Digital.setFont(f2);
-    page19.Digital.setCharacterSize(45);
+    page19.Digital.setCharacterSize(40);
     page19.Digital.setFillColor(Color(38, 34, 98));
-    page19.Digital.setPosition(page19.Block2.getPosition().x + 7, page19.Block2.getPosition().y + 10);
+    page19.Digital.setPosition(page19.Block2.getPosition().x + 17, page19.Block2.getPosition().y + 15);
     page19.Digital.setString("Digital Wallet");
 
     page19.Block3.setTexture(transbox);
@@ -2460,7 +2460,7 @@ void setpage19(PAGE19& page19) {
     page19.Back.setFont(f2);
     page19.Back.setCharacterSize(60);
     page19.Back.setFillColor(Color(38, 34, 98));
-    page19.Back.setPosition(page19.Block3.getPosition().x + 50, page19.Block3.getPosition().y);
+    page19.Back.setPosition(page19.Block3.getPosition().x + 55, page19.Block3.getPosition().y + 8);
     page19.Back.setString("Back");
 
     MouseRect.setFillColor(sf::Color::Black);
@@ -2743,13 +2743,13 @@ void set_page_22(PAGE22& page22)
     page22.background.setOrigin(0, 0);
 
     page22.done.setTexture(transbox);
-    page22.done.setPosition(850, 900);
+    page22.done.setPosition(1450, 950);
     page22.done.setScale(1.5, 1.8);
 
     page22.DONE.setFont(f2);
     page22.DONE.setFillColor(Color(38, 34, 98));
     page22.DONE.setCharacterSize(55);
-    page22.DONE.setPosition(875, 910);
+    page22.DONE.setPosition(1470, 955);
     page22.DONE.setString("DONE!");
 
 
@@ -3314,21 +3314,21 @@ void set_page_29(PAGE29& page29)
     page29.background.setOrigin(0, 0);
 
     page29.exit.setTexture(transbox);
-    page29.exit.setPosition(127, 970);
-    page29.exit.setScale(1.4, 1.4);
+    page29.exit.setPosition(140, 950);
+    page29.exit.setScale(1.6, 1.4);
     page29.Exit.setFont(f2);
-    page29.Exit.setFillColor(Color::Black);
-    page29.Exit.setCharacterSize(45);
-    page29.Exit.setPosition(170, 980);
+    page29.Exit.setFillColor(Color(38, 34, 98));
+    page29.Exit.setCharacterSize(50);
+    page29.Exit.setPosition(200, 955);
     page29.Exit.setString("EXIT");
 
     page29.begin.setTexture(transbox);
-    page29.begin.setPosition(1650, 970);
-    page29.begin.setScale(1.4, 1.4);
+    page29.begin.setPosition(1550, 950);
+    page29.begin.setScale(1.6, 1.4);
     page29.Begin.setFont(f2);
-    page29.Begin.setFillColor(Color::Black);
-    page29.Begin.setCharacterSize(45);
-    page29.Begin.setPosition(1670, 980);
+    page29.Begin.setFillColor(Color(38, 34, 98));
+    page29.Begin.setCharacterSize(50);
+    page29.Begin.setPosition(1585, 953);
     page29.Begin.setString("BEGIN!");
 
     while (window.isOpen())
@@ -3384,14 +3384,14 @@ void setpage30(PAGE30& page30) {
     page30.background.setOrigin(0, 0);
 
     page30.button1.setTexture(block);
-    page30.button1.setPosition(200, 950);
+    page30.button1.setPosition(300, 870);
     page30.button1.setScale(1.2, 1.2);
     page30.button1.setOrigin(0, 0);
 
     page30.buttontext1.setFont(f1);
     page30.buttontext1.setString("Back");
     page30.buttontext1.setCharacterSize(45);
-    page30.buttontext1.setPosition(page30.button1.getPosition().x + 40, page30.button1.getPosition().y);
+    page30.buttontext1.setPosition(page30.button1.getPosition().x + 44, page30.button1.getPosition().y + 5);
     page30.buttontext1.setFillColor(Color(38, 34, 98));
 
     page30.button2.setTexture(add);
@@ -3402,7 +3402,7 @@ void setpage30(PAGE30& page30) {
     page30.buttontext2.setFont(f2);
     page30.buttontext2.setString("Add Flight");
     page30.buttontext2.setCharacterSize(45);
-    page30.buttontext2.setPosition(page30.button2.getPosition().x + 155, page30.button2.getPosition().y + 70);
+    page30.buttontext2.setPosition(page30.button2.getPosition().x + 157, page30.button2.getPosition().y + 70);
     page30.buttontext2.setFillColor(Color(38, 34, 98));
 
     page30.button3.setTexture(edit);
@@ -3418,13 +3418,13 @@ void setpage30(PAGE30& page30) {
 
     page30.button4.setTexture(del);
     page30.button4.setPosition(1400, 500);
-    page30.button4.setScale(1.9, 1.9);
+    page30.button4.setScale(2, 1.9);
     page30.button4.setOrigin(0, 0);
 
     page30.buttontext4.setFont(f2);
     page30.buttontext4.setString("Delete Flight");
     page30.buttontext4.setCharacterSize(45);
-    page30.buttontext4.setPosition(page30.button4.getPosition().x + 130, page30.button4.getPosition().y + 70);
+    page30.buttontext4.setPosition(page30.button4.getPosition().x + 132, page30.button4.getPosition().y + 70);
     page30.buttontext4.setFillColor(Color(38, 34, 98));
 
     // Dynamic
