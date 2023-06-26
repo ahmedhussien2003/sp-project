@@ -384,6 +384,12 @@ struct PAGE37 {
     Sprite button1;
     Text buttontext1;
 };
+struct PAGE38 {
+    Sprite bg38;
+    Sprite block[5];
+    Sprite back_b;
+    Text back_t;
+};
 //////////////
 struct Date
 {
@@ -445,7 +451,7 @@ RenderWindow window(VideoMode(1900, 1080), "DESTINYA", Style::Default);
 
 RectangleShape MouseRect(Vector2f(10, 30));
 
-Texture bg1, bg2, bg3, background4, bg5, background6, bg7, bg8, bg9, bg10, background11, bg12, bg13, bg14, background15, background16, bg17, bg18, bg19, bg20, bg21, bg22, bg23, bg24, bg25, bg26, bg27, bg28, bg29, bg30, bg31, bg32, bg33, bg34, bg35, bg36, bg37, inputbox, transbox, desbox, offersblock, tripsblock, passengersblock, block, add, edit, del, dep, price;
+Texture bg1, bg2, bg3, background4, bg5, background6, bg7, bg8, bg9, bg10, background11, bg12, bg13, bg14, background15, background16, bg17, bg18, bg19, bg20, bg21, bg22, bg23, bg24, bg25, bg26, bg27, bg28, bg29, bg30, bg31, bg32, bg33, bg34, bg35, bg36, bg37, bg38, inputbox, transbox, desbox, newoffersblock, tripsblock, passengersblock, block, add, edit, del, dep, price;
 
 Font f1, f2, f3, f4;
 
@@ -519,6 +525,7 @@ void draw_page_36(PAGE36 page36);
 void set_page_36(PAGE36& page36, countries_offers offers1[]);
 void drawpage37(PAGE37 page37);
 void setpage37(PAGE37& page37, countries_offers offers1[]);
+//void setpage38(PAGE38& page38);
 ////////////
 int getdata2(countries_offers offers1[], countries_offers2 schedule2[]);
 void senddata2(countries_offers offers1[], countries_offers2 schedule2[]);
@@ -563,6 +570,7 @@ int main()
     PAGE35 page35;
     PAGE36 page36;
     PAGE37 page37;
+    PAGE38 page38;
     ///////
     countries_offers offers1[5];
     countries_offers2 schedule2[100];
@@ -597,6 +605,7 @@ int main()
     //setpage34(page34);
     //set_page_35(page35);
     //set_page_36(page36);
+    //setpage38(page38);
 
     senddata2(offers1, schedule2);
     return 0;
@@ -641,11 +650,11 @@ void textureAndFonts()
     bg35.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg35.png");
     bg36.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg36.png");
     bg37.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg37.png");
+    bg38.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg38.png");
 
     inputbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/inputbox.png");
     transbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/transbox.png");
     desbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/desbox.png");
-    offersblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/offersblock.png");
     tripsblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/tripsblock.png");
     passengersblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/passengersblock.png");
     block.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/block.png");
@@ -654,7 +663,7 @@ void textureAndFonts()
     del.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/delete.png");
     dep.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/pic1.png");
     price.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/pic2.png");
-
+    newoffersblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/newoffersblock.png");
     f1.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
     f2.loadFromFile("C:/Windows/Fonts/cambriai.ttf");
     f3.loadFromFile("C:/Windows/Fonts/andlso.ttf");
@@ -1272,9 +1281,9 @@ void setpage7(PAGE7& page7, countries_offers offers1[])
     //first one ********************************************************************
     for (int i = 0; i < 5; i++)
     {
-        page7.block[i].setTexture(offersblock);
-        page7.block[i].setScale(1.9, 2.);
-        page7.block[i].setPosition(200, ((250) + (275 * i)));
+        page7.block[i].setTexture(newoffersblock);
+        page7.block[i].setScale(1.7, 2.);
+        page7.block[i].setPosition(100, ((250) + (275 * i)));
         page7.block[i].setColor(Color(255, 255, 255, 180));
 
         string price = to_string(offers1[i].price);
@@ -1285,58 +1294,58 @@ void setpage7(PAGE7& page7, countries_offers offers1[])
         string tm2 = to_string(offers1[i].t_m);
 
         page7.dep[i].setFont(f4);
-        page7.dep[i].setCharacterSize(40);
+        page7.dep[i].setCharacterSize(42);
         page7.dep[i].setOrigin(page7.dep[i].getLocalBounds().width / 2, page7.dep[i].getLocalBounds().height / 2);
-        page7.dep[i].setPosition(page7.block[i].getPosition().x - 150, page7.block[i].getPosition().y - 55);
+        page7.dep[i].setPosition(page7.block[i].getPosition().x + 528, page7.block[i].getPosition().y + 35);
         page7.dep[i].setString(offers1[i].dep);
         page7.dep[i].setFillColor(Color(0, 0, 0));
 
         page7.arv[i].setFont(f4);
         page7.arv[i].setCharacterSize(40);
         page7.arv[i].setOrigin(page7.arv[i].getLocalBounds().width / 2, page7.arv[i].getLocalBounds().height / 2);
-        page7.arv[i].setPosition(page7.block[i].getPosition().x - 200, page7.block[i].getPosition().y + 10);
+        page7.arv[i].setPosition(page7.block[i].getPosition().x + 468, page7.block[i].getPosition().y + 105);
         page7.arv[i].setString(offers1[i].arv);
         page7.arv[i].setFillColor(Color(0, 0, 0));
 
         page7.price[i].setFont(f4);
         page7.price[i].setCharacterSize(40);
         page7.price[i].setOrigin(page7.price[i].getLocalBounds().width / 2, page7.price[i].getLocalBounds().height / 2);
-        page7.price[i].setPosition(page7.block[i].getPosition().x + 580, page7.block[i].getPosition().y + 10);
+        page7.price[i].setPosition(page7.block[i].getPosition().x + 1490, page7.block[i].getPosition().y + 105);
         page7.price[i].setString(price + " $");
         page7.price[i].setFillColor(Color(0, 0, 0));
 
         page7.num[i].setFont(f4);
-        page7.num[i].setCharacterSize(40);
+        page7.num[i].setCharacterSize(45);
         page7.num[i].setOrigin(page7.price[i].getLocalBounds().width / 2, page7.price[i].getLocalBounds().height / 2);
-        page7.num[i].setPosition(page7.block[i].getPosition().x - 560, page7.block[i].getPosition().y + 10);
+        page7.num[i].setPosition(page7.block[i].getPosition().x + 270, page7.block[i].getPosition().y + 117);
         page7.num[i].setString("DS9" + flight_num);
         page7.num[i].setFillColor(Color(0, 0, 0));
 
         page7.date[i].setFont(f4);
-        page7.date[i].setCharacterSize(40);
+        page7.date[i].setCharacterSize(42);
         page7.date[i].setOrigin(page7.date[i].getLocalBounds().width / 2, page7.date[i].getLocalBounds().height / 2);
-        page7.date[i].setPosition(page7.block[i].getPosition().x - 570, page7.block[i].getPosition().y - 55);
+        page7.date[i].setPosition(page7.block[i].getPosition().x + 247, page7.block[i].getPosition().y + 35);
         page7.date[i].setString(date + "/6/2023");
         page7.date[i].setFillColor(Color(0, 0, 0));
 
         page7.th1[i].setFont(f4);
-        page7.th1[i].setCharacterSize(30);
+        page7.th1[i].setCharacterSize(40);
         page7.th1[i].setOrigin(page7.th1[i].getLocalBounds().width / 2, page7.th1[i].getLocalBounds().height / 2);
-        page7.th1[i].setPosition(page7.dep[i].getPosition().x + 430, page7.dep[i].getPosition().y + 10);
+        page7.th1[i].setPosition(page7.dep[i].getPosition().x + 680, page7.dep[i].getPosition().y);
         page7.th1[i].setString("(" + th1 + ":00)");
         page7.th1[i].setFillColor(Color(0, 0, 0));
 
         page7.th2[i].setFont(f4);
-        page7.th2[i].setCharacterSize(30);
+        page7.th2[i].setCharacterSize(40);
         page7.th2[i].setOrigin(page7.th2[i].getLocalBounds().width / 2, page7.th2[i].getLocalBounds().height / 2);
-        page7.th2[i].setPosition(page7.arv[i].getPosition().x + 500, page7.arv[i].getPosition().y + 10);
+        page7.th2[i].setPosition(page7.arv[i].getPosition().x + 730, page7.arv[i].getPosition().y);
         page7.th2[i].setString("(" + th2 + ":" + tm2 + ")");
         page7.th2[i].setFillColor(Color(0, 0, 0));
 
         page7.level[i].setFont(f4);
-        page7.level[i].setCharacterSize(40);
+        page7.level[i].setCharacterSize(37);
         page7.level[i].setOrigin(page7.level[i].getLocalBounds().width / 2, page7.level[i].getLocalBounds().height / 2);
-        page7.level[i].setPosition(page7.block[i].getPosition().x + 600, page7.block[i].getPosition().y - 55);
+        page7.level[i].setPosition(page7.block[i].getPosition().x + 1494, page7.block[i].getPosition().y + 35);
         if (i % 2 == 0)
             page7.level[i].setString("ECONOMY");
         else
@@ -1376,16 +1385,16 @@ void setpage7(PAGE7& page7, countries_offers offers1[])
                     for (int i = 0; i < 5; i++)
                     {
                         //controll the number 
-                        page7.block[i].setPosition(200, ((250) + (275 * i)) + (9 * percentage) * (-70));//(200 / 2 - 1080 / 2));
+                        page7.block[i].setPosition(100, ((250) + (275 * i)) + (9 * percentage) * (-70));//(200 / 2 - 1080 / 2));
 
-                        page7.dep[i].setPosition(page7.block[i].getPosition().x - 150, page7.block[i].getPosition().y - 55);
-                        page7.arv[i].setPosition(page7.block[i].getPosition().x - 200, page7.block[i].getPosition().y + 10);
-                        page7.price[i].setPosition(page7.block[i].getPosition().x + 580, page7.block[i].getPosition().y + 10);
-                        page7.num[i].setPosition(page7.block[i].getPosition().x - 560, page7.block[i].getPosition().y + 10);
-                        page7.date[i].setPosition(page7.block[i].getPosition().x - 570, page7.block[i].getPosition().y - 55);
-                        page7.th1[i].setPosition(page7.dep[i].getPosition().x + 430, page7.dep[i].getPosition().y + 10);
-                        page7.th2[i].setPosition(page7.arv[i].getPosition().x + 500, page7.arv[i].getPosition().y + 10);
-                        page7.level[i].setPosition(page7.block[i].getPosition().x + 600, page7.block[i].getPosition().y - 55);
+                        page7.dep[i].setPosition(page7.block[i].getPosition().x + 528, page7.block[i].getPosition().y + 35);
+                        page7.arv[i].setPosition(page7.block[i].getPosition().x + 468, page7.block[i].getPosition().y + 105);
+                        page7.price[i].setPosition(page7.block[i].getPosition().x + 1490, page7.block[i].getPosition().y + 105);
+                        page7.num[i].setPosition(page7.block[i].getPosition().x + 270, page7.block[i].getPosition().y + 117);
+                        page7.date[i].setPosition(page7.block[i].getPosition().x + 247, page7.block[i].getPosition().y + 35);
+                        page7.th1[i].setPosition(page7.dep[i].getPosition().x + 680, page7.dep[i].getPosition().y);
+                        page7.th2[i].setPosition(page7.arv[i].getPosition().x + 730, page7.arv[i].getPosition().y);
+                        page7.level[i].setPosition(page7.block[i].getPosition().x + 1494, page7.block[i].getPosition().y + 35);
 
                     }
                     slider.setPosition(SLIDER_X, SCROLLBAR_Y + sliderPosition);
@@ -3851,9 +3860,9 @@ void setpage33(PAGE33& page33, countries_offers offers1[])
 
     for (int i = 0; i < 100; i++)
     {
-        page33.block[i].setTexture(offersblock);
+        page33.block[i].setTexture(newoffersblock);
         page33.block[i].setScale(1.7, 2.);
-        page33.block[i].setPosition(320, ((250) + (275 * i)));
+        page33.block[i].setPosition(100, ((250) + (275 * i)));
         page33.block[i].setColor(Color(255, 255, 255, 180));
         page33.num[i].setFont(f1);
         page33.num[i].setPosition(page33.block[i].getPosition().x, page33.block[i].getPosition().y);
@@ -3893,7 +3902,7 @@ void setpage33(PAGE33& page33, countries_offers offers1[])
                     for (int i = 0; i < 100; i++)
                     {
                         //controll the number 
-                        page33.block[i].setPosition(320, ((250) + (275 * i)) + (9 * percentage) * (-2970));//(200 / 2 - 1080 / 2));
+                        page33.block[i].setPosition(100, ((250) + (275 * i)) + (9 * percentage) * (-2970));//(200 / 2 - 1080 / 2));
                         page33.num[i].setPosition(page33.block[i].getPosition().x, page33.block[i].getPosition().y);
                     }
                     slider.setPosition(SLIDER_X, SCROLLBAR_Y + sliderPosition);
@@ -4277,6 +4286,115 @@ void setpage37(PAGE37& page37, countries_offers offers1[]) {
 
 
 }
+//void setpage38(PAGE38& page38)
+//{
+//
+//    PAGE4 page4;
+//
+//    page38.bg38.setTexture(bg38);
+//    page38.bg38.setScale(2.18, 2.18);
+//    page38.bg38.setPosition(1920 / 2 - 10, 1080 / 2);
+//    page38.bg38.setOrigin(page38.bg38.getLocalBounds().width / 2, page38.bg38.getLocalBounds().height / 2);
+//
+//    page38.back_b.setTexture(transbox);
+//    page38.back_b.setOrigin(page38.back_b.getLocalBounds().width / 2, page38.back_b.getLocalBounds().height / 2);
+//    page38.back_b.setPosition(1920 / 2 - 750, 1080 / 2 + 450);
+//    page38.back_b.setScale(1.7, 1.7);
+//
+//    page38.back_t.setFont(f2);
+//    page38.back_t.setString("Back");
+//    page38.back_t.setCharacterSize(60);
+//    page38.back_t.setOrigin(page38.back_t.getLocalBounds().width / 2, page38.back_t.getLocalBounds().height / 2);
+//    page38.back_t.setPosition(page38.back_b.getPosition().x - 10, page38.back_b.getPosition().y - 15);
+//    page38.back_t.setFillColor(Color(39, 34, 99));
+//
+//    const int SCROLLBAR_WIDTH = 20;
+//    const int SCROLLBAR_HEIGHT = 1070;
+//    const int SCROLLBAR_X = 1900 - SCROLLBAR_WIDTH;
+//    const int SCROLLBAR_Y = 0;
+//    sf::RectangleShape scrollbar(sf::Vector2f(SCROLLBAR_WIDTH, SCROLLBAR_HEIGHT));
+//    scrollbar.setPosition(SCROLLBAR_X, SCROLLBAR_Y);
+//    scrollbar.setFillColor(sf::Color::White);
+//
+//    const int SLIDER_WIDTH = 20;
+//    const int SLIDER_HEIGHT = 100;
+//    const int SLIDER_X = 1900 - SLIDER_WIDTH;
+//    const int SLIDER_Y = SCROLLBAR_Y;
+//    sf::RectangleShape slider(sf::Vector2f(SLIDER_WIDTH, SLIDER_HEIGHT));
+//    slider.setPosition(SLIDER_X, SLIDER_Y);
+//    slider.setFillColor(Color(65, 95, 145));
+//
+//    for (int i = 0; i < 5; i++)
+//    {
+//        page38.block[i].setTexture(newoffersblock);
+//        page38.block[i].setScale(1.9, 2.);
+//        page38.block[i].setPosition(100, ((250) + (275 * i)));
+//        page38.block[i].setColor(Color(255, 255, 255, 180));
+//    }
+//
+//    const float SCROLLBAR_RANGE = SCROLLBAR_HEIGHT - SLIDER_HEIGHT;
+//    float sliderPosition = 0;
+//
+//    MouseRect.setFillColor(sf::Color::Black);
+//    Mouse ms;
+//    while (window.isOpen())
+//    {
+//        Event event;
+//        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
+//        if (MouseRect.getGlobalBounds().intersects(page38.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+//        {
+//            Set_page_4(page4);
+//        }
+//        while (window.pollEvent(event))
+//        {
+//            if (event.type == sf::Event::Closed)
+//                window.close();
+//            else if (event.type == sf::Event::MouseWheelScrolled)
+//            {
+//                if (event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)
+//                {
+//                    //controll the speed
+//                    sliderPosition += event.mouseWheelScroll.delta * 10;
+//                    if (sliderPosition < 0)
+//                        sliderPosition = 0;
+//                    else if (sliderPosition > SCROLLBAR_RANGE)
+//                        sliderPosition = SCROLLBAR_RANGE;
+//                    float percentage = sliderPosition / SCROLLBAR_RANGE;
+//
+//                    for (int i = 0; i < 5; i++)
+//                    {
+//                        //controll the number 
+//                        page38.block[i].setPosition(100, ((250) + (275 * i)) + (9 * percentage) * (-70));//(200 / 2 - 1080 / 2));
+//                    }
+//                    slider.setPosition(SLIDER_X, SCROLLBAR_Y + sliderPosition);
+//                }
+//            }
+//            else if (event.type == sf::Event::MouseButtonPressed)
+//            {
+//                if (slider.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
+//                {
+//                    sliderPosition = event.mouseButton.y - SCROLLBAR_Y - (SLIDER_HEIGHT / 2);
+//                    if (sliderPosition < 0)
+//                        sliderPosition = 0;
+//                    else if (sliderPosition > SCROLLBAR_RANGE)
+//                        sliderPosition = SCROLLBAR_RANGE;
+//                }
+//            }
+//        }
+//        window.draw(MouseRect);
+//        window.clear();
+//        window.draw(page38.bg38);
+//        for (int i = 0; i < 5; i++)
+//        {
+//            window.draw(page38.block[i]);
+//        }
+//        window.draw(page38.back_b);
+//        window.draw(page38.back_t);
+//        window.draw(scrollbar);
+//        window.draw(slider);
+//        window.display();
+//    }
+//}
 //////////////////
 int getdata2(countries_offers offers1[], countries_offers2 schedule2[])
 {
