@@ -1,4 +1,5 @@
 #include <iostream>
+#include<vector>
 #include <string>
 #include<fstream>
 #include <SFML/Graphics.hpp>
@@ -71,6 +72,15 @@ struct PAGE7 {
     Sprite block[5];
     Sprite back_b;
     Text back_t;
+    Text dep[5];
+    Text arv[5];
+    Text date[5];
+    Text th1[5];
+    Text th2[5];
+    Text tm2[5];
+    Text level[5];
+    Text num[5];
+    Text price[5];
 };
 struct PAGE8 {
     Sprite background;
@@ -374,7 +384,60 @@ struct PAGE37 {
     Sprite button1;
     Text buttontext1;
 };
-
+//////////////
+struct Date
+{
+    int Day;
+    int Month;
+    int Year;
+};
+struct user {
+    string email, password, confirmPass, firstName, lastName, surname, phoneNum, nationality, kind;
+    Date data;
+};
+struct Data
+{
+    string from;
+    string to;
+    Date myDate{};
+    int price;
+    int th1;
+    int th2;
+    int tm2;
+    string flight_num;
+};
+struct pass
+{
+    Data airPorts;
+    string first_name[7];
+    string last_name[7];
+    string title[7];
+    Date birthdate[7];
+    string passport_id[7];
+    string gender[7];
+    string level;
+    string user;
+    string seats[7];
+};
+struct countries_offers
+{
+    string dep;
+    string arv;
+    int t_h;
+    int t_m;
+    int price;
+};
+struct countries_offers2 {
+    string dep;
+    string arv;
+    string num;
+    int th1;
+    int th2;
+    int tm2;
+    int price;
+    int seats;
+    int duration;
+};
 
 
 
@@ -388,74 +451,77 @@ Font f1, f2, f3, f4;
 
 void textureAndFonts();
 void drawpage1(PAGE1 page1);
-void setpage1(PAGE1& page1);
+void setpage1(PAGE1& page1, countries_offers offers1[]);
 void draw_page_2(PAGE2 page2);
-void set_page_2(PAGE2& page2);
+void set_page_2(PAGE2& page2, countries_offers offers1[]);
 void drawpage3(PAGE3 page3);
-void setpage3(PAGE3& page3);
+void setpage3(PAGE3& page3, countries_offers offers1[]);
 void Draw_page_4(PAGE4 page4);
-void Set_page_4(PAGE4& page4);
+void Set_page_4(PAGE4& page4, countries_offers offers1[]);
 void drawpage5(PAGE5 page5);
-void setpage5(PAGE5& page5);
-void Set_page_6(PAGE6& page6);
-void setpage7(PAGE7& page7);
+void setpage5(PAGE5& page5, countries_offers offers1[]);
+void Set_page_6(PAGE6& page6, countries_offers offers1[]);
+void setpage7(PAGE7& page7, countries_offers offers1[]);
 void drawpage8(PAGE8 page8);
-void setpage8(PAGE8& page8);
+void setpage8(PAGE8& page8, countries_offers offers1[]);
 void draw_page_9(PAGE9 page9);
-void set_page_9(PAGE9& page9);
+void set_page_9(PAGE9& page9, countries_offers offers1[]);
 void drawpage10(PAGE10 page10);
-void setpage10(PAGE10& page10);
+void setpage10(PAGE10& page10, countries_offers offers1[]);
 void Draw_page_11(PAGE11 page11);
-void Set_page_11(PAGE11& page11);
+void Set_page_11(PAGE11& page11, countries_offers offers1[]);
 void drawpage12(PAGE12 page12);
-void setpage12(PAGE12& page12);
+void setpage12(PAGE12& page12, countries_offers offers1[]);
 void draw_page_13(PAGE13 page13);
-void set_page_13(PAGE13& page13);
+void set_page_13(PAGE13& page13, countries_offers offers1[]);
 void draw_page14(PAGE14 page14);
-void set_page14(PAGE14& page14);
+void set_page14(PAGE14& page14, countries_offers offers1[]);
 void Draw_page_15(PAGE15 page15);
-void Set_page_15(PAGE15& page15);
+void Set_page_15(PAGE15& page15, countries_offers offers1[]);
 void Draw_page_16(PAGE16 page16);
-void Set_page_16(PAGE16& page16);
+void Set_page_16(PAGE16& page16, countries_offers offers1[]);
 void draw_page_17(PAGE17 page17);
-void set_page_17(PAGE17& page17);
+void set_page_17(PAGE17& page17, countries_offers offers1[]);
 void draw_page_18(PAGE18 page18);
-void set_page_18(PAGE18& page18);
+void set_page_18(PAGE18& page18, countries_offers offers1[]);
 void drawpage19(PAGE19 page19);
-void setpage19(PAGE19& page19);
+void setpage19(PAGE19& page19, countries_offers offers1[]);
 void drawpage20(PAGE20 page20);
-void setpage20(PAGE20& page20);
+void setpage20(PAGE20& page20, countries_offers offers1[]);
 void drawpage21(PAGE21 page21);
-void setpage21(PAGE21& page21);
+void setpage21(PAGE21& page21, countries_offers offers1[]);
 void draw_page_22(PAGE22 page22);
-void set_page_22(PAGE22& page22);
-void setpage23(PAGE23& page23);
+void set_page_22(PAGE22& page22, countries_offers offers1[]);
+void setpage23(PAGE23& page23, countries_offers offers1[]);
 void draw_page_24(PAGE24 page24);
-void set_page_24(PAGE24& page24);
+void set_page_24(PAGE24& page24, countries_offers offers1[]);
 void drawpage25(PAGE25 page25);
-void setpage25(PAGE25& page25);
+void setpage25(PAGE25& page25, countries_offers offers1[]);
 void setpage26(PAGE26& page26);
 void drawpage27(PAGE27 page27);
-void setpage27(PAGE27& page27);
+void setpage27(PAGE27& page27, countries_offers offers1[]);
 void draw_page_28(PAGE28 page28);
-void set_page_28(PAGE28& page28);
+void set_page_28(PAGE28& page28, countries_offers offers1[]);
 void draw_page_29(PAGE29 page29);
-void set_page_29(PAGE29& page29);
+void set_page_29(PAGE29& page29, countries_offers offers1[]);
 void drawpage30(PAGE30 page30);
-void setpage30(PAGE30& page30);
+void setpage30(PAGE30& page30, countries_offers offers1[]);
 void draw_page_31(PAGE31 page31);
-void set_page_31(PAGE31& page31);
+void set_page_31(PAGE31& page31, countries_offers offers1[]);
 void draw_page_32(PAGE32 page32);
-void set_page_32(PAGE32& page32);
-void setpage33(PAGE33& page33);
+void set_page_32(PAGE32& page32, countries_offers offers1[]);
+void setpage33(PAGE33& page33, countries_offers offers1[]);
 void drawpage34(PAGE34 page34);
-void setpage34(PAGE34& page34);
+void setpage34(PAGE34& page34, countries_offers offers1[]);
 void draw_page_35(PAGE35 page35);
-void set_page_35(PAGE35& page35);
+void set_page_35(PAGE35& page35, countries_offers offers1[]);
 void draw_page_36(PAGE36 page36);
-void set_page_36(PAGE36& page36);
+void set_page_36(PAGE36& page36, countries_offers offers1[]);
 void drawpage37(PAGE37 page37);
-void setpage37(PAGE37& page37);
+void setpage37(PAGE37& page37, countries_offers offers1[]);
+////////////
+int getdata2(countries_offers offers1[], countries_offers2 schedule2[]);
+void senddata2(countries_offers offers1[], countries_offers2 schedule2[]);
 
 int main()
 {
@@ -497,14 +563,19 @@ int main()
     PAGE35 page35;
     PAGE36 page36;
     PAGE37 page37;
-
+    ///////
+    countries_offers offers1[5];
+    countries_offers2 schedule2[100];
+    vector< user>info;
+    vector<pass>passengers;
+    int x = getdata2(offers1, schedule2);
     //setpage1(page1);
     //set_page_2(page2);
     //setpage3(page3);
     //Set_page_4(page4);
     //setpage5(page5);
     //Set_page_6(page6);
-    //setpage7(page7);
+    setpage7(page7, offers1);
     //setpage8(page8);
     //set_page_9(page9);
     //setpage10(page10);
@@ -519,69 +590,70 @@ int main()
     //setpage23(page23);
     //set_page_24(page24);
     //setpage26(page26);
-    set_page_29(page29);
-    setpage30(page30);
+    //set_page_29(page29);
+    //setpage30(page30);
     //set_page_31(page31);
     //setpage33(page33);
     //setpage34(page34);
     //set_page_35(page35);
     //set_page_36(page36);
 
+    senddata2(offers1, schedule2);
     return 0;
 }
 
 void textureAndFonts()
 {
-    bg1.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg1.png");
-    bg2.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg2.png");
-    bg3.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg3.png");
-    background4.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg4.png");
-    bg5.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg5.png");
-    background6.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg6.png");
-    bg7.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg7.png");
-    bg8.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg8.png");
-    bg9.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg9.png");
-    bg10.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg10.png");
-    background11.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg11.png");
-    bg12.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg12.png");
-    bg13.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg13.png");
-    bg14.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg14.png");
-    background15.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg15.png");
-    background16.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg16.png");
-    bg17.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg17.png");
-    bg18.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg18.png");
-    bg19.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg19.png");
-    bg20.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg20.png");
-    bg21.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg21.png");
-    bg22.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg22.png");
-    bg23.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg23.png");
-    bg24.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg24.png");
-    bg25.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg25.png");
-    bg26.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg26.png");
-    bg27.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg27.png");
-    bg28.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg28.png");
-    bg29.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg29.png");
-    bg30.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg30.png");
-    bg31.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg31.png");
-    bg32.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg32.png");
-    bg33.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg33.png");
-    bg34.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg34.png");
-    bg35.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg35.png");
-    bg36.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg36.png");
-    bg37.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg37.png");
+    bg1.loadFromFile("D:/sfml pic/bg1.png");
+    bg2.loadFromFile("D:/sfml pic/bg2.png");
+    bg3.loadFromFile("D:/sfml pic/bg3.png");
+    background4.loadFromFile("D:/sfml pic/bg4.png");
+    bg5.loadFromFile("D:/sfml pic/bg5.png");
+    background6.loadFromFile("D:/sfml pic/bg6.png");
+    bg7.loadFromFile("D:/sfml pic/bg7.png");
+    bg8.loadFromFile("D:/sfml pic/bg8.png");
+    bg9.loadFromFile("D:/sfml pic/bg9.png");
+    bg10.loadFromFile("D:/sfml pic/bg10.png");
+    background11.loadFromFile("D:/sfml pic/bg11.png");
+    bg12.loadFromFile("D:/sfml pic/bg12.png");
+    bg13.loadFromFile("D:/sfml pic/bg13.png");
+    bg14.loadFromFile("D:/sfml pic/bg14.png");
+    background15.loadFromFile("D:/sfml pic/bg15.png");
+    background16.loadFromFile("D:/sfml pic/bg16.png");
+    bg17.loadFromFile("D:/sfml pic/bg17.png");
+    bg18.loadFromFile("D:/sfml pic/bg18.png");
+    bg19.loadFromFile("D:/sfml pic/bg19.png");
+    bg20.loadFromFile("D:/sfml pic/bg20.png");
+    bg21.loadFromFile("D:/sfml pic/bg21.png");
+    bg22.loadFromFile("D:/sfml pic/bg22.png");
+    bg23.loadFromFile("D:/sfml pic/bg23.png");
+    bg24.loadFromFile("D:/sfml pic/bg24.png");
+    bg25.loadFromFile("D:/sfml pic/bg25.png");
+    bg26.loadFromFile("D:/sfml pic/bg26.png");
+    bg27.loadFromFile("D:/sfml pic/bg27.png");
+    bg28.loadFromFile("D:/sfml pic/bg28.png");
+    bg29.loadFromFile("D:/sfml pic/bg29.png");
+    bg30.loadFromFile("D:/sfml pic/bg30.png");
+    bg31.loadFromFile("D:/sfml pic/bg31.png");
+    bg32.loadFromFile("D:/sfml pic/bg32.png");
+    bg33.loadFromFile("D:/sfml pic/bg33.png");
+    bg34.loadFromFile("D:/sfml pic/bg34.png");
+    bg35.loadFromFile("D:/sfml pic/bg35.png");
+    bg36.loadFromFile("D:/sfml pic/bg36.png");
+    bg37.loadFromFile("D:/sfml pic/bg37.png");
 
-    inputbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/inputbox.png");
-    transbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/transbox.png");
-    desbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/desbox.png");
-    offersblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/offersblock.png");
-    tripsblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/tripsblock.png");
-    passengersblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/passengersblock.png");
-    block.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/block.png");
-    add.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/add.png");
-    edit.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/edit.png");
-    del.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/delete.png");
-    dep.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/pic1.png");
-    price.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/pic2.png");
+    inputbox.loadFromFile("D:/sfml pic/inputbox.png");
+    transbox.loadFromFile("D:/sfml pic/transbox.png");
+    desbox.loadFromFile("D:/sfml pic/desbox.png");
+    offersblock.loadFromFile("D:/sfml pic/offersblock.png");
+    tripsblock.loadFromFile("D:/sfml pic/tripsblock.png");
+    passengersblock.loadFromFile("D:/sfml pic/passengersblock.png");
+    block.loadFromFile("D:/sfml pic/block.png");
+    add.loadFromFile("D:/sfml pic/add.png");
+    edit.loadFromFile("D:/sfml pic/edit.png");
+    del.loadFromFile("D:/sfml pic/delete.png");
+    dep.loadFromFile("D:/sfml pic/pic1.png");
+    price.loadFromFile("D:/sfml pic/pic2.png");
 
     f1.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
     f2.loadFromFile("C:/Windows/Fonts/cambriai.ttf");
@@ -594,7 +666,7 @@ void drawpage1(PAGE1 page1) {
     window.draw(page1.Block);
     window.draw(page1.get_started);
 }
-void setpage1(PAGE1& page1) {
+void setpage1(PAGE1& page1, countries_offers offers1[]) {
     PAGE2 page2;
     page1.background.setTexture(bg1);
     page1.background.setScale(2, 2);
@@ -623,7 +695,7 @@ void setpage1(PAGE1& page1) {
 
         if (MouseRect.getGlobalBounds().intersects(page1.Block.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_2(page2);
+            set_page_2(page2, offers1);
         }
 
         while (window.pollEvent(event))
@@ -649,7 +721,7 @@ void draw_page_2(PAGE2 page2)
     window.draw(page2.logup);
 
 }
-void set_page_2(PAGE2& page2)
+void set_page_2(PAGE2& page2, countries_offers offers1[])
 {
     Mouse ms;
     PAGE4 page4;
@@ -706,11 +778,11 @@ void set_page_2(PAGE2& page2)
         }
         if (MouseRect.getGlobalBounds().intersects(page2.logup.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage3(page3);
+            setpage3(page3, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page2.login.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_4(page4);
+            Set_page_4(page4, offers1);
         }
         while (window.pollEvent(event))
         {
@@ -760,7 +832,7 @@ void drawpage3(PAGE3 page3) {
     window.draw(page3.signup);
     window.draw(page3.Fail);
 }
-void setpage3(PAGE3& page3) {
+void setpage3(PAGE3& page3, countries_offers offers1[]) {
 
     PAGE4 page4;
 
@@ -882,7 +954,7 @@ void setpage3(PAGE3& page3) {
                 }
             }
 
-            Set_page_4(page4);
+            Set_page_4(page4, offers1);
         }
 
         while (window.pollEvent(event))
@@ -930,7 +1002,7 @@ void Draw_page_4(PAGE4 page4)
     window.draw(page4.ProtocolsandContactInfobutton);
     window.draw(page4.Exitbutton);
 }
-void Set_page_4(PAGE4& page4)
+void Set_page_4(PAGE4& page4, countries_offers offers1[])
 {
     PAGE5 page5;
     PAGE6 page6;
@@ -1017,16 +1089,16 @@ void Set_page_4(PAGE4& page4)
         MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page4.FlightSchedule.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_6(page6);
+            Set_page_6(page6, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page4.NewReservation.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage23(page23);
+            setpage23(page23, offers1);
 
         }
         if (MouseRect.getGlobalBounds().intersects(page4.MyTrips.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage8(page8);
+            setpage8(page8, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page4.Exit.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
@@ -1034,7 +1106,7 @@ void Set_page_4(PAGE4& page4)
         }
         if (MouseRect.getGlobalBounds().intersects(page4.ProtocolsandContactInfo.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage5(page5);
+            setpage5(page5, offers1);
         }
         while (window.pollEvent(event))
         {
@@ -1055,7 +1127,7 @@ void drawpage5(PAGE5 page5) {
     window.draw(page5.Block);
     window.draw(page5.back);
 }
-void setpage5(PAGE5& page5) {
+void setpage5(PAGE5& page5, countries_offers offers1[]) {
 
     PAGE4 page4;
 
@@ -1086,7 +1158,7 @@ void setpage5(PAGE5& page5) {
 
         if (MouseRect.getGlobalBounds().intersects(page5.Block.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_4(page4);
+            Set_page_4(page4, offers1);
         }
 
         while (window.pollEvent(event))
@@ -1113,7 +1185,7 @@ void Draw_page_6(PAGE6 page6)
     window.draw(page6.beginbutton);
     window.draw(page6.beginButton);
 }
-void Set_page_6(PAGE6& page6)
+void Set_page_6(PAGE6& page6, countries_offers offers1[])
 {
     PAGE7 page7;
 
@@ -1145,7 +1217,7 @@ void Set_page_6(PAGE6& page6)
 
         if (MouseRect.getGlobalBounds().intersects(page6.beginbutton.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage7(page7);
+            setpage7(page7, offers1);
         }
 
         while (window.pollEvent(event))
@@ -1161,7 +1233,7 @@ void Set_page_6(PAGE6& page6)
     }
 }
 
-void setpage7(PAGE7& page7)
+void setpage7(PAGE7& page7, countries_offers offers1[])
 {
     PAGE4 page4;
 
@@ -1197,13 +1269,79 @@ void setpage7(PAGE7& page7)
     sf::RectangleShape slider(sf::Vector2f(SLIDER_WIDTH, SLIDER_HEIGHT));
     slider.setPosition(SLIDER_X, SLIDER_Y);
     slider.setFillColor(Color(65, 95, 145));
-
+    //first one ********************************************************************
     for (int i = 0; i < 5; i++)
     {
         page7.block[i].setTexture(offersblock);
         page7.block[i].setScale(1.9, 2.);
         page7.block[i].setPosition(200, ((250) + (275 * i)));
         page7.block[i].setColor(Color(255, 255, 255, 180));
+
+        string price = to_string(offers1[i].price);
+        string flight_num = to_string((2 * i) + 20);
+        string date = to_string((2 * i) + 5);
+        string th1 = to_string(offers1[i].t_h + i);
+        string th2 = to_string((2 * offers1[i].t_h) + i);
+        string tm2 = to_string(offers1[i].t_m);
+
+        page7.dep[i].setFont(f4);
+        page7.dep[i].setCharacterSize(40);
+        page7.dep[i].setOrigin(page7.dep[i].getLocalBounds().width / 2, page7.dep[i].getLocalBounds().height / 2);
+        page7.dep[i].setPosition(page7.block[i].getPosition().x - 150, page7.block[i].getPosition().y - 55);
+        page7.dep[i].setString(offers1[i].dep);
+        page7.dep[i].setFillColor(Color(0, 0, 0));
+
+        page7.arv[i].setFont(f4);
+        page7.arv[i].setCharacterSize(40);
+        page7.arv[i].setOrigin(page7.arv[i].getLocalBounds().width / 2, page7.arv[i].getLocalBounds().height / 2);
+        page7.arv[i].setPosition(page7.block[i].getPosition().x - 200, page7.block[i].getPosition().y + 10);
+        page7.arv[i].setString(offers1[i].arv);
+        page7.arv[i].setFillColor(Color(0, 0, 0));
+
+        page7.price[i].setFont(f4);
+        page7.price[i].setCharacterSize(40);
+        page7.price[i].setOrigin(page7.price[i].getLocalBounds().width / 2, page7.price[i].getLocalBounds().height / 2);
+        page7.price[i].setPosition(page7.block[i].getPosition().x + 580, page7.block[i].getPosition().y + 10);
+        page7.price[i].setString(price + " $");
+        page7.price[i].setFillColor(Color(0, 0, 0));
+
+        page7.num[i].setFont(f4);
+        page7.num[i].setCharacterSize(40);
+        page7.num[i].setOrigin(page7.price[i].getLocalBounds().width / 2, page7.price[i].getLocalBounds().height / 2);
+        page7.num[i].setPosition(page7.block[i].getPosition().x - 560, page7.block[i].getPosition().y + 10);
+        page7.num[i].setString("DS9" + flight_num);
+        page7.num[i].setFillColor(Color(0, 0, 0));
+
+        page7.date[i].setFont(f4);
+        page7.date[i].setCharacterSize(40);
+        page7.date[i].setOrigin(page7.date[i].getLocalBounds().width / 2, page7.date[i].getLocalBounds().height / 2);
+        page7.date[i].setPosition(page7.block[i].getPosition().x - 570, page7.block[i].getPosition().y - 55);
+        page7.date[i].setString(date + "/6/2023");
+        page7.date[i].setFillColor(Color(0, 0, 0));
+
+        page7.th1[i].setFont(f4);
+        page7.th1[i].setCharacterSize(30);
+        page7.th1[i].setOrigin(page7.th1[i].getLocalBounds().width / 2, page7.th1[i].getLocalBounds().height / 2);
+        page7.th1[i].setPosition(page7.dep[i].getPosition().x + 430, page7.dep[i].getPosition().y + 10);
+        page7.th1[i].setString("(" + th1 + ":00)");
+        page7.th1[i].setFillColor(Color(0, 0, 0));
+
+        page7.th2[i].setFont(f4);
+        page7.th2[i].setCharacterSize(30);
+        page7.th2[i].setOrigin(page7.th2[i].getLocalBounds().width / 2, page7.th2[i].getLocalBounds().height / 2);
+        page7.th2[i].setPosition(page7.arv[i].getPosition().x + 500, page7.arv[i].getPosition().y + 10);
+        page7.th2[i].setString("(" + th2 + ":" + tm2 + ")");
+        page7.th2[i].setFillColor(Color(0, 0, 0));
+
+        page7.level[i].setFont(f4);
+        page7.level[i].setCharacterSize(40);
+        page7.level[i].setOrigin(page7.level[i].getLocalBounds().width / 2, page7.level[i].getLocalBounds().height / 2);
+        page7.level[i].setPosition(page7.block[i].getPosition().x + 600, page7.block[i].getPosition().y - 55);
+        if (i % 2 == 0)
+            page7.level[i].setString("ECONOMY");
+        else
+            page7.level[i].setString("BUSINESS");
+        page7.level[i].setFillColor(Color(0, 0, 0));
     }
 
     const float SCROLLBAR_RANGE = SCROLLBAR_HEIGHT - SLIDER_HEIGHT;
@@ -1217,7 +1355,7 @@ void setpage7(PAGE7& page7)
         MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page7.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_4(page4);
+            Set_page_4(page4, offers1);
         }
         while (window.pollEvent(event))
         {
@@ -1234,11 +1372,21 @@ void setpage7(PAGE7& page7)
                     else if (sliderPosition > SCROLLBAR_RANGE)
                         sliderPosition = SCROLLBAR_RANGE;
                     float percentage = sliderPosition / SCROLLBAR_RANGE;
-
+                    //second loop  *************************************************************************
                     for (int i = 0; i < 5; i++)
                     {
                         //controll the number 
                         page7.block[i].setPosition(200, ((250) + (275 * i)) + (9 * percentage) * (-70));//(200 / 2 - 1080 / 2));
+
+                        page7.dep[i].setPosition(page7.block[i].getPosition().x - 150, page7.block[i].getPosition().y - 55);
+                        page7.arv[i].setPosition(page7.block[i].getPosition().x - 200, page7.block[i].getPosition().y + 10);
+                        page7.price[i].setPosition(page7.block[i].getPosition().x + 580, page7.block[i].getPosition().y + 10);
+                        page7.num[i].setPosition(page7.block[i].getPosition().x - 560, page7.block[i].getPosition().y + 10);
+                        page7.date[i].setPosition(page7.block[i].getPosition().x - 570, page7.block[i].getPosition().y - 55);
+                        page7.th1[i].setPosition(page7.dep[i].getPosition().x + 430, page7.dep[i].getPosition().y + 10);
+                        page7.th2[i].setPosition(page7.arv[i].getPosition().x + 500, page7.arv[i].getPosition().y + 10);
+                        page7.level[i].setPosition(page7.block[i].getPosition().x + 600, page7.block[i].getPosition().y - 55);
+
                     }
                     slider.setPosition(SLIDER_X, SCROLLBAR_Y + sliderPosition);
                 }
@@ -1261,6 +1409,15 @@ void setpage7(PAGE7& page7)
         for (int i = 0; i < 5; i++)
         {
             window.draw(page7.block[i]);
+            window.draw(page7.dep[i]);
+            window.draw(page7.arv[i]);
+            window.draw(page7.price[i]);
+            window.draw(page7.th1[i]);
+            window.draw(page7.th2[i]);
+            window.draw(page7.tm2[i]);
+            window.draw(page7.date[i]);
+            window.draw(page7.num[i]);
+            window.draw(page7.level[i]);
         }
         window.draw(page7.back_b);
         window.draw(page7.back_t);
@@ -1281,7 +1438,7 @@ void drawpage8(PAGE8 page8) {
     window.draw(page8.Multicity);
     window.draw(page8.Round);
 }
-void setpage8(PAGE8& page8) {
+void setpage8(PAGE8& page8, countries_offers offers1[]) {
 
     PAGE4 page4;
     PAGE9 page9;
@@ -1347,19 +1504,19 @@ void setpage8(PAGE8& page8) {
         Event event;
         if (MouseRect.getGlobalBounds().intersects(page8.Block1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_4(page4);
+            Set_page_4(page4, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page8.Block2.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage10(page10);
+            setpage10(page10, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page8.Block3.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_9(page9);
+            set_page_9(page9, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page8.Block4.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_11(page11);
+            Set_page_11(page11, offers1);
         }
 
         while (window.pollEvent(event))
@@ -1387,7 +1544,7 @@ void draw_page_9(PAGE9 page9)
     window.draw(page9.begin);
     window.draw(page9.Begin);
 }
-void set_page_9(PAGE9& page9)
+void set_page_9(PAGE9& page9, countries_offers offers1[])
 {
     Mouse ms;
     PAGE13 page13;
@@ -1414,7 +1571,7 @@ void set_page_9(PAGE9& page9)
         MouseRect.setPosition(ms.getPosition().x - 5, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page9.begin.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_13(page13);
+            set_page_13(page13, offers1);
         };
         while (window.pollEvent(event))
         {
@@ -1435,7 +1592,7 @@ void drawpage10(PAGE10 page10)
     window.draw(page10.Block);
     window.draw(page10.Begin);
 }
-void setpage10(PAGE10& page10)
+void setpage10(PAGE10& page10, countries_offers offers1[])
 {
     PAGE12 page12;
     page10.background.setTexture(bg10);
@@ -1465,7 +1622,7 @@ void setpage10(PAGE10& page10)
         {
             if (MouseRect.getGlobalBounds().intersects(page10.Block.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
             {
-                setpage12(page12);
+                setpage12(page12, offers1);
             }
             if (event.type == Event::Closed)
             {
@@ -1484,7 +1641,7 @@ void Draw_page_11(PAGE11 page11)
     window.draw(page11.beginbutton);
     window.draw(page11.beginButton);
 }
-void Set_page_11(PAGE11& page11)
+void Set_page_11(PAGE11& page11, countries_offers offers1[])
 {
     PAGE14 page14;
 
@@ -1516,7 +1673,7 @@ void Set_page_11(PAGE11& page11)
         {
             if (MouseRect.getGlobalBounds().intersects(page11.beginbutton.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
             {
-                set_page14(page14);
+                set_page14(page14, offers1);
             }
             if (event.type == Event::Closed)
             {
@@ -1547,7 +1704,7 @@ void drawpage12(PAGE12 page12) {
     window.draw(page12.To);
     window.draw(page12.Fail);
 }
-void setpage12(PAGE12& page12)
+void setpage12(PAGE12& page12, countries_offers offers1[])
 {
     PAGE8 page8;
     page12.background.setTexture(bg12);
@@ -1663,7 +1820,7 @@ void setpage12(PAGE12& page12)
         }
         if (MouseRect.getGlobalBounds().intersects(page12.button1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage8(page8);
+            setpage8(page8, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page12.button2.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
@@ -1741,7 +1898,7 @@ void draw_page_13(PAGE13 page13)
     window.draw(page13.Back);
 
 }
-void set_page_13(PAGE13& page13)
+void set_page_13(PAGE13& page13, countries_offers offers1[])
 {
     Mouse ms;
     PAGE17 page17;
@@ -1847,7 +2004,7 @@ void set_page_13(PAGE13& page13)
         }
         if (MouseRect.getGlobalBounds().intersects(page13.back.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage8(page8);
+            setpage8(page8, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page13.next.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
@@ -1928,7 +2085,7 @@ void draw_page14(PAGE14 page14)
         window.draw(page14.contient[i]);
     }
 }
-void set_page14(PAGE14& page14)
+void set_page14(PAGE14& page14, countries_offers offers1[])
 {
     PAGE8 page8;
     MouseRect.setFillColor(Color(0, 0, 0, 0));
@@ -2033,7 +2190,7 @@ void set_page14(PAGE14& page14)
         {
             if (MouseRect.getGlobalBounds().intersects(page14.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
             {
-                setpage8(page8);
+                setpage8(page8, offers1);
             }
             if (event.type == Event::Closed)
             {
@@ -2055,7 +2212,7 @@ void Draw_page_15(PAGE15 page15)
     window.draw(page15.backButton);
     window.draw(page15.inputButton);
 }
-void Set_page_15(PAGE15& page15)
+void Set_page_15(PAGE15& page15, countries_offers offers1[])
 {
     page15.bg15.setTexture(background15);
     page15.bg15.setScale(1.9, 2);
@@ -2133,7 +2290,7 @@ void Draw_page_16(PAGE16 page16)
     window.draw(page16.backButton);
 
 }
-void Set_page_16(PAGE16& page16)
+void Set_page_16(PAGE16& page16, countries_offers offers1[])
 {
     page16.bg16.setTexture(background16);
     page16.bg16.setScale(2.2, 2.2);
@@ -2245,7 +2402,7 @@ void draw_page_17(PAGE17 page17)
     window.draw(page17.next);
     window.draw(page17.Next);
 }
-void set_page_17(PAGE17& page17)
+void set_page_17(PAGE17& page17, countries_offers offers1[])
 {
     Mouse ms;
     PAGE18 page18;
@@ -2290,7 +2447,7 @@ void set_page_17(PAGE17& page17)
         }
         if (MouseRect.getGlobalBounds().intersects(page17.next.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_18(page18);
+            set_page_18(page18, offers1);
         }
         while (window.pollEvent(event))
         {
@@ -2332,7 +2489,7 @@ void draw_page_18(PAGE18 page18)
     window.draw(page18.next);
     window.draw(page18.Next);
 }
-void set_page_18(PAGE18& page18)
+void set_page_18(PAGE18& page18, countries_offers offers1[])
 {
     Mouse ms;
     PAGE22 page22;
@@ -2376,7 +2533,7 @@ void set_page_18(PAGE18& page18)
         }
         if (MouseRect.getGlobalBounds().intersects(page18.next.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_22(page22);
+            set_page_22(page22, offers1);
         }
         while (window.pollEvent(event))
         {
@@ -2420,7 +2577,7 @@ void drawpage19(PAGE19 page19) {
     window.draw(page19.Digital);
     window.draw(page19.Back);
 }
-void setpage19(PAGE19& page19) {
+void setpage19(PAGE19& page19, countries_offers offers1[]) {
     PAGE4 page4;
     PAGE20 page20;
     PAGE21 page21;
@@ -2472,17 +2629,17 @@ void setpage19(PAGE19& page19) {
 
         if (MouseRect.getGlobalBounds().intersects(page19.Block2.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage20(page20);
+            setpage20(page20, offers1);
         }
 
         if (MouseRect.getGlobalBounds().intersects(page19.Block1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage21(page21);
+            setpage21(page21, offers1);
         }
 
         if (MouseRect.getGlobalBounds().intersects(page19.Block3.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_4(page4);
+            Set_page_4(page4, offers1);
         }
 
         while (window.pollEvent(event))
@@ -2512,7 +2669,7 @@ void drawpage20(PAGE20 page20) {
     window.draw(page20.Block5);
     window.draw(page20.Fail);
 }
-void setpage20(PAGE20& page20) {
+void setpage20(PAGE20& page20, countries_offers offers1[]) {
     PAGE22 page22;
     PAGE19 page19;
     page20.background.setTexture(bg20);
@@ -2589,7 +2746,7 @@ void setpage20(PAGE20& page20) {
         }
         if (MouseRect.getGlobalBounds().intersects(page20.Block1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage19(page19);
+            setpage19(page19, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page20.Block2.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
@@ -2602,7 +2759,7 @@ void setpage20(PAGE20& page20) {
                 }
             }
 
-            set_page_22(page22);
+            set_page_22(page22, offers1);
         }
         while (window.pollEvent(event))
         {
@@ -2646,7 +2803,7 @@ void drawpage21(PAGE21 page21) {
     window.draw(page21.Back);
 
 }
-void setpage21(PAGE21& page21)
+void setpage21(PAGE21& page21, countries_offers offers1[])
 {
     PAGE19 page19;
     PAGE22 page22;
@@ -2697,20 +2854,20 @@ void setpage21(PAGE21& page21)
 
         if (MouseRect.getGlobalBounds().intersects(page21.Block3.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage19(page19);
+            setpage19(page19, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page21.Block1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
             page21.Block1.setColor(Color(74, 127, 211));
             page21.Block2.setColor(Color(255, 255, 255, 80));
-            set_page_22(page22);
+            set_page_22(page22, offers1);
 
         }
         if (MouseRect.getGlobalBounds().intersects(page21.Block2.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
             page21.Block2.setColor(Color(74, 127, 211));
             page21.Block1.setColor(Color(255, 255, 255, 80));
-            set_page_22(page22);
+            set_page_22(page22, offers1);
         }
 
         while (window.pollEvent(event))
@@ -2732,7 +2889,7 @@ void draw_page_22(PAGE22 page22)
     window.draw(page22.done);
     window.draw(page22.DONE);
 }
-void set_page_22(PAGE22& page22)
+void set_page_22(PAGE22& page22, countries_offers offers1[])
 {
     Mouse ms;
     PAGE4 page4;
@@ -2761,7 +2918,7 @@ void set_page_22(PAGE22& page22)
         MouseRect.setPosition(ms.getPosition().x - 5, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page22.done.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_4(page4);
+            Set_page_4(page4, offers1);
         };
         while (window.pollEvent(event))
         {
@@ -2777,7 +2934,7 @@ void set_page_22(PAGE22& page22)
     }
 }
 
-void setpage23(PAGE23& page23)
+void setpage23(PAGE23& page23, countries_offers offers1[])
 {
     PAGE4 page4;
     page23.background.setTexture(bg23);
@@ -2835,7 +2992,7 @@ void setpage23(PAGE23& page23)
         sf::Event event;
         if (MouseRect.getGlobalBounds().intersects(page23.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_4(page4);
+            Set_page_4(page4, offers1);
         }
         while (window.pollEvent(event))
         {
@@ -2909,7 +3066,7 @@ void draw_page_24(PAGE24 page24) {
     window.draw(page24.Cancle);
     window.draw(page24.Back);
 }
-void set_page_24(PAGE24& page24)
+void set_page_24(PAGE24& page24, countries_offers offers1[])
 {
     Mouse ms;
 
@@ -3026,7 +3183,7 @@ void drawpage25(PAGE25 page25) {
     window.draw(page25.Block1);
     window.draw(page25.Next);
 }
-void setpage25(PAGE25& page25) {
+void setpage25(PAGE25& page25, countries_offers offers1[]) {
     page25.background.setTexture(bg25);
     page25.background.setScale(2, 2.5);
     page25.background.setPosition(0, 0);
@@ -3072,7 +3229,7 @@ void setpage25(PAGE25& page25) {
 
 }
 
-void setpage26(PAGE26& page26)
+void setpage26(PAGE26& page26, countries_offers offers1[])
 {
     page26.background.setTexture(bg26);
     page26.background.setScale(2.18, 2.18);
@@ -3188,7 +3345,7 @@ void drawpage27(PAGE27 page27) {
     window.draw(page27.button2);
     window.draw(page27.buttontext2);
 }
-void setpage27(PAGE27& page27) {
+void setpage27(PAGE27& page27, countries_offers offers1[]) {
 
     page27.background.setTexture(bg27);
     page27.background.setScale(2.85, 2.85);
@@ -3253,7 +3410,7 @@ void draw_page_28(PAGE28 page28)
     window.draw(page28.next);
     window.draw(page28.Next);
 }
-void set_page_28(PAGE28& page28)
+void set_page_28(PAGE28& page28, countries_offers offers1[])
 {
     Mouse ms;
 
@@ -3302,7 +3459,7 @@ void draw_page_29(PAGE29 page29)
     window.draw(page29.exit);
     window.draw(page29.Exit);
 }
-void set_page_29(PAGE29& page29)
+void set_page_29(PAGE29& page29, countries_offers offers1[])
 {
     PAGE2 page2;
     PAGE30 page30;
@@ -3338,12 +3495,12 @@ void set_page_29(PAGE29& page29)
         MouseRect.setPosition(ms.getPosition().x - 5, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page29.exit.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_2(page2);
+            set_page_2(page2, offers1);
         };
 
         if (MouseRect.getGlobalBounds().intersects(page29.begin.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage30(page30);
+            setpage30(page30, offers1);
         };
         while (window.pollEvent(event))
         {
@@ -3372,7 +3529,7 @@ void drawpage30(PAGE30 page30) {
     window.draw(page30.buttontext4);
 
 }
-void setpage30(PAGE30& page30) {
+void setpage30(PAGE30& page30, countries_offers offers1[]) {
 
     PAGE29 page29;
     PAGE31 page31;
@@ -3437,19 +3594,19 @@ void setpage30(PAGE30& page30) {
         MouseRect.setPosition(ms.getPosition().x - 5, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page30.button1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_29(page29);
+            set_page_29(page29, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page30.button2.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_31(page31);
+            set_page_31(page31, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page30.button3.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage33(page33);
+            setpage33(page33, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page30.button4.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage33(page33);
+            setpage33(page33, offers1);
         }
         while (window.pollEvent(event))
         {
@@ -3482,7 +3639,7 @@ void draw_page_31(PAGE31 page31) {
     window.draw(page31.Next);
     window.draw(page31.Back);
 }
-void set_page_31(PAGE31& page31)
+void set_page_31(PAGE31& page31, countries_offers offers1[])
 {
     PAGE30 page30;
     PAGE32 page32;
@@ -3568,11 +3725,11 @@ void set_page_31(PAGE31& page31)
         }
         if (MouseRect.getGlobalBounds().intersects(page31.back.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage30(page30);
+            setpage30(page30, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page31.next.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_32(page32);
+            set_page_32(page32, offers1);
         }
         while (window.pollEvent(event))
         {
@@ -3613,7 +3770,7 @@ void draw_page_32(PAGE32 page32)
     window.draw(page32.next);
     window.draw(page32.Next);
 }
-void set_page_32(PAGE32& page32)
+void set_page_32(PAGE32& page32, countries_offers offers1[])
 {
     Mouse ms;
 
@@ -3656,7 +3813,7 @@ void set_page_32(PAGE32& page32)
 
 }
 
-void setpage33(PAGE33& page33)
+void setpage33(PAGE33& page33, countries_offers offers1[])
 {
     PAGE30 page30;
     page33.background.setTexture(bg33);
@@ -3666,7 +3823,7 @@ void setpage33(PAGE33& page33)
 
     page33.back_b.setTexture(transbox);
     page33.back_b.setOrigin(page33.back_b.getLocalBounds().width / 2, page33.back_b.getLocalBounds().height / 2);
-    page33.back_b.setPosition(1920 / 2 - 750, 1080 / 2 + 450);
+    page33.back_b.setPosition(1920 / 2 - 800, 1080 / 2 + 450);
     page33.back_b.setScale(1.7, 1.7);
 
     page33.back_t.setFont(f2);
@@ -3695,8 +3852,8 @@ void setpage33(PAGE33& page33)
     for (int i = 0; i < 100; i++)
     {
         page33.block[i].setTexture(offersblock);
-        page33.block[i].setScale(1.9, 2.);
-        page33.block[i].setPosition(200, ((250) + (275 * i)));
+        page33.block[i].setScale(1.7, 2.);
+        page33.block[i].setPosition(320, ((250) + (275 * i)));
         page33.block[i].setColor(Color(255, 255, 255, 180));
         page33.num[i].setFont(f1);
         page33.num[i].setPosition(page33.block[i].getPosition().x, page33.block[i].getPosition().y);
@@ -3715,7 +3872,7 @@ void setpage33(PAGE33& page33)
         sf::Event event;
         if (MouseRect.getGlobalBounds().intersects(page33.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage30(page30);
+            setpage30(page30, offers1);
         }
         while (window.pollEvent(event))
         {
@@ -3736,7 +3893,7 @@ void setpage33(PAGE33& page33)
                     for (int i = 0; i < 100; i++)
                     {
                         //controll the number 
-                        page33.block[i].setPosition(200, ((250) + (275 * i)) + (9 * percentage) * (-2970));//(200 / 2 - 1080 / 2));
+                        page33.block[i].setPosition(320, ((250) + (275 * i)) + (9 * percentage) * (-2970));//(200 / 2 - 1080 / 2));
                         page33.num[i].setPosition(page33.block[i].getPosition().x, page33.block[i].getPosition().y);
                     }
                     slider.setPosition(SLIDER_X, SCROLLBAR_Y + sliderPosition);
@@ -3784,7 +3941,7 @@ void drawpage34(PAGE34 page34) {
     window.draw(page34.Departure);
 
 }
-void setpage34(PAGE34& page34)
+void setpage34(PAGE34& page34, countries_offers offers1[])
 {
     PAGE35 page35;
     PAGE36 page36;
@@ -3839,15 +3996,15 @@ void setpage34(PAGE34& page34)
 
         if (MouseRect.getGlobalBounds().intersects(page34.Button1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_35(page35);
+            set_page_35(page35, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page34.Button2.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_36(page36);
+            set_page_36(page36, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page34.Block1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage30(page30);
+            setpage30(page30, offers1);
         }
         while (window.pollEvent(event))
         {
@@ -3872,7 +4029,7 @@ void draw_page_35(PAGE35 page35)
     window.draw(page35.next);
     window.draw(page35.Next);
 }
-void set_page_35(PAGE35& page35)
+void set_page_35(PAGE35& page35, countries_offers offers1[])
 {
     PAGE34 page34;
     PAGE37 page37;
@@ -3928,11 +4085,11 @@ void set_page_35(PAGE35& page35)
         }
         if (MouseRect.getGlobalBounds().intersects(page35.back.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage34(page34);
+            setpage34(page34, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page35.back.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage37(page37);
+            setpage37(page37, offers1);
         }
         while (window.pollEvent(event))
         {
@@ -3976,7 +4133,7 @@ void draw_page_36(PAGE36 page36)
     window.draw(page36.next);
     window.draw(page36.Next);
 }
-void set_page_36(PAGE36& page36)
+void set_page_36(PAGE36& page36, countries_offers offers1[])
 {
     Mouse ms;
     PAGE34 page34;
@@ -4032,11 +4189,11 @@ void set_page_36(PAGE36& page36)
         }
         if (MouseRect.getGlobalBounds().intersects(page36.back.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage34(page34);
+            setpage34(page34, offers1);
         }
         if (MouseRect.getGlobalBounds().intersects(page36.back.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage37(page37);
+            setpage37(page37, offers1);
         }
         while (window.pollEvent(event))
         {
@@ -4078,7 +4235,7 @@ void drawpage37(PAGE37 page37) {
     window.draw(page37.buttontext1);
 
 }
-void setpage37(PAGE37& page37) {
+void setpage37(PAGE37& page37, countries_offers offers1[]) {
 
     page37.background.setTexture(bg37);
     page37.background.setScale(2.85, 2.85);
@@ -4119,4 +4276,54 @@ void setpage37(PAGE37& page37) {
     }
 
 
+}
+//////////////////
+int getdata2(countries_offers offers1[], countries_offers2 schedule2[])
+{
+    ifstream AH("offers.txt");
+    if (AH.is_open())
+    {
+
+        for (int i = 0; i < 5; i++)
+        {
+            AH >> offers1[i].dep >> offers1[i].arv >> offers1[i].t_h >> offers1[i].t_m >> offers1[i].price;
+        }
+        AH.close();
+    }
+    int j = 0;
+    ifstream AH4("countries admin.txt");
+    if (AH4.is_open())
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            AH4 >> schedule2[i].dep >> schedule2[i].arv >> schedule2[i].th1 >> schedule2[i].th2 >> schedule2[i].tm2 >> schedule2[i].price >> schedule2[i].seats >> schedule2[i].num >> schedule2[i].duration;
+        }
+
+        AH4.close();
+    }
+    return j;
+}
+void senddata2(countries_offers offers1[], countries_offers2 schedule2[])
+{
+    ofstream ah1("offers.txt");
+    if (ah1.is_open())
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            ah1 << offers1[i].dep << "\t" << offers1[i].arv << "\t" << offers1[i].t_h << "\t" << offers1[i].t_m << "\t" << offers1[i].price << endl;
+        }
+
+        ah1.close();
+    }
+
+    ofstream ah5("countries admin.txt");
+    if (ah5.is_open())
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            ah5 << schedule2[i].dep << "\t" << schedule2[i].arv << "\t" << schedule2[i].th1 << "\t" << schedule2[i].th2 << "\t" << schedule2[i].tm2 << "\t" << schedule2[i].price << "\t" << schedule2[i].seats << "\t" << schedule2[i].num << "\t" << schedule2[i].duration << endl;
+        }
+
+        ah5.close();
+    }
 }
