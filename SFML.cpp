@@ -1324,7 +1324,7 @@ void setpage7(PAGE7& page7, countries_offers offers1[])
         page7.date[i].setFont(f4);
         page7.date[i].setCharacterSize(42);
         page7.date[i].setOrigin(page7.date[i].getLocalBounds().width / 2, page7.date[i].getLocalBounds().height / 2);
-        page7.date[i].setPosition(page7.block[i].getPosition().x + 247, page7.block[i].getPosition().y + 35);
+        page7.date[i].setPosition(page7.block[i].getPosition().x + 240, page7.block[i].getPosition().y + 35);
         page7.date[i].setString(date + "/6/2023");
         page7.date[i].setFillColor(Color(0, 0, 0));
 
@@ -1391,7 +1391,7 @@ void setpage7(PAGE7& page7, countries_offers offers1[])
                         page7.arv[i].setPosition(page7.block[i].getPosition().x + 468, page7.block[i].getPosition().y + 105);
                         page7.price[i].setPosition(page7.block[i].getPosition().x + 1490, page7.block[i].getPosition().y + 105);
                         page7.num[i].setPosition(page7.block[i].getPosition().x + 270, page7.block[i].getPosition().y + 117);
-                        page7.date[i].setPosition(page7.block[i].getPosition().x + 247, page7.block[i].getPosition().y + 35);
+                        page7.date[i].setPosition(page7.block[i].getPosition().x + 240, page7.block[i].getPosition().y + 35);
                         page7.th1[i].setPosition(page7.dep[i].getPosition().x + 680, page7.dep[i].getPosition().y);
                         page7.th2[i].setPosition(page7.arv[i].getPosition().x + 730, page7.arv[i].getPosition().y);
                         page7.level[i].setPosition(page7.block[i].getPosition().x + 1494, page7.block[i].getPosition().y + 35);
