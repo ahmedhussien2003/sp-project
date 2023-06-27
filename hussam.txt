@@ -36,11 +36,12 @@
     bg35.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg35.png");
     bg36.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg36.png");
     bg37.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg37.png");
+    bg38.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg38.png"); 
 
     inputbox.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/inputbox.png");
     transbox.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/transbox.png");
     desbox.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/desbox.png");
-    offersblock.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/offersblock.png");
+    newoffersblock.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/newoffersblock.png");
     tripsblock.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/tripsblock.png");
     passengersblock.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/passengersblock.png");
     block.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/block.png");

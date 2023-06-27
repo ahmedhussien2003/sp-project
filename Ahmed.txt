@@ -1,4 +1,3 @@
-
     bg1.loadFromFile("D:/sfml pic/bg1.png");
     bg2.loadFromFile("D:/sfml pic/bg2.png");
     bg3.loadFromFile("D:/sfml pic/bg3.png");
@@ -36,11 +35,12 @@
     bg35.loadFromFile("D:/sfml pic/bg35.png");
     bg36.loadFromFile("D:/sfml pic/bg36.png");
     bg37.loadFromFile("D:/sfml pic/bg37.png");
+    bg38.loadFromFile("D:/sfml pic/bg38.png");
 
     inputbox.loadFromFile("D:/sfml pic/inputbox.png");
     transbox.loadFromFile("D:/sfml pic/transbox.png");
     desbox.loadFromFile("D:/sfml pic/desbox.png");
-    offersblock.loadFromFile("D:/sfml pic/offersblock.png");
+    newoffersblock.loadFromFile("D:/sfml pic/newoffersblock.png");
     tripsblock.loadFromFile("D:/sfml pic/tripsblock.png");
     passengersblock.loadFromFile("D:/sfml pic/passengersblock.png");
     block.loadFromFile("D:/sfml pic/block.png");

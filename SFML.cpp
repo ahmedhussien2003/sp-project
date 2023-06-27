@@ -167,6 +167,8 @@ struct PAGE14
     Text back_t;
     Text eco;
     Text bus;
+    Text from_country;
+    Text to_country;
     Sprite block[5];
     Text contient[5];
 };
@@ -390,6 +392,18 @@ struct PAGE38 {
     Sprite back_b;
     Text back_t;
 };
+struct SPLIT
+{
+    Sprite background;
+    Sprite block[5];
+    Text contient[5];
+};
+struct COUNTRY
+{
+    Sprite background;
+    Sprite block[4];
+    Text countries[4];
+};
 //////////////
 struct Date
 {
@@ -526,6 +540,12 @@ void set_page_36(PAGE36& page36, countries_offers offers1[]);
 void drawpage37(PAGE37 page37);
 void setpage37(PAGE37& page37, countries_offers offers1[]);
 //void setpage38(PAGE38& page38);
+void draw_split(SPLIT split);
+int set_split(SPLIT& split, int x, int y);
+void draw_country(COUNTRY country);
+string set_country(COUNTRY& country, int x, int y, int cont);
+
+
 ////////////
 int getdata2(countries_offers offers1[], countries_offers2 schedule2[]);
 void senddata2(countries_offers offers1[], countries_offers2 schedule2[]);
@@ -583,14 +603,14 @@ int main()
     //Set_page_4(page4);
     //setpage5(page5);
     //Set_page_6(page6);
-    setpage7(page7, offers1);
+    //setpage7(page7, offers1);
     //setpage8(page8);
     //set_page_9(page9);
     //setpage10(page10);
     //Set_page_11(page11);
     //setpage12(page12);
     //set_page_13(page13);
-    //set_page14(page14);
+    set_page14(page14, offers1);
     //setpage19(page19);
     //setpage20(page20);
     //setpage21(page21);
@@ -613,57 +633,58 @@ int main()
 
 void textureAndFonts()
 {
-    bg1.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg1.png");
-    bg2.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg2.png");
-    bg3.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg3.png");
-    background4.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg4.png");
-    bg5.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg5.png");
-    background6.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg6.png");
-    bg7.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg7.png");
-    bg8.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg8.png");
-    bg9.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg9.png");
-    bg10.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg10.png");
-    background11.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg11.png");
-    bg12.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg12.png");
-    bg13.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg13.png");
-    bg14.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg14.png");
-    background15.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg15.png");
-    background16.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg16.png");
-    bg17.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg17.png");
-    bg18.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg18.png");
-    bg19.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg19.png");
-    bg20.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg20.png");
-    bg21.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg21.png");
-    bg22.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg22.png");
-    bg23.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg23.png");
-    bg24.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg24.png");
-    bg25.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg25.png");
-    bg26.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg26.png");
-    bg27.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg27.png");
-    bg28.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg28.png");
-    bg29.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg29.png");
-    bg30.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg30.png");
-    bg31.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg31.png");
-    bg32.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg32.png");
-    bg33.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg33.png");
-    bg34.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg34.png");
-    bg35.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg35.png");
-    bg36.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg36.png");
-    bg37.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg37.png");
-    bg38.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg38.png");
+    bg1.loadFromFile("D:/sfml pic/bg1.png");
+    bg2.loadFromFile("D:/sfml pic/bg2.png");
+    bg3.loadFromFile("D:/sfml pic/bg3.png");
+    background4.loadFromFile("D:/sfml pic/bg4.png");
+    bg5.loadFromFile("D:/sfml pic/bg5.png");
+    background6.loadFromFile("D:/sfml pic/bg6.png");
+    bg7.loadFromFile("D:/sfml pic/bg7.png");
+    bg8.loadFromFile("D:/sfml pic/bg8.png");
+    bg9.loadFromFile("D:/sfml pic/bg9.png");
+    bg10.loadFromFile("D:/sfml pic/bg10.png");
+    background11.loadFromFile("D:/sfml pic/bg11.png");
+    bg12.loadFromFile("D:/sfml pic/bg12.png");
+    bg13.loadFromFile("D:/sfml pic/bg13.png");
+    bg14.loadFromFile("D:/sfml pic/bg14.png");
+    background15.loadFromFile("D:/sfml pic/bg15.png");
+    background16.loadFromFile("D:/sfml pic/bg16.png");
+    bg17.loadFromFile("D:/sfml pic/bg17.png");
+    bg18.loadFromFile("D:/sfml pic/bg18.png");
+    bg19.loadFromFile("D:/sfml pic/bg19.png");
+    bg20.loadFromFile("D:/sfml pic/bg20.png");
+    bg21.loadFromFile("D:/sfml pic/bg21.png");
+    bg22.loadFromFile("D:/sfml pic/bg22.png");
+    bg23.loadFromFile("D:/sfml pic/bg23.png");
+    bg24.loadFromFile("D:/sfml pic/bg24.png");
+    bg25.loadFromFile("D:/sfml pic/bg25.png");
+    bg26.loadFromFile("D:/sfml pic/bg26.png");
+    bg27.loadFromFile("D:/sfml pic/bg27.png");
+    bg28.loadFromFile("D:/sfml pic/bg28.png");
+    bg29.loadFromFile("D:/sfml pic/bg29.png");
+    bg30.loadFromFile("D:/sfml pic/bg30.png");
+    bg31.loadFromFile("D:/sfml pic/bg31.png");
+    bg32.loadFromFile("D:/sfml pic/bg32.png");
+    bg33.loadFromFile("D:/sfml pic/bg33.png");
+    bg34.loadFromFile("D:/sfml pic/bg34.png");
+    bg35.loadFromFile("D:/sfml pic/bg35.png");
+    bg36.loadFromFile("D:/sfml pic/bg36.png");
+    bg37.loadFromFile("D:/sfml pic/bg37.png");
+    bg38.loadFromFile("D:/sfml pic/bg38.png");
 
-    inputbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/inputbox.png");
-    transbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/transbox.png");
-    desbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/desbox.png");
-    tripsblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/tripsblock.png");
-    passengersblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/passengersblock.png");
-    block.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/block.png");
-    add.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/add.png");
-    edit.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/edit.png");
-    del.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/delete.png");
-    dep.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/pic1.png");
-    price.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/pic2.png");
-    newoffersblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/newoffersblock.png");
+    inputbox.loadFromFile("D:/sfml pic/inputbox.png");
+    transbox.loadFromFile("D:/sfml pic/transbox.png");
+    desbox.loadFromFile("D:/sfml pic/desbox.png");
+    newoffersblock.loadFromFile("D:/sfml pic/newoffersblock.png");
+    tripsblock.loadFromFile("D:/sfml pic/tripsblock.png");
+    passengersblock.loadFromFile("D:/sfml pic/passengersblock.png");
+    block.loadFromFile("D:/sfml pic/block.png");
+    add.loadFromFile("D:/sfml pic/add.png");
+    edit.loadFromFile("D:/sfml pic/edit.png");
+    del.loadFromFile("D:/sfml pic/delete.png");
+    dep.loadFromFile("D:/sfml pic/pic1.png");
+    price.loadFromFile("D:/sfml pic/pic2.png");
+
     f1.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
     f2.loadFromFile("C:/Windows/Fonts/cambriai.ttf");
     f3.loadFromFile("C:/Windows/Fonts/andlso.ttf");
@@ -2085,6 +2106,8 @@ void draw_page14(PAGE14 page14)
     window.draw(page14.back_t);
     window.draw(page14.eco);
     window.draw(page14.bus);
+    window.draw(page14.from_country);
+    window.draw(page14.to_country);
     for (int i = 0; i < 5; i++)
     {
         window.draw(page14.block[i]);
@@ -2096,6 +2119,8 @@ void draw_page14(PAGE14 page14)
 }
 void set_page14(PAGE14& page14, countries_offers offers1[])
 {
+    SPLIT split;
+    COUNTRY country;
     PAGE8 page8;
     MouseRect.setFillColor(Color(0, 0, 0, 0));
     Mouse ms;
@@ -2189,12 +2214,29 @@ void set_page14(PAGE14& page14, countries_offers offers1[])
         MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page14.frombox.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
+            //cout << page14.frombox.getPosition().x << endl;
+            int x1 = set_split(split, page14.frombox.getPosition().x, page14.frombox.getPosition().y + 72);
+            string m1 = set_country(country, page14.frombox.getPosition().x, page14.frombox.getPosition().y + 72, x1);
 
-        };
+            page14.from_country.setFont(f1);
+            page14.from_country.setString(m1);
+            page14.from_country.setFillColor(Color(39, 34, 99));
+            page14.from_country.setCharacterSize(30);
+            page14.from_country.setOrigin(page14.bus.getLocalBounds().width / 2, page14.bus.getLocalBounds().height / 2);
+            page14.from_country.setPosition(page14.frombox.getPosition().x - 70, page14.frombox.getPosition().y - 15);
+        }
         if (MouseRect.getGlobalBounds().intersects(page14.tobox.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
+            int x2 = set_split(split, page14.tobox.getPosition().x, page14.tobox.getPosition().y + 72);
+            string m2 = set_country(country, page14.tobox.getPosition().x, page14.tobox.getPosition().y + 72, x2);
 
-        };
+            page14.to_country.setFont(f1);
+            page14.to_country.setString(m2);
+            page14.to_country.setFillColor(Color(39, 34, 99));
+            page14.to_country.setCharacterSize(30);
+            page14.to_country.setOrigin(page14.bus.getLocalBounds().width / 2, page14.bus.getLocalBounds().height / 2);
+            page14.to_country.setPosition(page14.tobox.getPosition().x - 70, page14.tobox.getPosition().y - 15);
+        }
         while (window.pollEvent(event))
         {
             if (MouseRect.getGlobalBounds().intersects(page14.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
@@ -2210,6 +2252,7 @@ void set_page14(PAGE14& page14, countries_offers offers1[])
         draw_page14(page14);
     }
 }
+
 
 void Draw_page_15(PAGE15 page15)
 {
@@ -4395,7 +4438,147 @@ void setpage37(PAGE37& page37, countries_offers offers1[]) {
 //        window.display();
 //    }
 //}
-//////////////////
+
+void draw_split(SPLIT split)
+{
+    window.draw(split.background);
+    for (int i = 0; i < 5; i++)
+    {
+        window.draw(split.block[i]);
+    }
+    for (int i = 0; i < 5; i++)
+    {
+        window.draw(split.contient[i]);
+    }
+}
+int set_split(SPLIT& split, int x, int y)
+{
+    Mouse ms;
+
+    split.background.setTexture(inputbox);
+    split.background.setScale(1.8, 7.5);
+    split.background.setPosition(x, y + 160);
+    split.background.setOrigin(split.background.getLocalBounds().width / 2, split.background.getLocalBounds().height / 2);
+    split.background.setColor(Color::Black);
+
+    for (int i = 0; i < 5; i++)
+    {
+        split.block[i].setTexture(inputbox);
+        split.block[i].setScale(1.8, 1.5);
+        split.block[i].setOrigin(split.block[i].getLocalBounds().width / 2, split.block[i].getLocalBounds().height / 2);
+        split.block[i].setPosition(x, y + (75 * i));
+        split.block[i].setColor(Color::White);
+    }
+    split.contient[0].setString("Asia");
+    split.contient[1].setString("Africa");
+    split.contient[2].setString("Egypt");
+    split.contient[3].setString("Europe");
+    split.contient[4].setString("America");
+
+    for (int i = 0; i < 5; i++)
+    {
+        split.contient[i].setFont(f2);
+        split.contient[i].setCharacterSize(40);
+        split.contient[i].setOrigin(split.contient[i].getLocalBounds().width / 2, split.contient[i].getLocalBounds().height / 2);
+        split.contient[i].setPosition(x, (y - 15) + (75 * i));
+        split.contient[i].setFillColor(Color(39, 34, 99));
+    }
+    while (window.isOpen())
+    {
+        Event event;
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
+        for (int i = 0; i < 5; i++)
+        {
+            if (MouseRect.getGlobalBounds().intersects(split.block[i].getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+            {
+                return i;
+            }
+        }
+
+        while (window.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+            {
+
+                window.close();
+            }
+        }
+        window.display();
+        draw_split(split);
+    }
+}
+
+void draw_country(COUNTRY country)
+{
+    window.draw(country.background);
+    for (int i = 0; i < 4; i++)
+    {
+        window.draw(country.block[i]);
+    }
+    for (int i = 0; i < 4; i++)
+    {
+        window.draw(country.countries[i]);
+    }
+}
+string set_country(COUNTRY& country, int x, int y, int cont)
+{
+    Mouse ms;
+    string Country[5][4] = { { "Bahrain_(Manama)","China_(Beijing)","Saudi_Arabia_(Riyadh)","United_Arab_Emirates_\n(Abu_Dhabi)" }, { "Algeria_(Algiers)","Tunisia_(Tunisia)","Morocco_(Marakesh)","Sudan_(Khartoum)" }, { "EGY_Alexandria_(ALY)","EGY_Cairo_(CAI)","EGY_Luxor_(LXR)","EGY_Sharm_Elshekh_(SSH)" }, { "France_(Paris)","Russia_(Moscow)","Spain_(Madrid)","United_Kingdom_(London)" }, { "Canada_(Ottawa)","United_States_(Washington)","Brazil_(Brasilia)","Argentina_(Buenos_Aires)" } };
+    //country.background.setTexture(inputbox);
+    //country.background.setScale(1.8, 7.5);
+    //country.background.setPosition(x, y + 160);
+    //country.background.setOrigin(country.background.getLocalBounds().width / 2, country.background.getLocalBounds().height / 2);
+    //country.background.setColor(Color::Black);
+
+    for (int i = 0; i < 4; i++)
+    {
+        country.block[i].setTexture(inputbox);
+        country.block[i].setScale(1.8, 1.7);
+        country.block[i].setOrigin(country.block[i].getLocalBounds().width / 2, country.block[i].getLocalBounds().height / 2);
+        country.block[i].setPosition(x + 500, y + (75 * i));
+        country.block[i].setColor(Color::White);
+    }
+    //country.countries[0].setString("Asia");
+    //country.countries[1].setString("Africa");
+    //country.countries[2].setString("Egypt");
+    //country.countries[3].setString("Europe");
+    //country.countries[4].setString("America");
+
+    for (int i = 0; i < 4; i++)
+    {
+        country.countries[i].setString(Country[cont][i]);
+        country.countries[i].setFont(f2);
+        country.countries[i].setCharacterSize(30);
+        country.countries[i].setOrigin(country.countries[i].getLocalBounds().width / 2, country.countries[i].getLocalBounds().height / 2);
+        country.countries[i].setPosition(country.block[i].getPosition().x, country.block[i].getPosition().y);//( - 15) + (75 * i));
+        country.countries[i].setFillColor(Color(39, 34, 99));
+    }
+    while (window.isOpen())
+    {
+        Event event;
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
+        for (int i = 0; i < 4; i++)
+        {
+            if (MouseRect.getGlobalBounds().intersects(country.block[i].getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+            {
+                return Country[cont][i];
+            }
+        }
+
+        while (window.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+            {
+
+                window.close();
+            }
+        }
+        window.display();
+        draw_country(country);
+    }
+}
+/////////////////
+
 int getdata2(countries_offers offers1[], countries_offers2 schedule2[])
 {
     ifstream AH("offers.txt");

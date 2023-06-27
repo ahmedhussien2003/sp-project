@@ -35,11 +35,12 @@
     bg35.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg35.png");
     bg36.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg36.png");
     bg37.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg37.png");
+    bg38.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/bg38.png");
 
     inputbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/inputbox.png");
     transbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/transbox.png");
     desbox.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/desbox.png");
-    offersblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/offersblock.png");
+    newoffersblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/newoffersblock.png");
     tripsblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/tripsblock.png");
     passengersblock.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/passengersblock.png");
     block.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/block.png");
