@@ -7,7 +7,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
-//
+
 using namespace std;
 using namespace sf;
 
@@ -128,6 +128,8 @@ struct PAGE12 {
     Sprite From;
     Sprite To;
     Text Fail;
+    Text from_country12;
+    Text to_country12;
 
 };
 struct PAGE13
@@ -149,6 +151,9 @@ struct PAGE13
     Text Next;
     Sprite back;
     Text Back;
+    Text from_country13;
+    Text to_country13;
+
 };
 struct PAGE14
 {
@@ -339,6 +344,8 @@ struct PAGE31 {
     Sprite back;
     Text Next;
     Text Back;
+    Text from_country31;
+    Text to_country31;
 };
 struct PAGE32
 {
@@ -392,6 +399,34 @@ struct PAGE38 {
     Sprite back_b;
     Text back_t;
 };
+//////////////
+struct SPLIT12
+{
+    Sprite background;
+    Sprite block[5];
+    Text contient[5];
+};
+struct COUNTRY12
+{
+    Sprite background;
+    Sprite block[4];
+    Text countries[4];
+};
+
+
+struct SPLIT13
+{
+    Sprite background;
+    Sprite block[5];
+    Text contient[5];
+};
+struct COUNTRY13
+{
+    Sprite background;
+    Sprite block[4];
+    Text countries[4];
+};
+
 struct SPLIT
 {
     Sprite background;
@@ -404,6 +439,20 @@ struct COUNTRY
     Sprite block[4];
     Text countries[4];
 };
+
+struct SPLIT31
+{
+    Sprite background;
+    Sprite block[5];
+    Text contient[5];
+};
+struct COUNTRY31
+{
+    Sprite background;
+    Sprite block[4];
+    Text countries[4];
+};
+
 //////////////
 struct Date
 {
@@ -540,10 +589,26 @@ void set_page_36(PAGE36& page36, countries_offers offers1[]);
 void drawpage37(PAGE37 page37);
 void setpage37(PAGE37& page37, countries_offers offers1[]);
 //void setpage38(PAGE38& page38);
+void draw_split12(SPLIT12 split);
+int set_split12(SPLIT12& split12, int x, int y);
+void draw_country12(COUNTRY12 country12);
+string set_country12(COUNTRY12& country12, int x, int y, int cont);
+
+void draw_split13(SPLIT13 split13);
+int set_split13(SPLIT13& split13, int x, int y);
+void draw_country13(COUNTRY13 country13);
+string set_country13(COUNTRY13& country13, int x, int y, int cont);
+
 void draw_split(SPLIT split);
 int set_split(SPLIT& split, int x, int y);
 void draw_country(COUNTRY country);
 string set_country(COUNTRY& country, int x, int y, int cont);
+
+void draw_split31(SPLIT31 split31);
+int set_split31(SPLIT31& split31, int x, int y);
+void draw_country31(COUNTRY31 country31);
+string set_country31(COUNTRY31& country31, int x, int y, int cont);
+
 
 
 ////////////
@@ -597,35 +662,39 @@ int main()
     vector< user>info;
     vector<pass>passengers;
     int x = getdata2(offers1, schedule2);
-    //setpage1(page1);
+    //setpage1(page1,offers1);
     //set_page_2(page2);
-    //setpage3(page3);
-    //Set_page_4(page4);
-    //setpage5(page5);
-    //Set_page_6(page6);
+    //setpage3(page3,offers1);
+    //Set_page_4(page4, offers1);
+    //setpage5(page5,offers1);
+    //Set_page_6(page6,offers1);
     //setpage7(page7, offers1);
-    //setpage8(page8);
-    //set_page_9(page9);
-    //setpage10(page10);
-    //Set_page_11(page11);
-    //setpage12(page12);
-    //set_page_13(page13);
-    set_page14(page14, offers1);
-    //setpage19(page19);
-    //setpage20(page20);
-    //setpage21(page21);
-    //set_page_22(page22);
-    //setpage23(page23);
-    //set_page_24(page24);
+    //setpage8(page8,offers1);
+    //set_page_9(page9,offers1);
+    //setpage10(page10,offers1);
+    //Set_page_11(page11,offers1);
+    //setpage12(page12,offers1);
+    //set_page_13(page13, offers1);
+    //set_page14(page14,offers1);
+    // Set_page_15(page15,offers1);
+    Set_page_16(page16, offers1);
+    // set_page_17(page17,offers1);
+    // set_page_18(page18,offers1);
+    //setpage19(page19,offers1);
+    //setpage20(page20,offers1);
+    //setpage21(page21,offers1);
+    //set_page_22(page22,offers1);
+    //setpage23(page23,offers1);
+    //set_page_24(page24,offers1);
     //setpage26(page26);
-    //set_page_29(page29);
-    //setpage30(page30);
-    //set_page_31(page31);
-    //setpage33(page33);
-    //setpage34(page34);
-    //set_page_35(page35);
-    //set_page_36(page36);
-    //setpage38(page38);
+    //set_page_29(page29,offers1);
+    //setpage30(page30,offers1);
+    //set_page_31(page31,offers1);
+    //setpage33(page33,offers1);
+    //setpage34(page34,offers1);
+    //set_page_35(page35,offers1);
+    //set_page_36(page36,offers1);
+    //setpage38(page38,offers1);
 
     senddata2(offers1, schedule2);
     return 0;
@@ -1738,8 +1807,10 @@ void drawpage12(PAGE12 page12) {
 void setpage12(PAGE12& page12, countries_offers offers1[])
 {
     PAGE8 page8;
+    SPLIT12 split12;
+    COUNTRY12 country12;
     page12.background.setTexture(bg12);
-    page12.background.setScale(2.85, 2.85);
+    page12.background.setScale(1.8, 1.98);
 
     page12.button1.setTexture(transbox);
     page12.button1.setPosition(100, 950);
@@ -1749,7 +1820,7 @@ void setpage12(PAGE12& page12, countries_offers offers1[])
     page12.buttontext1.setFont(f2);
     page12.buttontext1.setString("Back");
     page12.buttontext1.setCharacterSize(55);
-    page12.buttontext1.setPosition(page12.button1.getPosition().x + 45, page12.button1.getPosition().y + 10);
+    page12.buttontext1.setPosition(page12.button1.getPosition().x + 45, page12.button1.getPosition().y + 15);
     page12.buttontext1.setFillColor(Color(38, 34, 98));
 
     page12.button2.setTexture(transbox);
@@ -1760,7 +1831,7 @@ void setpage12(PAGE12& page12, countries_offers offers1[])
     page12.buttontext2.setFont(f2);
     page12.buttontext2.setString("Next");
     page12.buttontext2.setCharacterSize(55);
-    page12.buttontext2.setPosition(page12.button2.getPosition().x + 45, page12.button2.getPosition().y + 10);
+    page12.buttontext2.setPosition(page12.button2.getPosition().x + 45, page12.button2.getPosition().y + 15);
     page12.buttontext2.setFillColor(Color(38, 34, 98));
 
     page12.button3.setTexture(transbox);
@@ -1801,13 +1872,13 @@ void setpage12(PAGE12& page12, countries_offers offers1[])
     page12.year.setOrigin(0, 0);
 
     page12.From.setTexture(desbox);
-    page12.From.setPosition(350, 270);
-    page12.From.setScale(2.5, 2);
+    page12.From.setPosition(225, 320);
+    page12.From.setScale(1.8, 1.5);
     page12.From.setOrigin(0, 0);
 
     page12.To.setTexture(desbox);
-    page12.To.setPosition(1400, 270);
-    page12.To.setScale(2.5, 2);
+    page12.To.setPosition(1200, 320);
+    page12.To.setScale(1.8, 1.5);
     page12.To.setOrigin(0, 0);
 
     page12.Fail.setFillColor(Color(255, 0, 0));
@@ -1816,7 +1887,7 @@ void setpage12(PAGE12& page12, countries_offers offers1[])
     page12.Fail.setCharacterSize(45);
 
     // Dynamic
-
+    MouseRect.setFillColor(Color(0, 0, 0, 0));
     string data[3];
     Text input[3];
     int count = 0;
@@ -1835,6 +1906,36 @@ void setpage12(PAGE12& page12, countries_offers offers1[])
     while (window.isOpen())
     {
         Event event;
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
+        if (MouseRect.getGlobalBounds().intersects(page12.From.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            cout << page12.From.getPosition().x << endl;
+
+            int x1 = set_split12(split12, page12.From.getPosition().x, page12.From.getPosition().y + 72);
+            string m1 = set_country12(country12, page12.From.getPosition().x, page12.From.getPosition().y + 72, x1);
+
+            page12.from_country12.setFont(f1);
+            page12.from_country12.setString(m1);
+            page12.from_country12.setFillColor(Color(39, 34, 99));
+            page12.from_country12.setCharacterSize(30);
+            page12.from_country12.setOrigin(page12.buttontext4.getLocalBounds().width / 2, page12.buttontext4.getLocalBounds().height / 2);
+            page12.from_country12.setPosition(page12.From.getPosition().x - 170, page12.From.getPosition().y + 50);
+        }
+        if (MouseRect.getGlobalBounds().intersects(page12.To.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            cout << page12.To.getPosition().x << endl;
+
+            int x2 = set_split12(split12, page12.To.getPosition().x, page12.To.getPosition().y + 72);
+            string m2 = set_country12(country12, page12.To.getPosition().x, page12.To.getPosition().y + 72, x2);
+
+
+            page12.to_country12.setFont(f1);
+            page12.to_country12.setString(m2);
+            page12.to_country12.setFillColor(Color(39, 34, 99));
+            page12.to_country12.setCharacterSize(30);
+            page12.to_country12.setOrigin(page12.buttontext4.getLocalBounds().width / 2, page12.buttontext4.getLocalBounds().height / 2);
+            page12.to_country12.setPosition(page12.To.getPosition().x - 70, page12.To.getPosition().y - 15);
+        }
         MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
         for (int i = 0; i < 3; i++)
         {
@@ -1903,10 +2004,14 @@ void setpage12(PAGE12& page12, countries_offers offers1[])
         {
             window.draw(input[i]);
         }
-        // window.setView(leftView);
+        window.draw(MouseRect);
         window.display();
+        drawpage12(page12);
+
     }
+
 }
+
 
 void draw_page_13(PAGE13 page13)
 {
@@ -1934,6 +2039,8 @@ void set_page_13(PAGE13& page13, countries_offers offers1[])
     Mouse ms;
     PAGE17 page17;
     PAGE8 page8;
+    SPLIT13 split13;
+    COUNTRY13 country13;
 
     page13.background.setTexture(bg13);
     page13.background.setScale(1.9, 1.9);
@@ -1941,12 +2048,12 @@ void set_page_13(PAGE13& page13, countries_offers offers1[])
     page13.background.setOrigin(0, 0);
 
     page13.from.setTexture(desbox);
-    page13.from.setPosition(300, 235);
-    page13.from.setScale(2.2, 1.8);
+    page13.from.setPosition(250, 225);
+    page13.from.setScale(1.8, 1.5);
 
     page13.to.setTexture(desbox);
-    page13.to.setPosition(1400, 235);
-    page13.to.setScale(2.2, 1.8);
+    page13.to.setPosition(1240, 225);
+    page13.to.setScale(1.8, 1.5);
 
     page13.day.setTexture(inputbox);
     page13.day.setPosition(725, 450);
@@ -2028,6 +2135,36 @@ void set_page_13(PAGE13& page13, countries_offers offers1[])
     while (window.isOpen())
     {
         Event event;
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
+        if (MouseRect.getGlobalBounds().intersects(page13.from.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            cout << page13.from.getPosition().x << endl;
+
+            int x1 = set_split13(split13, page13.from.getPosition().x, page13.from.getPosition().y + 72);
+            string m1 = set_country13(country13, page13.from.getPosition().x, page13.from.getPosition().y + 72, x1);
+
+            page13.from_country13.setFont(f1);
+            page13.from_country13.setString(m1);
+            page13.from_country13.setFillColor(Color(39, 34, 99));
+            page13.from_country13.setCharacterSize(30);
+            page13.from_country13.setOrigin(page13.business.getLocalBounds().width / 2, page13.business.getLocalBounds().height / 2);
+            page13.from_country13.setPosition(page13.from.getPosition().x - 170, page13.from.getPosition().y + 50);
+        }
+        if (MouseRect.getGlobalBounds().intersects(page13.to.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            cout << page13.to.getPosition().x << endl;
+
+            int x2 = set_split13(split13, page13.to.getPosition().x, page13.to.getPosition().y + 72);
+            string m2 = set_country13(country13, page13.to.getPosition().x, page13.to.getPosition().y + 72, x2);
+
+
+            page13.to_country13.setFont(f1);
+            page13.to_country13.setString(m2);
+            page13.to_country13.setFillColor(Color(39, 34, 99));
+            page13.to_country13.setCharacterSize(30);
+            page13.to_country13.setOrigin(page13.business.getLocalBounds().width / 2, page13.business.getLocalBounds().height / 2);
+            page13.to_country13.setPosition(page13.to.getPosition().x - 70, page13.to.getPosition().y - 15);
+        }
         MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
         for (int i = 0; i < 6; i++)
         {
@@ -2127,7 +2264,7 @@ void set_page14(PAGE14& page14, countries_offers offers1[])
     Mouse ms;
 
     page14.background.setTexture(bg14);
-    page14.background.setScale(2.15, 2.17);
+    page14.background.setScale(1.8, 1.9);
     page14.background.setPosition(1920 / 2 - 10, 1080 / 2);
     page14.background.setOrigin(page14.background.getLocalBounds().width / 2, page14.background.getLocalBounds().height / 2);
 
@@ -2138,13 +2275,13 @@ void set_page14(PAGE14& page14, countries_offers offers1[])
 
     page14.frombox.setTexture(desbox);
     page14.frombox.setOrigin(page14.frombox.getLocalBounds().width / 2, page14.frombox.getLocalBounds().height / 2);
-    page14.frombox.setPosition(1920 / 2 - 330, 1080 / 2 - 60);
-    page14.frombox.setScale(2.2, 1.8);
+    page14.frombox.setPosition(1500 / 2 - 330, 1080 / 2 - 60);
+    page14.frombox.setScale(1.5, 1.5);
 
     page14.tobox.setTexture(desbox);
     page14.tobox.setOrigin(page14.tobox.getLocalBounds().width / 2, page14.tobox.getLocalBounds().height / 2);
-    page14.tobox.setPosition(1920 / 2 + 580, 1080 / 2 - 70);
-    page14.tobox.setScale(2.2, 1.8);
+    page14.tobox.setPosition(1890 / 2 + 330, 1070 / 2 - 60);
+    page14.tobox.setScale(1.7, 1.5);
 
     page14.daybox.setTexture(inputbox);
     page14.daybox.setOrigin(page14.daybox.getLocalBounds().width / 2, page14.daybox.getLocalBounds().height / 2);
@@ -2208,6 +2345,21 @@ void set_page14(PAGE14& page14, countries_offers offers1[])
     page14.bus.setCharacterSize(45);
     page14.bus.setOrigin(page14.bus.getLocalBounds().width / 2, page14.bus.getLocalBounds().height / 2);
     page14.bus.setPosition(page14.busclass.getPosition().x, page14.busclass.getPosition().y - 15);
+    ////////////////////////////////////////////
+    string data[4];
+    Text input[4];
+    int count = 0;
+    input[0].setPosition(page14.flightnumbox.getPosition().x - 40, page14.flightnumbox.getPosition().y - 25);
+    input[1].setPosition(page14.daybox.getPosition().x - 10, page14.daybox.getPosition().y - 25);
+    input[2].setPosition(page14.monthbox.getPosition().x - 10, page14.monthbox.getPosition().y - 25);
+    input[3].setPosition(page14.yearbox.getPosition().x - 10, page14.yearbox.getPosition().y - 25);
+
+    for (int i = 0; i < 4; i++)
+    {
+        input[i].setCharacterSize(45);
+        input[i].setFillColor(Color(74, 127, 211));
+        input[i].setFont(f1);
+    }
 
     while (window.isOpen())
     {
@@ -2224,7 +2376,7 @@ void set_page14(PAGE14& page14, countries_offers offers1[])
             page14.from_country.setFillColor(Color(39, 34, 99));
             page14.from_country.setCharacterSize(30);
             page14.from_country.setOrigin(page14.bus.getLocalBounds().width / 2, page14.bus.getLocalBounds().height / 2);
-            page14.from_country.setPosition(page14.frombox.getPosition().x - 70, page14.frombox.getPosition().y - 15);
+            page14.from_country.setPosition(page14.frombox.getPosition().x - 70, page14.frombox.getPosition().y - 8);
         }
         if (MouseRect.getGlobalBounds().intersects(page14.tobox.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
@@ -2236,19 +2388,62 @@ void set_page14(PAGE14& page14, countries_offers offers1[])
             page14.to_country.setFillColor(Color(39, 34, 99));
             page14.to_country.setCharacterSize(30);
             page14.to_country.setOrigin(page14.bus.getLocalBounds().width / 2, page14.bus.getLocalBounds().height / 2);
-            page14.to_country.setPosition(page14.tobox.getPosition().x - 70, page14.tobox.getPosition().y - 15);
+            page14.to_country.setPosition(page14.tobox.getPosition().x - 70, page14.tobox.getPosition().y - 4);
         }
+        for (int i = 0; i < 4; i++)
+        {
+            input[i].setString(data[i]);
+        }
+        if (MouseRect.getGlobalBounds().intersects(page14.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            /////
+        }
+        if (MouseRect.getGlobalBounds().intersects(page14.next_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            ////
+        }
+
+        // Classes
+
+        if (MouseRect.getGlobalBounds().intersects(page14.ecoclass.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            page14.ecoclass.setColor(Color(74, 127, 211));
+            page14.busclass.setColor(Color(255, 255, 255, 100));
+        }
+        if (MouseRect.getGlobalBounds().intersects(page14.busclass.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            page14.busclass.setColor(Color(74, 127, 211));
+            page14.ecoclass.setColor(Color(255, 255, 255, 100));
+        }
+
         while (window.pollEvent(event))
         {
-            if (MouseRect.getGlobalBounds().intersects(page14.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
-            {
-                setpage8(page8, offers1);
-            }
+
             if (event.type == Event::Closed)
             {
                 window.close();
             }
+            if (event.type == Event::TextEntered)
+            {
+                data[count] += static_cast<char>(event.text.unicode);
+            }
+            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Enter)
+            {
+                count++;
+                count %= 4;
+            }
+            if (Keyboard::isKeyPressed(Keyboard::BackSpace) && data[count].size() > 0)
+            {
+                data[count].resize(data[count].size() - 1);
+            }
         }
+        window.clear();
+        draw_page14(page14);
+        for (int i = 0; i < 4; i++)
+        {
+            window.draw(input[i]);
+        }
+        window.draw(MouseRect);
         window.display();
         draw_page14(page14);
     }
@@ -2267,6 +2462,7 @@ void Draw_page_15(PAGE15 page15)
 }
 void Set_page_15(PAGE15& page15, countries_offers offers1[])
 {
+    Mouse ms;
     page15.bg15.setTexture(background15);
     page15.bg15.setScale(1.9, 2);
     page15.bg15.setPosition(1920 / 2, 1080 / 2);
@@ -2307,21 +2503,60 @@ void Set_page_15(PAGE15& page15, countries_offers offers1[])
     page15.inputButton.setOrigin(page15.bg15.getLocalBounds().width / 2, page15.bg15.getLocalBounds().height / 2);
     page15.inputButton.setPosition(page15.bg15.getPosition().x - 330, page15.bg15.getPosition().y + 330);
     page15.inputButton.setFillColor(Color(39, 34, 99));
+    //////////////////////////////
+    string data[1];
+    Text inputdata[1];
+    int count = 0;
+    inputdata[0].setPosition(page15.inputbutton.getPosition().x - 50, page15.inputbutton.getPosition().y - 20);
 
+    for (int i = 0; i < 1; i++)
+    {
+        inputdata[i].setCharacterSize(40);
+        inputdata[i].setFillColor(Color(0, 0, 0));
+        inputdata[i].setFont(f2);
+    }
+    MouseRect.setFillColor(Color(0, 0, 0, 0));
     while (window.isOpen())
     {
         Event event;
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
+        for (int i = 0; i < 1; i++)
+        {
+            inputdata[i].setString(data[i]);
+        }
+
         while (window.pollEvent(event))
         {
             if (event.type == Event::Closed)
             {
                 window.close();
             }
+            if (event.type == Event::TextEntered)
+            {
+                data[count] += static_cast<char>(event.text.unicode);
+            }
+            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Enter)
+            {
+                count++;
+                count %= 2;
+            }
+            if (Keyboard::isKeyPressed(Keyboard::BackSpace) && data[count].size() > 0)
+            {
+                data[count].resize(data[count].size() - 1);
+            }
         }
+        window.clear();
         Draw_page_15(page15);
+        for (int i = 0; i < 1; i++)
+        {
+            window.draw(inputdata[i]);
+        }
+        window.draw(MouseRect);
         window.display();
+        Draw_page_15(page15);
     }
 }
+
 
 void Draw_page_16(PAGE16 page16)
 {
@@ -2432,19 +2667,73 @@ void Set_page_16(PAGE16& page16, countries_offers offers1[])
     page16.backButton.setOrigin(page16.backButton.getLocalBounds().width / 2, page16.backButton.getLocalBounds().height / 2);
     page16.backButton.setPosition(page16.backbutton.getPosition().x, page16.backbutton.getPosition().y - 20);
     page16.backButton.setFillColor(Color(39, 34, 99));
+    //////////////////////////////////////////////////////////////
+    MouseRect.setFillColor(Color(0, 0, 0, 0));
+    Mouse ms;
+    string data[7];
+    Text inputdata[7];
+    int count = 0;
+    inputdata[0].setPosition(page16.firstname.getPosition().x - 70, page16.firstname.getPosition().y - 20);
+    inputdata[1].setPosition(page16.lastname.getPosition().x - 70, page16.lastname.getPosition().y - 20);
+    inputdata[2].setPosition(page16.title.getPosition().x + -40, page16.title.getPosition().y - 20);
+    inputdata[3].setPosition(page16.passportid.getPosition().x - 100, page16.passportid.getPosition().y - 20);
+    inputdata[4].setPosition(page16.day.getPosition().x - 20, page16.day.getPosition().y - 25);
+    inputdata[5].setPosition(page16.month.getPosition().x - 20, page16.month.getPosition().y - 25);
+    inputdata[6].setPosition(page16.year.getPosition().x - 40, page16.year.getPosition().y - 25);
 
+    for (int i = 0; i < 7; i++)
+    {
+        inputdata[i].setCharacterSize(40);
+        inputdata[i].setFillColor(Color(0, 0, 0));
+        inputdata[i].setFont(f2);
+    }
     while (window.isOpen())
     {
         Event event;
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
+        for (int i = 0; i < 7; i++)
+        {
+            inputdata[i].setString(data[i]);
+        }
+        if (MouseRect.getGlobalBounds().intersects(page16.femaleButton.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            page16.female.setColor(Color(134, 152, 187));
+            page16.male.setColor(Color(249, 252, 255));
+        }
+        if (MouseRect.getGlobalBounds().intersects(page16.maleButton.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            page16.male.setColor(Color(134, 152, 187));
+            page16.female.setColor(Color(249, 252, 255));
+        }
         while (window.pollEvent(event))
         {
             if (event.type == Event::Closed)
             {
                 window.close();
             }
+            if (event.type == Event::TextEntered)
+            {
+                data[count] += static_cast<char>(event.text.unicode);
+            }
+            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Enter)
+            {
+                count++;
+                count %= 7;
+            }
+            if (Keyboard::isKeyPressed(Keyboard::BackSpace) && data[count].size() > 0)
+            {
+                data[count].resize(data[count].size() - 1);
+            }
         }
+        window.clear();
         Draw_page_16(page16);
+        for (int i = 0; i < 7; i++)
+        {
+            window.draw(inputdata[i]);
+        }
+        window.draw(MouseRect);
         window.display();
+        Draw_page_16(page16);
     }
 }
 
@@ -3696,17 +3985,19 @@ void set_page_31(PAGE31& page31, countries_offers offers1[])
 {
     PAGE30 page30;
     PAGE32 page32;
+    SPLIT31 split31;
+    COUNTRY31 country31;
 
     Mouse ms;
 
     page31.background.setTexture(bg31);
-    page31.background.setScale(2.06, 2.06);
+    page31.background.setScale(1.82, 1.8);
     page31.background.setPosition(-10, 0);
     page31.background.setOrigin(0, 0);
 
     page31.from.setTexture(desbox);
-    page31.from.setPosition(600, 280);
-    page31.from.setScale(2.5, 2.6);
+    page31.from.setPosition(250, 315);
+    page31.from.setScale(1.8, 1.5);
 
     page31.hou.setTexture(transbox);
     page31.hou.setPosition(600, 430);
@@ -3721,8 +4012,8 @@ void set_page_31(PAGE31& page31, countries_offers offers1[])
     page31.num.setScale(3, 2.1);
 
     page31.to.setTexture(desbox);
-    page31.to.setPosition(1350, 280);
-    page31.to.setScale(2.5, 2.6);
+    page31.to.setPosition(820, 315);
+    page31.to.setScale(1.8, 1.5);
 
     page31.price.setTexture(transbox);
     page31.price.setPosition(1350, 450);
@@ -3771,6 +4062,32 @@ void set_page_31(PAGE31& page31, countries_offers offers1[])
     while (window.isOpen())
     {
         Event event;
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
+        if (MouseRect.getGlobalBounds().intersects(page31.from.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            //cout << page14.frombox.getPosition().x << endl;
+            int x1 = set_split31(split31, page31.from.getPosition().x, page31.from.getPosition().y + 72);
+            string m1 = set_country31(country31, page31.from.getPosition().x, page31.from.getPosition().y + 72, x1);
+
+            page31.from_country31.setFont(f1);
+            page31.from_country31.setString(m1);
+            page31.from_country31.setFillColor(Color(39, 34, 99));
+            page31.from_country31.setCharacterSize(30);
+            // page31.from_country31.setOrigin(page31..getLocalBounds().width / 2, page31.bus.getLocalBounds().height / 2);
+            page31.from_country31.setPosition(page31.from.getPosition().x - 70, page31.from.getPosition().y - 8);
+        }
+        if (MouseRect.getGlobalBounds().intersects(page31.to.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            int x2 = set_split31(split31, page31.to.getPosition().x, page31.to.getPosition().y + 72);
+            string m2 = set_country31(country31, page31.to.getPosition().x, page31.to.getPosition().y + 72, x2);
+
+            page31.to_country31.setFont(f1);
+            page31.to_country31.setString(m2);
+            page31.to_country31.setFillColor(Color(39, 34, 99));
+            page31.to_country31.setCharacterSize(30);
+            //page31.to_country31.setOrigin(page31.bus.getLocalBounds().width / 2, page31.bus.getLocalBounds().height / 2);
+            page31.to_country31.setPosition(page31.to.getPosition().x - 70, page31.to.getPosition().y - 4);
+        }
         MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
         for (int i = 0; i < 5; i++)
         {
@@ -4001,7 +4318,7 @@ void setpage34(PAGE34& page34, countries_offers offers1[])
     PAGE30 page30;
 
     page34.background.setTexture(bg34);
-    page34.background.setScale(2, 2.5);
+    page34.background.setScale(2.1, 2.5);
     page34.background.setPosition(0, 0);
     page34.background.setOrigin(0, 0);
 
@@ -4440,6 +4757,260 @@ void setpage37(PAGE37& page37, countries_offers offers1[]) {
 //    }
 //}
 
+
+void draw_split12(SPLIT12 split12)
+{
+    window.draw(split12.background);
+    for (int i = 0; i < 5; i++)
+    {
+        window.draw(split12.block[i]);
+    }
+    for (int i = 0; i < 5; i++)
+    {
+        window.draw(split12.contient[i]);
+    }
+}
+int set_split12(SPLIT12& split12, int x, int y)
+{
+    Mouse ms;
+
+    split12.background.setTexture(inputbox);
+    split12.background.setScale(2, 7.5);
+    split12.background.setPosition(x + 230, y + 190);
+    split12.background.setOrigin(split12.background.getLocalBounds().width / 2, split12.background.getLocalBounds().height / 2);
+    split12.background.setColor(Color::Black);
+    for (int i = 0; i < 5; i++)
+    {
+        split12.block[i].setTexture(inputbox);
+        split12.block[i].setScale(2, 1.5);
+        split12.block[i].setOrigin(split12.block[i].getLocalBounds().width / 2, split12.block[i].getLocalBounds().height / 2);
+        split12.block[i].setPosition(x + 230, (y + 50) + (75 * i));
+        split12.block[i].setColor(Color::White);
+    }
+    split12.contient[0].setString("Asia");
+    split12.contient[1].setString("Africa");
+    split12.contient[2].setString("Egypt");
+    split12.contient[3].setString("Europe");
+    split12.contient[4].setString("America");
+    for (int i = 0; i < 5; i++)
+    {
+        split12.contient[i].setFont(f3);
+        split12.contient[i].setCharacterSize(60);
+        split12.contient[i].setOrigin(split12.contient[i].getLocalBounds().width / 2, split12.contient[i].getLocalBounds().height / 2);
+        split12.contient[i].setPosition(x + 230, (y + 40) + (75 * i));
+        split12.contient[i].setFillColor(Color(39, 34, 99));
+    }
+    while (window.isOpen())
+    {
+        Event event;
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
+        for (int i = 0; i < 5; i++)
+        {
+            if (MouseRect.getGlobalBounds().intersects(split12.block[i].getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+            {
+                return i;
+            }
+        }
+
+        while (window.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+            {
+                window.close();
+            }
+        }
+        window.display();
+        draw_split12(split12);
+    }
+}
+
+void draw_country12(COUNTRY12 country12)
+{
+    window.draw(country12.background);
+    for (int i = 0; i < 4; i++)
+    {
+        window.draw(country12.block[i]);
+    }
+    for (int i = 0; i < 4; i++)
+    {
+        window.draw(country12.countries[i]);
+    }
+}
+string set_country12(COUNTRY12& country12, int x, int y, int cont)
+{
+    Mouse ms;
+    string Country[5][4] = { { "Bahrain_(Manama)","China_(Beijing)","Saudi_Arabia_(Riyadh)","United_Arab_Emirates_\n(Abu_Dhabi)" }, { "Algeria_(Algiers)","Tunisia_(Tunisia)","Morocco_(Marakesh)","Sudan_(Khartoum)" }, { "EGY_Alexandria_(ALY)","EGY_Cairo_(CAI)","EGY_Luxor_(LXR)","EGY_Sharm_Elshekh_(SSH)" }, { "France_(Paris)","Russia_(Moscow)","Spain_(Madrid)","United_Kingdom_(London)" }, { "Canada_(Ottawa)","United_States_(Washington)","Brazil_(Brasilia)","Argentina_(Buenos_Aires)" } };
+
+    for (int i = 0; i < 4; i++)
+    {
+        country12.block[i].setTexture(inputbox);
+        country12.block[i].setScale(1.8, 1.7);
+        country12.block[i].setOrigin(country12.block[i].getLocalBounds().width / 2, country12.block[i].getLocalBounds().height / 2);
+        country12.block[i].setPosition(x + 540, y + 60 + (70 * i));
+        country12.block[i].setColor(Color::White);
+    }
+    for (int i = 0; i < 4; i++)
+    {
+        country12.countries[i].setString(Country[cont][i]);
+        country12.countries[i].setFont(f2);
+        country12.countries[i].setCharacterSize(30);
+        country12.countries[i].setOrigin(country12.countries[i].getLocalBounds().width / 2, country12.countries[i].getLocalBounds().height / 2);
+        country12.countries[i].setPosition(country12.block[i].getPosition().x, country12.block[i].getPosition().y);
+        country12.countries[i].setFillColor(Color(39, 34, 99));
+    }
+    while (window.isOpen())
+    {
+        Event event;
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
+        for (int i = 0; i < 4; i++)
+        {
+            if (MouseRect.getGlobalBounds().intersects(country12.block[i].getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+            {
+                return Country[cont][i];
+            }
+        }
+
+        while (window.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+            {
+
+                window.close();
+            }
+        }
+        window.display();
+        draw_country12(country12);
+    }
+}
+
+
+void draw_split13(SPLIT13 split13)
+{
+    window.draw(split13.background);
+    for (int i = 0; i < 5; i++)
+    {
+        window.draw(split13.block[i]);
+    }
+    for (int i = 0; i < 5; i++)
+    {
+        window.draw(split13.contient[i]);
+    }
+}
+int set_split13(SPLIT13& split13, int x, int y)
+{
+    Mouse ms;
+
+    split13.background.setTexture(inputbox);
+    split13.background.setScale(2, 7.5);
+    split13.background.setPosition(x + 230, y + 190);
+    split13.background.setOrigin(split13.background.getLocalBounds().width / 2, split13.background.getLocalBounds().height / 2);
+    split13.background.setColor(Color::Black);
+    for (int i = 0; i < 5; i++)
+    {
+        split13.block[i].setTexture(inputbox);
+        split13.block[i].setScale(2, 1.5);
+        split13.block[i].setOrigin(split13.block[i].getLocalBounds().width / 2, split13.block[i].getLocalBounds().height / 2);
+        split13.block[i].setPosition(x + 230, (y + 50) + (75 * i));
+        split13.block[i].setColor(Color::White);
+    }
+    split13.contient[0].setString("Asia");
+    split13.contient[1].setString("Africa");
+    split13.contient[2].setString("Egypt");
+    split13.contient[3].setString("Europe");
+    split13.contient[4].setString("America");
+    for (int i = 0; i < 5; i++)
+    {
+        split13.contient[i].setFont(f3);
+        split13.contient[i].setCharacterSize(60);
+        split13.contient[i].setOrigin(split13.contient[i].getLocalBounds().width / 2, split13.contient[i].getLocalBounds().height / 2);
+        split13.contient[i].setPosition(x + 230, (y + 40) + (75 * i));
+        split13.contient[i].setFillColor(Color(39, 34, 99));
+    }
+    while (window.isOpen())
+    {
+        Event event;
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
+        for (int i = 0; i < 5; i++)
+        {
+            if (MouseRect.getGlobalBounds().intersects(split13.block[i].getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+            {
+                return i;
+            }
+        }
+
+        while (window.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+            {
+                window.close();
+            }
+        }
+        window.display();
+        draw_split13(split13);
+    }
+}
+
+void draw_country13(COUNTRY13 country13)
+{
+    window.draw(country13.background);
+    for (int i = 0; i < 4; i++)
+    {
+        window.draw(country13.block[i]);
+    }
+    for (int i = 0; i < 4; i++)
+    {
+        window.draw(country13.countries[i]);
+    }
+}
+string set_country13(COUNTRY13& country13, int x, int y, int cont)
+{
+    Mouse ms;
+    string Country[5][4] = { { "Bahrain_(Manama)","China_(Beijing)","Saudi_Arabia_(Riyadh)","United_Arab_Emirates_\n(Abu_Dhabi)" }, { "Algeria_(Algiers)","Tunisia_(Tunisia)","Morocco_(Marakesh)","Sudan_(Khartoum)" }, { "EGY_Alexandria_(ALY)","EGY_Cairo_(CAI)","EGY_Luxor_(LXR)","EGY_Sharm_Elshekh_(SSH)" }, { "France_(Paris)","Russia_(Moscow)","Spain_(Madrid)","United_Kingdom_(London)" }, { "Canada_(Ottawa)","United_States_(Washington)","Brazil_(Brasilia)","Argentina_(Buenos_Aires)" } };
+
+    for (int i = 0; i < 4; i++)
+    {
+        country13.block[i].setTexture(inputbox);
+        country13.block[i].setScale(1.8, 1.7);
+        country13.block[i].setOrigin(country13.block[i].getLocalBounds().width / 2, country13.block[i].getLocalBounds().height / 2);
+        country13.block[i].setPosition(x + 520, y + 60 + (75 * i));
+        country13.block[i].setColor(Color::White);
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        country13.countries[i].setString(Country[cont][i]);
+        country13.countries[i].setFont(f2);
+        country13.countries[i].setCharacterSize(30);
+        country13.countries[i].setOrigin(country13.countries[i].getLocalBounds().width / 2, country13.countries[i].getLocalBounds().height / 2);
+        country13.countries[i].setPosition(country13.block[i].getPosition().x, country13.block[i].getPosition().y);
+        country13.countries[i].setFillColor(Color(39, 34, 99));
+    }
+    while (window.isOpen())
+    {
+        Event event;
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
+        for (int i = 0; i < 4; i++)
+        {
+            if (MouseRect.getGlobalBounds().intersects(country13.block[i].getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+            {
+                return Country[cont][i];
+            }
+        }
+
+        while (window.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+            {
+
+                window.close();
+            }
+        }
+        window.display();
+        draw_country13(country13);
+    }
+}
+
+
 void draw_split(SPLIT split)
 {
     window.draw(split.background);
@@ -4525,26 +5096,20 @@ string set_country(COUNTRY& country, int x, int y, int cont)
 {
     Mouse ms;
     string Country[5][4] = { { "Bahrain_(Manama)","China_(Beijing)","Saudi_Arabia_(Riyadh)","United_Arab_Emirates_\n(Abu_Dhabi)" }, { "Algeria_(Algiers)","Tunisia_(Tunisia)","Morocco_(Marakesh)","Sudan_(Khartoum)" }, { "EGY_Alexandria_(ALY)","EGY_Cairo_(CAI)","EGY_Luxor_(LXR)","EGY_Sharm_Elshekh_(SSH)" }, { "France_(Paris)","Russia_(Moscow)","Spain_(Madrid)","United_Kingdom_(London)" }, { "Canada_(Ottawa)","United_States_(Washington)","Brazil_(Brasilia)","Argentina_(Buenos_Aires)" } };
-    //country.background.setTexture(inputbox);
-    //country.background.setScale(1.8, 7.5);
-    //country.background.setPosition(x, y + 160);
-    //country.background.setOrigin(country.background.getLocalBounds().width / 2, country.background.getLocalBounds().height / 2);
-    //country.background.setColor(Color::Black);
+    /* country.background.setTexture(inputbox);
+     country.background.setScale(1.8, 7.5);
+     country.background.setPosition(x+375, y + 130);
+     country.background.setOrigin(country.background.getLocalBounds().width / 2, country.background.getLocalBounds().height / 2);
+     country.background.setColor(Color::Black);*/
 
     for (int i = 0; i < 4; i++)
     {
         country.block[i].setTexture(inputbox);
         country.block[i].setScale(1.8, 1.7);
         country.block[i].setOrigin(country.block[i].getLocalBounds().width / 2, country.block[i].getLocalBounds().height / 2);
-        country.block[i].setPosition(x + 500, y + (75 * i));
+        country.block[i].setPosition(x + 374, y + 10 + (75 * i));
         country.block[i].setColor(Color::White);
     }
-    //country.countries[0].setString("Asia");
-    //country.countries[1].setString("Africa");
-    //country.countries[2].setString("Egypt");
-    //country.countries[3].setString("Europe");
-    //country.countries[4].setString("America");
-
     for (int i = 0; i < 4; i++)
     {
         country.countries[i].setString(Country[cont][i]);
@@ -4578,6 +5143,134 @@ string set_country(COUNTRY& country, int x, int y, int cont)
         draw_country(country);
     }
 }
+
+
+void draw_split31(SPLIT31 split31)
+{
+    window.draw(split31.background);
+    for (int i = 0; i < 5; i++)
+    {
+        window.draw(split31.block[i]);
+    }
+    for (int i = 0; i < 5; i++)
+    {
+        window.draw(split31.contient[i]);
+    }
+}
+int set_split31(SPLIT31& split31, int x, int y)
+{
+    Mouse ms;
+
+    split31.background.setTexture(inputbox);
+    split31.background.setScale(1.8, 7.5);
+    split31.background.setPosition(x + 230, y + 190);
+    split31.background.setOrigin(split31.background.getLocalBounds().width / 2, split31.background.getLocalBounds().height / 2);
+    split31.background.setColor(Color::Black);
+    for (int i = 0; i < 5; i++)
+    {
+        split31.block[i].setTexture(inputbox);
+        split31.block[i].setScale(1.8, 1.5);
+        split31.block[i].setOrigin(split31.block[i].getLocalBounds().width / 2, split31.block[i].getLocalBounds().height / 2);
+        split31.block[i].setPosition(x + 230, (y + 50) + (75 * i));
+        split31.block[i].setColor(Color::White);
+    }
+    split31.contient[0].setString("Asia");
+    split31.contient[1].setString("Africa");
+    split31.contient[2].setString("Egypt");
+    split31.contient[3].setString("Europe");
+    split31.contient[4].setString("America");
+    for (int i = 0; i < 5; i++)
+    {
+        split31.contient[i].setFont(f3);
+        split31.contient[i].setCharacterSize(60);
+        split31.contient[i].setOrigin(split31.contient[i].getLocalBounds().width / 2, split31.contient[i].getLocalBounds().height / 2);
+        split31.contient[i].setPosition(x + 230, (y + 40) + (75 * i));
+        split31.contient[i].setFillColor(Color(39, 34, 99));
+    }
+
+    while (window.isOpen())
+    {
+        Event event;
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
+        for (int i = 0; i < 5; i++)
+        {
+            if (MouseRect.getGlobalBounds().intersects(split31.block[i].getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+            {
+                return i;
+            }
+        }
+        while (window.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+            {
+                window.close();
+            }
+        }
+        window.display();
+        draw_split31(split31);
+    }
+}
+
+void draw_country31(COUNTRY31 country31)
+{
+    window.draw(country31.background);
+    for (int i = 0; i < 4; i++)
+    {
+        window.draw(country31.block[i]);
+    }
+    for (int i = 0; i < 4; i++)
+    {
+        window.draw(country31.countries[i]);
+    }
+}
+string set_country31(COUNTRY31& country31, int x, int y, int cont)
+{
+    Mouse ms;
+    string Country[5][4] = { { "Bahrain_(Manama)","China_(Beijing)","Saudi_Arabia_(Riyadh)","United_Arab_Emirates_\n(Abu_Dhabi)" }, { "Algeria_(Algiers)","Tunisia_(Tunisia)","Morocco_(Marakesh)","Sudan_(Khartoum)" }, { "EGY_Alexandria_(ALY)","EGY_Cairo_(CAI)","EGY_Luxor_(LXR)","EGY_Sharm_Elshekh_(SSH)" }, { "France_(Paris)","Russia_(Moscow)","Spain_(Madrid)","United_Kingdom_(London)" }, { "Canada_(Ottawa)","United_States_(Washington)","Brazil_(Brasilia)","Argentina_(Buenos_Aires)" } };
+
+    for (int i = 0; i < 4; i++)
+    {
+        country31.block[i].setTexture(inputbox);
+        country31.block[i].setScale(1.8, 1.7);
+        country31.block[i].setOrigin(country31.block[i].getLocalBounds().width / 2, country31.block[i].getLocalBounds().height / 2);
+        country31.block[i].setPosition(x + 603, y + 58 + (75 * i));
+        country31.block[i].setColor(Color::White);
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        country31.countries[i].setString(Country[cont][i]);
+        country31.countries[i].setFont(f2);
+        country31.countries[i].setCharacterSize(30);
+        country31.countries[i].setOrigin(country31.countries[i].getLocalBounds().width / 2, country31.countries[i].getLocalBounds().height / 2);
+        country31.countries[i].setPosition(country31.block[i].getPosition().x, country31.block[i].getPosition().y);
+        country31.countries[i].setFillColor(Color(39, 34, 99));
+    }
+    while (window.isOpen())
+    {
+        Event event;
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
+        for (int i = 0; i < 4; i++)
+        {
+            if (MouseRect.getGlobalBounds().intersects(country31.block[i].getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+            {
+                return Country[cont][i];
+            }
+        }
+
+        while (window.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+            {
+
+                window.close();
+            }
+        }
+        window.display();
+        draw_country31(country31);
+    }
+}
+
 /////////////////
 
 int getdata2(countries_offers offers1[], countries_offers2 schedule2[])
