@@ -463,7 +463,7 @@ struct Date
 struct user {
     string email, password, confirmPass, firstName, lastName, surname, phoneNum, nationality, kind;
     Date data;
-};
+}user1{ "0","0","0","0","0","0","0","0","0" };
 struct Data
 {
     string from;
@@ -520,11 +520,11 @@ Font f1, f2, f3, f4;
 
 void textureAndFonts();
 void drawpage1(PAGE1 page1);
-void setpage1(PAGE1& page1, countries_offers offers1[]);
+void setpage1(PAGE1& page1, countries_offers offers1[], vector< user>& info);
 void draw_page_2(PAGE2 page2);
-void set_page_2(PAGE2& page2, countries_offers offers1[]);
+void set_page_2(PAGE2& page2, countries_offers offers1[], vector< user>& info);
 void drawpage3(PAGE3 page3);
-void setpage3(PAGE3& page3, countries_offers offers1[]);
+void setpage3(PAGE3& page3, countries_offers offers1[], vector< user>& info);
 void Draw_page_4(PAGE4 page4);
 void Set_page_4(PAGE4& page4, countries_offers offers1[]);
 void drawpage5(PAGE5 page5);
@@ -608,12 +608,12 @@ void draw_split31(SPLIT31 split31);
 int set_split31(SPLIT31& split31, int x, int y);
 void draw_country31(COUNTRY31 country31);
 string set_country31(COUNTRY31& country31, int x, int y, int cont);
-
-
-
 ////////////
-int getdata2(countries_offers offers1[], countries_offers2 schedule2[]);
-void senddata2(countries_offers offers1[], countries_offers2 schedule2[]);
+void getdata2(countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info);
+void senddata2(countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info);
+
+int check(string email, string password, vector<user>& info);
+
 
 int main()
 {
@@ -661,10 +661,10 @@ int main()
     countries_offers2 schedule2[100];
     vector< user>info;
     vector<pass>passengers;
-    int x = getdata2(offers1, schedule2);
-    //setpage1(page1,offers1);
+    getdata2(offers1, schedule2, info);
+    setpage1(page1, offers1, info);
     //set_page_2(page2);
-    //setpage3(page3,offers1);
+    //setpage3(page3, offers1, info);
     //Set_page_4(page4, offers1);
     //setpage5(page5,offers1);
     //Set_page_6(page6,offers1);
@@ -677,7 +677,7 @@ int main()
     //set_page_13(page13, offers1);
     //set_page14(page14,offers1);
     // Set_page_15(page15,offers1);
-    Set_page_16(page16, offers1);
+    //Set_page_16(page16, offers1);
     // set_page_17(page17,offers1);
     // set_page_18(page18,offers1);
     //setpage19(page19,offers1);
@@ -696,13 +696,12 @@ int main()
     //set_page_36(page36,offers1);
     //setpage38(page38,offers1);
 
-    senddata2(offers1, schedule2);
+    senddata2(offers1, schedule2, info);
     return 0;
 }
 
 void textureAndFonts()
 {
-
     bg1.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg1.png");
     bg2.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg2.png");
     bg3.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg3.png");
@@ -766,7 +765,7 @@ void drawpage1(PAGE1 page1) {
     window.draw(page1.Block);
     window.draw(page1.get_started);
 }
-void setpage1(PAGE1& page1, countries_offers offers1[]) {
+void setpage1(PAGE1& page1, countries_offers offers1[], vector< user>& info) {
     PAGE2 page2;
     page1.background.setTexture(bg1);
     page1.background.setScale(2, 2);
@@ -795,7 +794,7 @@ void setpage1(PAGE1& page1, countries_offers offers1[]) {
 
         if (MouseRect.getGlobalBounds().intersects(page1.Block.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_2(page2, offers1);
+            set_page_2(page2, offers1, info);
         }
 
         while (window.pollEvent(event))
@@ -821,11 +820,12 @@ void draw_page_2(PAGE2 page2)
     window.draw(page2.logup);
 
 }
-void set_page_2(PAGE2& page2, countries_offers offers1[])
+void set_page_2(PAGE2& page2, countries_offers offers1[], vector< user>& info)
 {
     Mouse ms;
     PAGE4 page4;
     PAGE3 page3;
+    PAGE29 page29;
     page2.background.setTexture(bg2);
     page2.background.setScale(2.1, 2.1);
     page2.background.setPosition(-10, 0);
@@ -878,7 +878,7 @@ void set_page_2(PAGE2& page2, countries_offers offers1[])
         }
         if (MouseRect.getGlobalBounds().intersects(page2.logup.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage3(page3, offers1);
+            setpage3(page3, offers1, info);
         }
         if (MouseRect.getGlobalBounds().intersects(page2.login.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
@@ -903,7 +903,30 @@ void set_page_2(PAGE2& page2, countries_offers offers1[])
             {
                 data[count].resize(data[count].size() - 1);
             }
+
+            if ((event.type == Event::KeyReleased && event.key.code == Keyboard::Enter && count == 0))
+            {
+
+                int x = check(data[0], data[1], info);
+                cout << x;
+                if (x == 1)
+
+                    set_page_29(page29, offers1);
+                else if (x == 2)
+                {
+                    Set_page_4(page4, offers1);
+
+                }
+                else
+                {
+                    for (int i = 0; i < 2; i++)
+
+                        data[i].resize(0);
+                }
+
+            }
         }
+
         window.clear();
         draw_page_2(page2);
         for (int i = 0; i < 2; i++)
@@ -932,7 +955,7 @@ void drawpage3(PAGE3 page3) {
     window.draw(page3.signup);
     window.draw(page3.Fail);
 }
-void setpage3(PAGE3& page3, countries_offers offers1[]) {
+void setpage3(PAGE3& page3, countries_offers offers1[], vector< user>& info) {
 
     PAGE4 page4;
 
@@ -1004,10 +1027,11 @@ void setpage3(PAGE3& page3, countries_offers offers1[]) {
 
     page3.Fail.setFillColor(Color(255, 0, 0));
     page3.Fail.setFont(f1);
-    page3.Fail.setPosition(page3.box.getPosition().x - 50, page3.box.getPosition().y + 120);
-    page3.Fail.setCharacterSize(45);
+    //page3.Fail.setString("Passwords doesn't Match! (Please try again),,");
+    page3.Fail.setPosition(page3.box.getPosition().x + 170, page3.box.getPosition().y - 50);
+    page3.Fail.setCharacterSize(35);
 
-    // Dynamic
+    /////////////////////////////////////////////////////////////////////////////////////////////// Dynamic
 
     string data[10];
     Text input[10];
@@ -1025,7 +1049,7 @@ void setpage3(PAGE3& page3, countries_offers offers1[]) {
 
     for (int i = 0; i < 10; i++)
     {
-        input[i].setCharacterSize(40);
+        input[i].setCharacterSize(35);
         input[i].setFillColor(Color(74, 127, 211));
         input[i].setFont(f1);
     }
@@ -1066,16 +1090,83 @@ void setpage3(PAGE3& page3, countries_offers offers1[]) {
             }
             if (event.type == Event::TextEntered)
             {
-                data[count] += static_cast<char>(event.text.unicode);
+                if (count > 3 && count < 8)
+                {
+                    if (isdigit(static_cast<char>(event.text.unicode)))
+                        data[count] += static_cast<char>(event.text.unicode);
+                }
+                else
+                    data[count] += static_cast<char>(event.text.unicode);
             }
             if (event.type == Event::KeyReleased && event.key.code == Keyboard::Enter)
             {
                 count++;
                 count %= 10;
             }
-            if (Keyboard::isKeyPressed(Keyboard::BackSpace) && data[count].size() > 0)
+            if (count > 3 && count < 8)
             {
-                data[count].resize(data[count].size() - 1);
+                if (event.type == Event::KeyReleased && event.key.code == Keyboard::BackSpace && data[count].size() > 0)
+                {
+                    data[count].resize(data[count].size() - 1);
+                }
+            }
+            else
+                if (Keyboard::isKeyPressed(Keyboard::BackSpace) && data[count].size() > 0)
+                {
+                    data[count].resize(data[count].size() - 1);
+                }
+
+            if ((event.type == Event::KeyReleased && event.key.code == Keyboard::Enter && count == 0))
+            {
+                bool check = false;
+                for (int i = 0; i < 10; i++)
+                {
+                    if (data[i].empty())
+                        break;
+                    else
+                        check = true;
+                }
+                if (!check)
+                {
+                    // cout << check;
+                    page3.Fail.setString("-invalied information,please try again,,,");
+                    for (int i = 0; i < 10; i++)
+                    {
+                        data[i].resize(0);
+                    }
+
+                }
+                else
+                {
+                    if (data[8] != data[9])
+                    {
+                        page3.Fail.setString("Passwords doesn't Match! (Please try again),,");
+                        for (int i = 0; i < 10; i++)
+                        {
+                            data[i].resize(0);
+                        }
+                    }
+                    else
+                    {
+                        user1.firstName = data[0];
+                        user1.lastName = data[1];
+                        user1.nationality = data[2];
+                        user1.email = data[3];
+                        user1.phoneNum = data[4];
+                        user1.password = data[8];
+                        user1.confirmPass = data[9];
+                        user1.data.Day = stoi(data[5]);
+                        user1.data.Month = stoi(data[6]);
+                        user1.data.Year = stoi(data[7]);
+                        user1.kind = "user";
+                        info.push_back(user1);
+
+                        Set_page_4(page4, offers1);
+                    }
+
+                }
+
+
             }
         }
         window.clear();
@@ -3837,7 +3928,8 @@ void set_page_29(PAGE29& page29, countries_offers offers1[])
         MouseRect.setPosition(ms.getPosition().x - 5, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page29.exit.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_2(page2, offers1);
+            window.close();
+            //set_page_2(page2, offers1,info);
         };
 
         if (MouseRect.getGlobalBounds().intersects(page29.begin.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
@@ -5273,7 +5365,7 @@ string set_country31(COUNTRY31& country31, int x, int y, int cont)
 
 /////////////////
 
-int getdata2(countries_offers offers1[], countries_offers2 schedule2[])
+void getdata2(countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info)
 {
     ifstream AH("offers.txt");
     if (AH.is_open())
@@ -5285,7 +5377,25 @@ int getdata2(countries_offers offers1[], countries_offers2 schedule2[])
         }
         AH.close();
     }
-    int j = 0;
+
+    ifstream AH3("users.txt");
+    if (AH3.is_open())
+    {
+
+
+        for (int i = 0; (!AH3.eof()); i++)
+        {
+            if (AH3.eof())
+                break;
+            else
+            {
+                info.push_back(user1);
+                AH3 >> info[i].email >> info[i].password >> info[i].confirmPass >> info[i].firstName >> info[i].lastName >> info[i].surname >> info[i].phoneNum >> info[i].nationality >> info[i].data.Day >> info[i].data.Month >> info[i].data.Year >> info[i].kind;
+            }
+        }
+        AH3.close();
+    }
+
     ifstream AH4("countries admin.txt");
     if (AH4.is_open())
     {
@@ -5296,9 +5406,9 @@ int getdata2(countries_offers offers1[], countries_offers2 schedule2[])
 
         AH4.close();
     }
-    return j;
+
 }
-void senddata2(countries_offers offers1[], countries_offers2 schedule2[])
+void senddata2(countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info)
 {
     ofstream ah1("offers.txt");
     if (ah1.is_open())
@@ -5311,6 +5421,20 @@ void senddata2(countries_offers offers1[], countries_offers2 schedule2[])
         ah1.close();
     }
 
+    ofstream ah4("users.txt");
+    if (ah4.is_open())
+    {
+        for (int i = 0; i < info.size(); i++)
+        {
+            if (info[i].email == "0")
+                continue;
+            else
+                ah4 << info[i].email << "\t" << info[i].password << "\t" << info[i].confirmPass << "\t" << info[i].firstName << "\t" << info[i].lastName << "\t" << info[i].surname << "\t" << info[i].phoneNum << "\t" << info[i].nationality << "\t" << info[i].data.Day << "\t" << info[i].data.Month << "\t" << info[i].data.Year << "\t" << info[i].kind << "\n";
+        }
+
+        ah4.close();
+    }
+
     ofstream ah5("countries admin.txt");
     if (ah5.is_open())
     {
@@ -5321,4 +5445,32 @@ void senddata2(countries_offers offers1[], countries_offers2 schedule2[])
 
         ah5.close();
     }
+}
+int check(string email, string password, vector<user>& info)
+{
+    email.resize(email.size() - 1);
+    password.resize(password.size() - 1);
+    //int n = false;
+    for (int i = 0; i < info.size(); i++)
+    {
+
+        if ((email == info[i].email) && (password == info[i].password))
+        {
+            if (info[i].kind == "admin")
+
+                return 1;
+
+            else
+                return 2;
+
+
+        }
+        else
+        {
+
+            return 0;
+
+        }
+    }
+    //return n;
 }
