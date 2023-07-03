@@ -50,6 +50,7 @@
     del.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/delete.png");
     dep.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/pic1.png");
     price.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/pic2.png");
+    seatsbg18.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/seatsbg18.png");
 
     f1.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
     f2.loadFromFile("C:/Windows/Fonts/cambriai.ttf");

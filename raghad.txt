@@ -49,6 +49,8 @@
     del.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/delete.png");
     dep.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/pic1.png");
     price.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/pic2.png");
+    seatsbg18.loadFromFile("C:/Users/hp/source/repos/sfml/Assests/seatsbg18.png");
+
 
     f1.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
     f2.loadFromFile("C:/Windows/Fonts/cambriai.ttf");

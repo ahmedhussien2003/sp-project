@@ -10,7 +10,7 @@
 
 using namespace std;
 using namespace sf;
-
+int USER = 100;
 struct PAGE1 {
     Sprite background;
     Sprite Block;
@@ -187,11 +187,11 @@ struct PAGE15
     Text nextButton;
     Text backButton;
     Text inputButton;
+    Text fail;
 
 };
 struct PAGE16
 {
-
     Sprite bg16;
     Sprite firstname;
     Sprite lastname;
@@ -208,21 +208,30 @@ struct PAGE16
     Text maleButton;
     Text nextButton;
     Text backButton;
-
+    Text fail;
 };
 struct PAGE17
 {
     Sprite background;
     Sprite smapbusiness;
+    Sprite seats_b[4][5];
     Sprite next;
     Text Next;
+    Sprite fail;
+    Text Fail;
+
+    //error;
+
 };
 struct PAGE18
 {
     Sprite background;
     Sprite smapeconomy;
+    Sprite seats_e[4][15];
     Sprite next;
     Text Next;
+    Sprite fail;
+    Text Fail;
 };
 struct PAGE19
 {
@@ -359,7 +368,15 @@ struct PAGE33
     Sprite block[100];
     Sprite back_b;
     Text back_t;
+    Text dep[100];
+    Text arv[100];
+    Text date[100];
+    Text th1[100];
+    Text th2[100];
+    Text tm2[100];
+    Text level[100];
     Text num[100];
+    Text price[100];
 };
 struct PAGE34 {
     Sprite background;
@@ -413,7 +430,6 @@ struct COUNTRY12
     Text countries[4];
 };
 
-
 struct SPLIT13
 {
     Sprite background;
@@ -464,30 +480,31 @@ struct user {
     string email, password, confirmPass, firstName, lastName, surname, phoneNum, nationality, kind;
     Date data;
 }user1{ "0","0","0","0","0","0","0","0","0" };
+struct pass
+{
+    string first_name;
+    string last_name;
+    string title;
+    string passport_id;
+    string gender;
+    string seats;
+    Date birthdate;
+}passenger1{ "0","0","0","0","0","0" };
 struct Data
 {
     string from;
     string to;
-    Date myDate{};
     int price;
     int th1;
     int th2;
     int tm2;
+    int passengers_number;
     string flight_num;
-};
-struct pass
-{
-    Data airPorts;
-    string first_name[7];
-    string last_name[7];
-    string title[7];
-    Date birthdate[7];
-    string passport_id[7];
-    string gender[7];
     string level;
     string user;
-    string seats[7];
-};
+    Date myDate{};
+    vector<pass> passengers;
+}flight1{ "0","0",0,0,0,0,0,"0","0","0" };
 struct countries_offers
 {
     string dep;
@@ -514,106 +531,105 @@ RenderWindow window(VideoMode(1900, 1080), "DESTINYA", Style::Default);
 
 RectangleShape MouseRect(Vector2f(10, 30));
 
-Texture bg1, bg2, bg3, background4, bg5, background6, bg7, bg8, bg9, bg10, background11, bg12, bg13, bg14, background15, background16, bg17, bg18, bg19, bg20, bg21, bg22, bg23, bg24, bg25, bg26, bg27, bg28, bg29, bg30, bg31, bg32, bg33, bg34, bg35, bg36, bg37, bg38, inputbox, transbox, desbox, newoffersblock, tripsblock, passengersblock, block, add, edit, del, dep, price;
+Texture bg1, bg2, bg3, background4, bg5, background6, bg7, bg8, bg9, bg10, background11, bg12, bg13, bg14, background15, background16, bg17, bg18, bg19, bg20, bg21, bg22, bg23, bg24, bg25, bg26, bg27, bg28, bg29, bg30, bg31, bg32, bg33, bg34, bg35, bg36, bg37, bg38, inputbox, transbox, desbox, newoffersblock, tripsblock, passengersblock, block, add, edit, del, dep, price, seatsbg18;
 
 Font f1, f2, f3, f4;
 
 void textureAndFonts();
 void drawpage1(PAGE1 page1);
-void setpage1(PAGE1& page1, countries_offers offers1[], vector< user>& info);
+void setpage1(PAGE1& page1, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_page_2(PAGE2 page2);
-void set_page_2(PAGE2& page2, countries_offers offers1[], vector< user>& info);
+void set_page_2(PAGE2& page2, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void drawpage3(PAGE3 page3);
-void setpage3(PAGE3& page3, countries_offers offers1[], vector< user>& info);
+void setpage3(PAGE3& page3, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void Draw_page_4(PAGE4 page4);
-void Set_page_4(PAGE4& page4, countries_offers offers1[]);
+void Set_page_4(PAGE4& page4, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void drawpage5(PAGE5 page5);
-void setpage5(PAGE5& page5, countries_offers offers1[]);
-void Set_page_6(PAGE6& page6, countries_offers offers1[]);
-void setpage7(PAGE7& page7, countries_offers offers1[]);
+void setpage5(PAGE5& page5, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
+void Set_page_6(PAGE6& page6, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
+void setpage7(PAGE7& page7, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void drawpage8(PAGE8 page8);
-void setpage8(PAGE8& page8, countries_offers offers1[]);
+void setpage8(PAGE8& page8, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_page_9(PAGE9 page9);
-void set_page_9(PAGE9& page9, countries_offers offers1[]);
+void set_page_9(PAGE9& page9, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void drawpage10(PAGE10 page10);
-void setpage10(PAGE10& page10, countries_offers offers1[]);
+void setpage10(PAGE10& page10, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void Draw_page_11(PAGE11 page11);
-void Set_page_11(PAGE11& page11, countries_offers offers1[]);
+void Set_page_11(PAGE11& page11, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void drawpage12(PAGE12 page12);
-void setpage12(PAGE12& page12, countries_offers offers1[]);
+void setpage12(PAGE12& page12, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_page_13(PAGE13 page13);
-void set_page_13(PAGE13& page13, countries_offers offers1[]);
+void set_page_13(PAGE13& page13, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_page14(PAGE14 page14);
-void set_page14(PAGE14& page14, countries_offers offers1[]);
+void set_page14(PAGE14& page14, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void Draw_page_15(PAGE15 page15);
-void Set_page_15(PAGE15& page15, countries_offers offers1[]);
+void Set_page_15(PAGE15& page15, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void Draw_page_16(PAGE16 page16);
-void Set_page_16(PAGE16& page16, countries_offers offers1[]);
+void Set_page_16(PAGE16& page16, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_page_17(PAGE17 page17);
-void set_page_17(PAGE17& page17, countries_offers offers1[]);
+void set_page_17(PAGE17& page17, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_page_18(PAGE18 page18);
-void set_page_18(PAGE18& page18, countries_offers offers1[]);
+void set_page_18(PAGE18& page18, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void drawpage19(PAGE19 page19);
-void setpage19(PAGE19& page19, countries_offers offers1[]);
+void setpage19(PAGE19& page19, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void drawpage20(PAGE20 page20);
-void setpage20(PAGE20& page20, countries_offers offers1[]);
+void setpage20(PAGE20& page20, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void drawpage21(PAGE21 page21);
-void setpage21(PAGE21& page21, countries_offers offers1[]);
+void setpage21(PAGE21& page21, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_page_22(PAGE22 page22);
-void set_page_22(PAGE22& page22, countries_offers offers1[]);
-void setpage23(PAGE23& page23, countries_offers offers1[]);
+void set_page_22(PAGE22& page22, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
+void setpage23(PAGE23& page23, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_page_24(PAGE24 page24);
-void set_page_24(PAGE24& page24, countries_offers offers1[]);
+void set_page_24(PAGE24& page24, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void drawpage25(PAGE25 page25);
-void setpage25(PAGE25& page25, countries_offers offers1[]);
-void setpage26(PAGE26& page26);
+void setpage25(PAGE25& page25, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
+void setpage26(PAGE26& page26, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void drawpage27(PAGE27 page27);
-void setpage27(PAGE27& page27, countries_offers offers1[]);
+void setpage27(PAGE27& page27, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_page_28(PAGE28 page28);
-void set_page_28(PAGE28& page28, countries_offers offers1[]);
+void set_page_28(PAGE28& page28, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_page_29(PAGE29 page29);
-void set_page_29(PAGE29& page29, countries_offers offers1[]);
+void set_page_29(PAGE29& page29, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void drawpage30(PAGE30 page30);
-void setpage30(PAGE30& page30, countries_offers offers1[]);
+void setpage30(PAGE30& page30, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_page_31(PAGE31 page31);
-void set_page_31(PAGE31& page31, countries_offers offers1[]);
+void set_page_31(PAGE31& page31, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_page_32(PAGE32 page32);
-void set_page_32(PAGE32& page32, countries_offers offers1[]);
-void setpage33(PAGE33& page33, countries_offers offers1[]);
+void set_page_32(PAGE32& page32, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
+int setpage33(PAGE33& page33, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void drawpage34(PAGE34 page34);
-void setpage34(PAGE34& page34, countries_offers offers1[]);
+void setpage34(PAGE34& page34, int i, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_page_35(PAGE35 page35);
-void set_page_35(PAGE35& page35, countries_offers offers1[]);
+void set_page_35(PAGE35& page35, int i, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_page_36(PAGE36 page36);
-void set_page_36(PAGE36& page36, countries_offers offers1[]);
+void set_page_36(PAGE36& page36, int i, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void drawpage37(PAGE37 page37);
-void setpage37(PAGE37& page37, countries_offers offers1[]);
-//void setpage38(PAGE38& page38);
+void setpage37(PAGE37& page37, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
+void setpage38(PAGE38& page38, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_split12(SPLIT12 split);
-int set_split12(SPLIT12& split12, int x, int y);
+int set_split12(SPLIT12& split12, int x, int y, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_country12(COUNTRY12 country12);
-string set_country12(COUNTRY12& country12, int x, int y, int cont);
+string set_country12(COUNTRY12& country12, int x, int y, int cont, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 
 void draw_split13(SPLIT13 split13);
-int set_split13(SPLIT13& split13, int x, int y);
+int set_split13(SPLIT13& split13, int x, int y, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_country13(COUNTRY13 country13);
-string set_country13(COUNTRY13& country13, int x, int y, int cont);
+string set_country13(COUNTRY13& country13, int x, int y, int cont, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 
 void draw_split(SPLIT split);
-int set_split(SPLIT& split, int x, int y);
+int set_split(SPLIT& split, int x, int y, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_country(COUNTRY country);
-string set_country(COUNTRY& country, int x, int y, int cont);
+string set_country(COUNTRY& country, int x, int y, int cont, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 
 void draw_split31(SPLIT31 split31);
-int set_split31(SPLIT31& split31, int x, int y);
+int set_split31(SPLIT31& split31, int x, int y, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 void draw_country31(COUNTRY31 country31);
-string set_country31(COUNTRY31& country31, int x, int y, int cont);
+string set_country31(COUNTRY31& country31, int x, int y, int cont, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 ////////////
-void getdata2(countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info);
-void senddata2(countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info);
-
+void getdata2(countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
+void senddata2(countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo);
 int check(string email, string password, vector<user>& info);
-
+int getindex2(countries_offers2 schedule2[]);
 
 int main()
 {
@@ -660,26 +676,27 @@ int main()
     countries_offers offers1[5];
     countries_offers2 schedule2[100];
     vector< user>info;
-    vector<pass>passengers;
-    getdata2(offers1, schedule2, info);
-    setpage1(page1, offers1, info);
+    vector<Data>flightinfo;
+
+    getdata2(offers1, schedule2, info, flightinfo);
+    //setpage1(page1, offers1, schedule2, info, flightinfo);
     //set_page_2(page2);
     //setpage3(page3, offers1, info);
     //Set_page_4(page4, offers1);
     //setpage5(page5,offers1);
-    //Set_page_6(page6,offers1);
-    //setpage7(page7, offers1);
+    //Set_page_6(page6, offers1, schedule2, info, flightinfo);
+    //setpage7(page7, offers1, schedule2, info, flightinfo);
     //setpage8(page8,offers1);
     //set_page_9(page9,offers1);
     //setpage10(page10,offers1);
     //Set_page_11(page11,offers1);
-    //setpage12(page12,offers1);
+    //setpage12(page12, offers1, schedule2, info, flightinfo);
     //set_page_13(page13, offers1);
     //set_page14(page14,offers1);
-    // Set_page_15(page15,offers1);
+     //Set_page_15(page15,offers1);
     //Set_page_16(page16, offers1);
-    // set_page_17(page17,offers1);
-    // set_page_18(page18,offers1);
+    //set_page_17(page17, offers1, schedule2, info, flightinfo);
+     //set_page_18(page18, offers1, schedule2, info, flightinfo);
     //setpage19(page19,offers1);
     //setpage20(page20,offers1);
     //setpage21(page21,offers1);
@@ -687,72 +704,74 @@ int main()
     //setpage23(page23,offers1);
     //set_page_24(page24,offers1);
     //setpage26(page26);
+    //set_page_28(page28, offers1, schedule2, info, flightinfo);
     //set_page_29(page29,offers1);
-    //setpage30(page30,offers1);
-    //set_page_31(page31,offers1);
-    //setpage33(page33,offers1);
+    //setpage30(page30, offers1, schedule2, info, flightinfo);
+    //set_page_31(page31, offers1, schedule2, info, flightinfo);
+    setpage33(page33, offers1, schedule2, info, flightinfo);
     //setpage34(page34,offers1);
     //set_page_35(page35,offers1);
     //set_page_36(page36,offers1);
-    //setpage38(page38,offers1);
+    //setpage38(page38,offers1, schedule2, info, flightinfo);
 
-    senddata2(offers1, schedule2, info);
+    senddata2(offers1, schedule2, info, flightinfo);
     return 0;
 }
 
 void textureAndFonts()
 {
-    bg1.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg1.png");
-    bg2.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg2.png");
-    bg3.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg3.png");
-    background4.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg4.png");
-    bg5.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg5.png");
-    background6.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg6.png");
-    bg7.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg7.png");
-    bg8.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg8.png");
-    bg9.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg9.png");
-    bg10.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg10.png");
-    background11.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg11.png");
-    bg12.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg12.png");
-    bg13.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg13.png");
-    bg14.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg14.png");
-    background15.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg15.png");
-    background16.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg16.png");
-    bg17.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg17.png");
-    bg18.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg18.png");
-    bg19.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg19.png");
-    bg20.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg20.png");
-    bg21.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg21.png");
-    bg22.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg22.png");
-    bg23.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg23.png");
-    bg24.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg24.png");
-    bg25.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg25.png");
-    bg26.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg26.png");
-    bg27.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg27.png");
-    bg28.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg28.png");
-    bg29.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg29.png");
-    bg30.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg30.png");
-    bg31.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg31.png");
-    bg32.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg32.png");
-    bg33.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg33.png");
-    bg34.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg34.png");
-    bg35.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg35.png");
-    bg36.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg36.png");
-    bg37.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg37.png");
-    bg38.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/bg38.png");
+    bg1.loadFromFile("D:/sfml pic/bg1.png");
+    bg2.loadFromFile("D:/sfml pic/bg2.png");
+    bg3.loadFromFile("D:/sfml pic/bg3.png");
+    background4.loadFromFile("D:/sfml pic/bg4.png");
+    bg5.loadFromFile("D:/sfml pic/bg5.png");
+    background6.loadFromFile("D:/sfml pic/bg6.png");
+    bg7.loadFromFile("D:/sfml pic/bg7.png");
+    bg8.loadFromFile("D:/sfml pic/bg8.png");
+    bg9.loadFromFile("D:/sfml pic/bg9.png");
+    bg10.loadFromFile("D:/sfml pic/bg10.png");
+    background11.loadFromFile("D:/sfml pic/bg11.png");
+    bg12.loadFromFile("D:/sfml pic/bg12.png");
+    bg13.loadFromFile("D:/sfml pic/bg13.png");
+    bg14.loadFromFile("D:/sfml pic/bg14.png");
+    background15.loadFromFile("D:/sfml pic/bg15.png");
+    background16.loadFromFile("D:/sfml pic/bg16.png");
+    bg17.loadFromFile("D:/sfml pic/bg17.png");
+    bg18.loadFromFile("D:/sfml pic/bg18.png");
+    bg19.loadFromFile("D:/sfml pic/bg19.png");
+    bg20.loadFromFile("D:/sfml pic/bg20.png");
+    bg21.loadFromFile("D:/sfml pic/bg21.png");
+    bg22.loadFromFile("D:/sfml pic/bg22.png");
+    bg23.loadFromFile("D:/sfml pic/bg23.png");
+    bg24.loadFromFile("D:/sfml pic/bg24.png");
+    bg25.loadFromFile("D:/sfml pic/bg25.png");
+    bg26.loadFromFile("D:/sfml pic/bg26.png");
+    bg27.loadFromFile("D:/sfml pic/bg27.png");
+    bg28.loadFromFile("D:/sfml pic/bg28.png");
+    bg29.loadFromFile("D:/sfml pic/bg29.png");
+    bg30.loadFromFile("D:/sfml pic/bg30.png");
+    bg31.loadFromFile("D:/sfml pic/bg31.png");
+    bg32.loadFromFile("D:/sfml pic/bg32.png");
+    bg33.loadFromFile("D:/sfml pic/bg33.png");
+    bg34.loadFromFile("D:/sfml pic/bg34.png");
+    bg35.loadFromFile("D:/sfml pic/bg35.png");
+    bg36.loadFromFile("D:/sfml pic/bg36.png");
+    bg37.loadFromFile("D:/sfml pic/bg37.png");
+    bg38.loadFromFile("D:/sfml pic/bg38.png");
 
-    inputbox.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/inputbox.png");
-    transbox.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/transbox.png");
-    desbox.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/desbox.png");
-    newoffersblock.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/newoffersblock.png");
-    tripsblock.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/tripsblock.png");
-    passengersblock.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/passengersblock.png");
-    block.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/block.png");
-    add.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/add.png");
-    edit.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/edit.png");
-    del.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/delete.png");
-    dep.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/pic1.png");
-    price.loadFromFile("C:/Users/dell/source/repos/SFML PROJECT POHOTOS/pic2.png");
+    inputbox.loadFromFile("D:/sfml pic/inputbox.png");
+    transbox.loadFromFile("D:/sfml pic/transbox.png");
+    desbox.loadFromFile("D:/sfml pic/desbox.png");
+    newoffersblock.loadFromFile("D:/sfml pic/newoffersblock.png");
+    tripsblock.loadFromFile("D:/sfml pic/tripsblock.png");
+    passengersblock.loadFromFile("D:/sfml pic/passengersblock.png");
+    block.loadFromFile("D:/sfml pic/block.png");
+    add.loadFromFile("D:/sfml pic/add.png");
+    edit.loadFromFile("D:/sfml pic/edit.png");
+    del.loadFromFile("D:/sfml pic/delete.png");
+    dep.loadFromFile("D:/sfml pic/pic1.png");
+    price.loadFromFile("D:/sfml pic/pic2.png");
+    seatsbg18.loadFromFile("D:/sfml pic/seatsbg18.png");
 
     f1.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
     f2.loadFromFile("C:/Windows/Fonts/cambriai.ttf");
@@ -765,7 +784,7 @@ void drawpage1(PAGE1 page1) {
     window.draw(page1.Block);
     window.draw(page1.get_started);
 }
-void setpage1(PAGE1& page1, countries_offers offers1[], vector< user>& info) {
+void setpage1(PAGE1& page1, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo) {
     PAGE2 page2;
     page1.background.setTexture(bg1);
     page1.background.setScale(2, 2);
@@ -794,7 +813,7 @@ void setpage1(PAGE1& page1, countries_offers offers1[], vector< user>& info) {
 
         if (MouseRect.getGlobalBounds().intersects(page1.Block.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_2(page2, offers1, info);
+            set_page_2(page2, offers1, schedule2, info, flightinfo);
         }
 
         while (window.pollEvent(event))
@@ -820,7 +839,7 @@ void draw_page_2(PAGE2 page2)
     window.draw(page2.logup);
 
 }
-void set_page_2(PAGE2& page2, countries_offers offers1[], vector< user>& info)
+void set_page_2(PAGE2& page2, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
     PAGE4 page4;
@@ -878,12 +897,12 @@ void set_page_2(PAGE2& page2, countries_offers offers1[], vector< user>& info)
         }
         if (MouseRect.getGlobalBounds().intersects(page2.logup.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage3(page3, offers1, info);
+            setpage3(page3, offers1, schedule2, info, flightinfo);
         }
-        if (MouseRect.getGlobalBounds().intersects(page2.login.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
-        {
-            Set_page_4(page4, offers1);
-        }
+        //if (MouseRect.getGlobalBounds().intersects(page2.login.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        //{
+        //    Set_page_4(page4, offers1);
+        //}
         while (window.pollEvent(event))
         {
             if (event.type == Event::Closed)
@@ -908,16 +927,16 @@ void set_page_2(PAGE2& page2, countries_offers offers1[], vector< user>& info)
             {
 
                 int x = check(data[0], data[1], info);
-                cout << x;
                 if (x == 1)
-
-                    set_page_29(page29, offers1);
+                {
+                    set_page_29(page29, offers1, schedule2, info, flightinfo);
+                }
                 else if (x == 2)
                 {
-                    Set_page_4(page4, offers1);
+                    Set_page_4(page4, offers1, schedule2, info, flightinfo);
 
                 }
-                else
+                else if (x == 3)
                 {
                     for (int i = 0; i < 2; i++)
 
@@ -955,7 +974,7 @@ void drawpage3(PAGE3 page3) {
     window.draw(page3.signup);
     window.draw(page3.Fail);
 }
-void setpage3(PAGE3& page3, countries_offers offers1[], vector< user>& info) {
+void setpage3(PAGE3& page3, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo) {
 
     PAGE4 page4;
 
@@ -1078,7 +1097,7 @@ void setpage3(PAGE3& page3, countries_offers offers1[], vector< user>& info) {
                 }
             }
 
-            Set_page_4(page4, offers1);
+            Set_page_4(page4, offers1, schedule2, info, flightinfo);
         }
 
         while (window.pollEvent(event))
@@ -1148,6 +1167,13 @@ void setpage3(PAGE3& page3, countries_offers offers1[], vector< user>& info) {
                     }
                     else
                     {
+                        data[0].resize(data[0].size() - 1);
+                        data[1].resize(data[1].size() - 1);
+                        data[2].resize(data[2].size() - 1);
+                        data[3].resize(data[3].size() - 1);
+                        data[4].resize(data[8].size() - 1);
+                        data[5].resize(data[9].size() - 1);
+
                         user1.firstName = data[0];
                         user1.lastName = data[1];
                         user1.nationality = data[2];
@@ -1161,12 +1187,9 @@ void setpage3(PAGE3& page3, countries_offers offers1[], vector< user>& info) {
                         user1.kind = "user";
                         info.push_back(user1);
 
-                        Set_page_4(page4, offers1);
+                        Set_page_4(page4, offers1, schedule2, info, flightinfo);
                     }
-
                 }
-
-
             }
         }
         window.clear();
@@ -1193,14 +1216,14 @@ void Draw_page_4(PAGE4 page4)
     window.draw(page4.ProtocolsandContactInfobutton);
     window.draw(page4.Exitbutton);
 }
-void Set_page_4(PAGE4& page4, countries_offers offers1[])
+void Set_page_4(PAGE4& page4, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     PAGE5 page5;
     PAGE6 page6;
     PAGE8 page8;
     PAGE23 page23;
     //PAGE2 page2;
-
+    cout << USER << endl;
     page4.bg4.setTexture(background4);
     page4.bg4.setScale(1.8, 1.8);
     page4.bg4.setPosition(1920 / 2, 1080 / 2);
@@ -1280,16 +1303,16 @@ void Set_page_4(PAGE4& page4, countries_offers offers1[])
         MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page4.FlightSchedule.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_6(page6, offers1);
+            Set_page_6(page6, offers1, schedule2, info, flightinfo);
         }
         if (MouseRect.getGlobalBounds().intersects(page4.NewReservation.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage23(page23, offers1);
+            setpage23(page23, offers1, schedule2, info, flightinfo);
 
         }
         if (MouseRect.getGlobalBounds().intersects(page4.MyTrips.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage8(page8, offers1);
+            setpage8(page8, offers1, schedule2, info, flightinfo);
         }
         if (MouseRect.getGlobalBounds().intersects(page4.Exit.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
@@ -1297,7 +1320,7 @@ void Set_page_4(PAGE4& page4, countries_offers offers1[])
         }
         if (MouseRect.getGlobalBounds().intersects(page4.ProtocolsandContactInfo.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage5(page5, offers1);
+            setpage5(page5, offers1, schedule2, info, flightinfo);
         }
         while (window.pollEvent(event))
         {
@@ -1318,7 +1341,7 @@ void drawpage5(PAGE5 page5) {
     window.draw(page5.Block);
     window.draw(page5.back);
 }
-void setpage5(PAGE5& page5, countries_offers offers1[]) {
+void setpage5(PAGE5& page5, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo) {
 
     PAGE4 page4;
 
@@ -1349,7 +1372,7 @@ void setpage5(PAGE5& page5, countries_offers offers1[]) {
 
         if (MouseRect.getGlobalBounds().intersects(page5.Block.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_4(page4, offers1);
+            Set_page_4(page4, offers1, schedule2, info, flightinfo);
         }
 
         while (window.pollEvent(event))
@@ -1376,7 +1399,7 @@ void Draw_page_6(PAGE6 page6)
     window.draw(page6.beginbutton);
     window.draw(page6.beginButton);
 }
-void Set_page_6(PAGE6& page6, countries_offers offers1[])
+void Set_page_6(PAGE6& page6, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     PAGE7 page7;
 
@@ -1387,7 +1410,7 @@ void Set_page_6(PAGE6& page6, countries_offers offers1[])
 
     page6.beginbutton.setTexture(transbox);
     page6.beginbutton.setOrigin(page6.beginbutton.getLocalBounds().width / 2, page6.beginbutton.getLocalBounds().height / 2);
-    page6.beginbutton.setPosition(1920 / 2 - 30, 1080 / 2 + 300);
+    page6.beginbutton.setPosition(1920 / 2 - 30, 1080 / 2 + 500);
     page6.beginbutton.setScale(1.7, 1.7);
 
     page6.beginButton.setFont(f2);
@@ -1408,7 +1431,7 @@ void Set_page_6(PAGE6& page6, countries_offers offers1[])
 
         if (MouseRect.getGlobalBounds().intersects(page6.beginbutton.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage7(page7, offers1);
+            setpage7(page7, offers1, schedule2, info, flightinfo);
         }
 
         while (window.pollEvent(event))
@@ -1424,9 +1447,10 @@ void Set_page_6(PAGE6& page6, countries_offers offers1[])
     }
 }
 
-void setpage7(PAGE7& page7, countries_offers offers1[])
+void setpage7(PAGE7& page7, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     PAGE4 page4;
+    PAGE15 page15;
 
     page7.background.setTexture(bg7);
     page7.background.setScale(2.18, 2.18);
@@ -1546,7 +1570,32 @@ void setpage7(PAGE7& page7, countries_offers offers1[])
         MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page7.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_4(page4, offers1);
+            Set_page_4(page4, offers1, schedule2, info, flightinfo);
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            if (MouseRect.getGlobalBounds().intersects(page7.block[i].getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+            {
+                string flight_num = to_string((2 * i) + 20);
+
+                flight1.from = offers1[i].dep;
+                flight1.to = offers1[i].arv;
+                flight1.price = offers1[i].price;
+                flight1.myDate.Year = 2023;
+                flight1.myDate.Month = 7;
+                flight1.myDate.Day = ((2 * i) + 5);
+                flight1.th1 = (offers1[i].t_h + i);
+                flight1.th2 = ((2 * offers1[i].t_h) + i);
+                flight1.tm2 = (offers1[i].t_m);
+                flight1.flight_num = "DS9" + flight_num;
+                if (i % 2 == 0)
+                    flight1.level = "ECONOMY";
+                else
+                    flight1.level = "BUSINESS";
+                cout << flight1.to << endl;
+                Set_page_15(page15, offers1, schedule2, info, flightinfo);
+
+            }
         }
         while (window.pollEvent(event))
         {
@@ -1629,7 +1678,7 @@ void drawpage8(PAGE8 page8) {
     window.draw(page8.Multicity);
     window.draw(page8.Round);
 }
-void setpage8(PAGE8& page8, countries_offers offers1[]) {
+void setpage8(PAGE8& page8, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo) {
 
     PAGE4 page4;
     PAGE9 page9;
@@ -1695,19 +1744,19 @@ void setpage8(PAGE8& page8, countries_offers offers1[]) {
         Event event;
         if (MouseRect.getGlobalBounds().intersects(page8.Block1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_4(page4, offers1);
+            Set_page_4(page4, offers1, schedule2, info, flightinfo);
         }
         if (MouseRect.getGlobalBounds().intersects(page8.Block2.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage10(page10, offers1);
+            setpage10(page10, offers1, schedule2, info, flightinfo);
         }
         if (MouseRect.getGlobalBounds().intersects(page8.Block3.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_9(page9, offers1);
+            set_page_9(page9, offers1, schedule2, info, flightinfo);
         }
         if (MouseRect.getGlobalBounds().intersects(page8.Block4.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_11(page11, offers1);
+            Set_page_11(page11, offers1, schedule2, info, flightinfo);
         }
 
         while (window.pollEvent(event))
@@ -1735,7 +1784,7 @@ void draw_page_9(PAGE9 page9)
     window.draw(page9.begin);
     window.draw(page9.Begin);
 }
-void set_page_9(PAGE9& page9, countries_offers offers1[])
+void set_page_9(PAGE9& page9, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
     PAGE13 page13;
@@ -1762,7 +1811,7 @@ void set_page_9(PAGE9& page9, countries_offers offers1[])
         MouseRect.setPosition(ms.getPosition().x - 5, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page9.begin.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_13(page13, offers1);
+            set_page_13(page13, offers1, schedule2, info, flightinfo);
         };
         while (window.pollEvent(event))
         {
@@ -1783,7 +1832,7 @@ void drawpage10(PAGE10 page10)
     window.draw(page10.Block);
     window.draw(page10.Begin);
 }
-void setpage10(PAGE10& page10, countries_offers offers1[])
+void setpage10(PAGE10& page10, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     PAGE12 page12;
     page10.background.setTexture(bg10);
@@ -1813,7 +1862,7 @@ void setpage10(PAGE10& page10, countries_offers offers1[])
         {
             if (MouseRect.getGlobalBounds().intersects(page10.Block.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
             {
-                setpage12(page12, offers1);
+                setpage12(page12, offers1, schedule2, info, flightinfo);
             }
             if (event.type == Event::Closed)
             {
@@ -1832,7 +1881,7 @@ void Draw_page_11(PAGE11 page11)
     window.draw(page11.beginbutton);
     window.draw(page11.beginButton);
 }
-void Set_page_11(PAGE11& page11, countries_offers offers1[])
+void Set_page_11(PAGE11& page11, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     PAGE14 page14;
 
@@ -1864,7 +1913,7 @@ void Set_page_11(PAGE11& page11, countries_offers offers1[])
         {
             if (MouseRect.getGlobalBounds().intersects(page11.beginbutton.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
             {
-                set_page14(page14, offers1);
+                set_page14(page14, offers1, schedule2, info, flightinfo);
             }
             if (event.type == Event::Closed)
             {
@@ -1893,9 +1942,11 @@ void drawpage12(PAGE12 page12) {
     window.draw(page12.year);
     window.draw(page12.From);
     window.draw(page12.To);
+    window.draw(page12.from_country12);
+    window.draw(page12.to_country12);
     window.draw(page12.Fail);
 }
-void setpage12(PAGE12& page12, countries_offers offers1[])
+void setpage12(PAGE12& page12, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     PAGE8 page8;
     SPLIT12 split12;
@@ -1926,7 +1977,7 @@ void setpage12(PAGE12& page12, countries_offers offers1[])
     page12.buttontext2.setFillColor(Color(38, 34, 98));
 
     page12.button3.setTexture(transbox);
-    page12.button3.setPosition(620, 750);
+    page12.button3.setPosition(620, 820);
     page12.button3.setScale(1.8, 1.6);
     page12.button3.setOrigin(0, 0);
 
@@ -1937,7 +1988,7 @@ void setpage12(PAGE12& page12, countries_offers offers1[])
     page12.buttontext3.setFillColor(Color(52, 77, 101));
 
     page12.button4.setTexture(transbox);
-    page12.button4.setPosition(1000, 750);
+    page12.button4.setPosition(1000, 820);
     page12.button4.setScale(1.8, 1.6);
     page12.button4.setOrigin(0, 0);
 
@@ -1982,9 +2033,9 @@ void setpage12(PAGE12& page12, countries_offers offers1[])
     string data[3];
     Text input[3];
     int count = 0;
-    input[0].setPosition(page12.day.getPosition().x + 50, page12.day.getPosition().y - 5);
-    input[1].setPosition(page12.month.getPosition().x + 100, page12.month.getPosition().y - 5);
-    input[2].setPosition(page12.year.getPosition().x + 50, page12.year.getPosition().y - 5);
+    input[0].setPosition(page12.day.getPosition().x + 50, page12.day.getPosition().y);
+    input[1].setPosition(page12.month.getPosition().x + 100, page12.month.getPosition().y);
+    input[2].setPosition(page12.year.getPosition().x + 50, page12.year.getPosition().y);
 
     for (int i = 0; i < 3; i++)
     {
@@ -2002,30 +2053,30 @@ void setpage12(PAGE12& page12, countries_offers offers1[])
         {
             cout << page12.From.getPosition().x << endl;
 
-            int x1 = set_split12(split12, page12.From.getPosition().x, page12.From.getPosition().y + 72);
-            string m1 = set_country12(country12, page12.From.getPosition().x, page12.From.getPosition().y + 72, x1);
+            int x1 = set_split12(split12, page12.From.getPosition().x, page12.From.getPosition().y + 72, offers1, schedule2, info, flightinfo);
+            string m1 = set_country12(country12, page12.From.getPosition().x, page12.From.getPosition().y + 72, x1, offers1, schedule2, info, flightinfo);
 
             page12.from_country12.setFont(f1);
             page12.from_country12.setString(m1);
             page12.from_country12.setFillColor(Color(39, 34, 99));
-            page12.from_country12.setCharacterSize(30);
+            page12.from_country12.setCharacterSize(25);
             page12.from_country12.setOrigin(page12.buttontext4.getLocalBounds().width / 2, page12.buttontext4.getLocalBounds().height / 2);
-            page12.from_country12.setPosition(page12.From.getPosition().x - 170, page12.From.getPosition().y + 50);
+            page12.from_country12.setPosition(page12.From.getPosition().x + 110, page12.From.getPosition().y + 20);
         }
         if (MouseRect.getGlobalBounds().intersects(page12.To.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
             cout << page12.To.getPosition().x << endl;
 
-            int x2 = set_split12(split12, page12.To.getPosition().x, page12.To.getPosition().y + 72);
-            string m2 = set_country12(country12, page12.To.getPosition().x, page12.To.getPosition().y + 72, x2);
+            int x2 = set_split12(split12, page12.To.getPosition().x, page12.To.getPosition().y + 72, offers1, schedule2, info, flightinfo);
+            string m2 = set_country12(country12, page12.To.getPosition().x, page12.To.getPosition().y + 72, x2, offers1, schedule2, info, flightinfo);
 
 
             page12.to_country12.setFont(f1);
             page12.to_country12.setString(m2);
             page12.to_country12.setFillColor(Color(39, 34, 99));
-            page12.to_country12.setCharacterSize(30);
+            page12.to_country12.setCharacterSize(25);
             page12.to_country12.setOrigin(page12.buttontext4.getLocalBounds().width / 2, page12.buttontext4.getLocalBounds().height / 2);
-            page12.to_country12.setPosition(page12.To.getPosition().x - 70, page12.To.getPosition().y - 15);
+            page12.to_country12.setPosition(page12.To.getPosition().x + 115, page12.To.getPosition().y + 20);
         }
         MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
         for (int i = 0; i < 3; i++)
@@ -2033,17 +2084,9 @@ void setpage12(PAGE12& page12, countries_offers offers1[])
             input[i].setString(data[i]);
         }
 
-        if (MouseRect.getGlobalBounds().intersects(page12.From.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
-        {
-            // drop-down list
-        }
-        if (MouseRect.getGlobalBounds().intersects(page12.To.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
-        {
-            // drop-down list
-        }
         if (MouseRect.getGlobalBounds().intersects(page12.button1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage8(page8, offers1);
+            setpage8(page8, offers1, schedule2, info, flightinfo);
         }
         if (MouseRect.getGlobalBounds().intersects(page12.button2.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
@@ -2103,7 +2146,6 @@ void setpage12(PAGE12& page12, countries_offers offers1[])
 
 }
 
-
 void draw_page_13(PAGE13 page13)
 {
     window.draw(page13.background);
@@ -2125,7 +2167,7 @@ void draw_page_13(PAGE13 page13)
     window.draw(page13.Back);
 
 }
-void set_page_13(PAGE13& page13, countries_offers offers1[])
+void set_page_13(PAGE13& page13, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
     PAGE17 page17;
@@ -2231,8 +2273,8 @@ void set_page_13(PAGE13& page13, countries_offers offers1[])
         {
             cout << page13.from.getPosition().x << endl;
 
-            int x1 = set_split13(split13, page13.from.getPosition().x, page13.from.getPosition().y + 72);
-            string m1 = set_country13(country13, page13.from.getPosition().x, page13.from.getPosition().y + 72, x1);
+            int x1 = set_split13(split13, page13.from.getPosition().x, page13.from.getPosition().y + 72, offers1, schedule2, info, flightinfo);
+            string m1 = set_country13(country13, page13.from.getPosition().x, page13.from.getPosition().y + 72, x1, offers1, schedule2, info, flightinfo);
 
             page13.from_country13.setFont(f1);
             page13.from_country13.setString(m1);
@@ -2245,8 +2287,8 @@ void set_page_13(PAGE13& page13, countries_offers offers1[])
         {
             cout << page13.to.getPosition().x << endl;
 
-            int x2 = set_split13(split13, page13.to.getPosition().x, page13.to.getPosition().y + 72);
-            string m2 = set_country13(country13, page13.to.getPosition().x, page13.to.getPosition().y + 72, x2);
+            int x2 = set_split13(split13, page13.to.getPosition().x, page13.to.getPosition().y + 72, offers1, schedule2, info, flightinfo);
+            string m2 = set_country13(country13, page13.to.getPosition().x, page13.to.getPosition().y + 72, x2, offers1, schedule2, info, flightinfo);
 
 
             page13.to_country13.setFont(f1);
@@ -2263,7 +2305,7 @@ void set_page_13(PAGE13& page13, countries_offers offers1[])
         }
         if (MouseRect.getGlobalBounds().intersects(page13.back.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage8(page8, offers1);
+            setpage8(page8, offers1, schedule2, info, flightinfo);
         }
         if (MouseRect.getGlobalBounds().intersects(page13.next.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
@@ -2346,7 +2388,7 @@ void draw_page14(PAGE14 page14)
         window.draw(page14.contient[i]);
     }
 }
-void set_page14(PAGE14& page14, countries_offers offers1[])
+void set_page14(PAGE14& page14, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     SPLIT split;
     COUNTRY country;
@@ -2459,8 +2501,8 @@ void set_page14(PAGE14& page14, countries_offers offers1[])
         if (MouseRect.getGlobalBounds().intersects(page14.frombox.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
             //cout << page14.frombox.getPosition().x << endl;
-            int x1 = set_split(split, page14.frombox.getPosition().x, page14.frombox.getPosition().y + 72);
-            string m1 = set_country(country, page14.frombox.getPosition().x, page14.frombox.getPosition().y + 72, x1);
+            int x1 = set_split(split, page14.frombox.getPosition().x, page14.frombox.getPosition().y + 72, offers1, schedule2, info, flightinfo);
+            string m1 = set_country(country, page14.frombox.getPosition().x, page14.frombox.getPosition().y + 72, x1, offers1, schedule2, info, flightinfo);
 
             page14.from_country.setFont(f1);
             page14.from_country.setString(m1);
@@ -2471,8 +2513,8 @@ void set_page14(PAGE14& page14, countries_offers offers1[])
         }
         if (MouseRect.getGlobalBounds().intersects(page14.tobox.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            int x2 = set_split(split, page14.tobox.getPosition().x, page14.tobox.getPosition().y + 72);
-            string m2 = set_country(country, page14.tobox.getPosition().x, page14.tobox.getPosition().y + 72, x2);
+            int x2 = set_split(split, page14.tobox.getPosition().x, page14.tobox.getPosition().y + 72, offers1, schedule2, info, flightinfo);
+            string m2 = set_country(country, page14.tobox.getPosition().x, page14.tobox.getPosition().y + 72, x2, offers1, schedule2, info, flightinfo);
 
             page14.to_country.setFont(f1);
             page14.to_country.setString(m2);
@@ -2540,7 +2582,6 @@ void set_page14(PAGE14& page14, countries_offers offers1[])
     }
 }
 
-
 void Draw_page_15(PAGE15 page15)
 {
     window.draw(page15.bg15);
@@ -2550,10 +2591,13 @@ void Draw_page_15(PAGE15 page15)
     window.draw(page15.nextButton);
     window.draw(page15.backButton);
     window.draw(page15.inputButton);
+    window.draw(page15.fail);
 }
-void Set_page_15(PAGE15& page15, countries_offers offers1[])
+void Set_page_15(PAGE15& page15, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
+    PAGE16 page16;
+    PAGE19 page19;
     page15.bg15.setTexture(background15);
     page15.bg15.setScale(1.9, 2);
     page15.bg15.setPosition(1920 / 2, 1080 / 2);
@@ -2594,6 +2638,11 @@ void Set_page_15(PAGE15& page15, countries_offers offers1[])
     page15.inputButton.setOrigin(page15.bg15.getLocalBounds().width / 2, page15.bg15.getLocalBounds().height / 2);
     page15.inputButton.setPosition(page15.bg15.getPosition().x - 330, page15.bg15.getPosition().y + 330);
     page15.inputButton.setFillColor(Color(39, 34, 99));
+
+    page15.fail.setCharacterSize(25);
+    page15.fail.setFillColor(Color(255, 0, 0));
+    page15.fail.setFont(f1);
+    page15.fail.setPosition(page15.inputbutton.getPosition().x - 200, page15.inputbutton.getPosition().y + 50);
     //////////////////////////////
     string data[1];
     Text inputdata[1];
@@ -2629,11 +2678,43 @@ void Set_page_15(PAGE15& page15, countries_offers offers1[])
             if (event.type == Event::KeyReleased && event.key.code == Keyboard::Enter)
             {
                 count++;
-                count %= 2;
+                count %= 1;
             }
             if (Keyboard::isKeyPressed(Keyboard::BackSpace) && data[count].size() > 0)
             {
                 data[count].resize(data[count].size() - 1);
+            }
+            if (MouseRect.getGlobalBounds().intersects(page15.nextbutton.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+            {
+
+                if (data[0].empty())
+                {
+                    page15.fail.setString("-The box is empty,please Enter data,,,");
+                    data[0].resize(0);
+                }
+                else
+                {
+                    if (stoi(data[0]) < 1 || stoi(data[0]) > 7)
+                    {
+                        page15.fail.setString("-invalied information,please try again,,,\n(The maximum number of passengers is 7)");
+                        data[0].resize(0);
+                    }
+                    else
+                    {
+                        for (int j = 0; j < stoi(data[0]); j++)
+                        {
+                            Set_page_16(page16, offers1, schedule2, info, flightinfo);
+                            /*if (passengers[I].level == "BUSINESS")
+                                finalpage5(BusinessClass, passengers, j);
+                            else if (passengers[I].level == "ECONOMY")
+                                finalpage6(EconomyClass, passengers, j);*/
+                        }
+
+                        /* passengers[I].user = info[USER].email;*/
+                        flight1.passengers_number = stoi(data[0]);
+                        setpage19(page19, offers1, schedule2, info, flightinfo);
+                    }
+                }
             }
         }
         window.clear();
@@ -2647,7 +2728,6 @@ void Set_page_15(PAGE15& page15, countries_offers offers1[])
         Draw_page_15(page15);
     }
 }
-
 
 void Draw_page_16(PAGE16 page16)
 {
@@ -2667,10 +2747,12 @@ void Draw_page_16(PAGE16 page16)
     window.draw(page16.nextbutton);
     window.draw(page16.nextButton);
     window.draw(page16.backButton);
-
+    window.draw(page16.fail);
 }
-void Set_page_16(PAGE16& page16, countries_offers offers1[])
+void Set_page_16(PAGE16& page16, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
+    PAGE17 page17;
+    PAGE18 page18;
     page16.bg16.setTexture(background16);
     page16.bg16.setScale(2.2, 2.2);
     page16.bg16.setPosition(1920 / 2 - 10, 1080 / 2);
@@ -2758,6 +2840,8 @@ void Set_page_16(PAGE16& page16, countries_offers offers1[])
     page16.backButton.setOrigin(page16.backButton.getLocalBounds().width / 2, page16.backButton.getLocalBounds().height / 2);
     page16.backButton.setPosition(page16.backbutton.getPosition().x, page16.backbutton.getPosition().y - 20);
     page16.backButton.setFillColor(Color(39, 34, 99));
+
+
     //////////////////////////////////////////////////////////////
     MouseRect.setFillColor(Color(0, 0, 0, 0));
     Mouse ms;
@@ -2804,16 +2888,83 @@ void Set_page_16(PAGE16& page16, countries_offers offers1[])
             }
             if (event.type == Event::TextEntered)
             {
-                data[count] += static_cast<char>(event.text.unicode);
+                if (count > 3 && count < 7)
+                {
+                    if (isdigit(static_cast<char>(event.text.unicode)))
+                        data[count] += static_cast<char>(event.text.unicode);
+                }
+                else
+                    data[count] += static_cast<char>(event.text.unicode);
             }
             if (event.type == Event::KeyReleased && event.key.code == Keyboard::Enter)
             {
                 count++;
                 count %= 7;
             }
-            if (Keyboard::isKeyPressed(Keyboard::BackSpace) && data[count].size() > 0)
+            if (count > 3 && count < 7)
             {
-                data[count].resize(data[count].size() - 1);
+                if (event.type == Event::KeyReleased && event.key.code == Keyboard::BackSpace && data[count].size() > 0)
+                {
+                    data[count].resize(data[count].size() - 1);
+                }
+            }
+            else
+            {
+                if (Keyboard::isKeyPressed(Keyboard::BackSpace) && data[count].size() > 0)
+                {
+                    data[count].resize(data[count].size() - 1);
+                }
+            }
+            if (MouseRect.getGlobalBounds().intersects(page16.female.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+            {
+                passenger1.gender = "female";
+                page16.female.setColor(Color(134, 152, 187));
+                page16.male.setColor(Color(249, 252, 255));
+
+            }
+            if (MouseRect.getGlobalBounds().intersects(page16.male.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+            {
+                passenger1.gender = "male";
+                page16.male.setColor(Color(134, 152, 187));
+                page16.female.setColor(Color(249, 252, 255));
+            }
+            if (MouseRect.getGlobalBounds().intersects(page16.nextbutton.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+            {
+                bool check = false;
+                for (int i = 0; i < 7; i++)
+                {
+                    if (data[i].empty())
+                        break;
+                    else
+                        check = true;
+                }
+                if (!check)
+                {
+                    page16.fail.setString("-invalied information,please try again,,,");
+                    for (int i = 0; i < 7; i++)
+                    {
+                        data[i].resize(0);
+                    }
+
+                }
+                else
+                {
+
+                    passenger1.first_name = data[0];
+                    passenger1.last_name = data[1];
+                    passenger1.title = data[2];
+                    passenger1.passport_id = data[3];
+                    passenger1.birthdate.Day = stoi(data[4]);
+                    passenger1.birthdate.Month = stoi(data[5]);
+                    passenger1.birthdate.Year = stoi(data[6]);
+                    if (flight1.level == "ECONOMY")
+                        set_page_17(page17, offers1, schedule2, info, flightinfo);
+                    else if (flight1.level == "BUSINESS")
+                        set_page_18(page18, offers1, schedule2, info, flightinfo);
+
+                    return;
+
+                }
             }
         }
         window.clear();
@@ -2831,23 +2982,73 @@ void Set_page_16(PAGE16& page16, countries_offers offers1[])
 void draw_page_17(PAGE17 page17)
 {
     window.draw(page17.background);
-    window.draw(page17.smapbusiness);
+    //window.draw(page17.smapbusiness);
+    for (int i = 0; i < 4; i++)
+    {
+
+        for (int j = 0; j < 5; j++)
+        {
+            window.draw(page17.seats_b[i][j]);
+        }
+
+
+    }
+    window.draw(page17.fail);
+    window.draw(page17.Fail);
+
     window.draw(page17.next);
     window.draw(page17.Next);
 }
-void set_page_17(PAGE17& page17, countries_offers offers1[])
+void set_page_17(PAGE17& page17, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
+    string s1, s2;
     Mouse ms;
     PAGE18 page18;
-
     page17.background.setTexture(bg17);
-    page17.background.setScale(1.9, 1.9);
-    page17.background.setPosition(-15, 0);
+    page17.background.setScale(1.8, 1.8);
+    page17.background.setPosition(0, 0);
     page17.background.setOrigin(0, 0);
 
-    page17.smapbusiness.setTexture(inputbox);
-    page17.smapbusiness.setPosition(510, 350);
-    page17.smapbusiness.setScale(2, 1.2);
+    page17.seats_b[0][0].setTexture(seatsbg18);
+    page17.seats_b[0][0].setOrigin(page17.seats_b[0][0].getLocalBounds().width / 4, page17.seats_b[0][0].getLocalBounds().height / 4);
+    page17.seats_b[0][0].setPosition(350, 480);
+    page17.seats_b[0][0].setScale(0.2, 0.2);
+    page17.seats_b[0][0].setColor(Color::White);
+
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            if (i == 0 || i == 1)
+            {
+                page17.seats_b[i][j].setTexture(seatsbg18);
+                page17.seats_b[i][j].setOrigin(page17.seats_b[i][j].getLocalBounds().width / 4, page17.seats_b[i][j].getLocalBounds().height / 4);
+                page17.seats_b[i][j].setPosition(page17.seats_b[0][0].getPosition().x + (j * 50), page17.seats_b[0][0].getPosition().y + (40 * i));
+                page17.seats_b[i][j].setScale(0.3, 0.3);
+                page17.seats_b[i][j].setColor(Color::White);
+            }
+            else if (i == 2)
+            {
+                page17.seats_b[i][j].setTexture(seatsbg18);
+                page17.seats_b[i][j].setOrigin(page17.seats_b[i][j].getLocalBounds().width / 4, page17.seats_b[i][j].getLocalBounds().height / 4);
+                page17.seats_b[i][j].setPosition(page17.seats_b[0][0].getPosition().x + (j * 50), page17.seats_b[0][0].getPosition().y + (60 * i));
+                page17.seats_b[i][j].setScale(0.3, 0.3);
+                page17.seats_b[i][j].setColor(Color::White);
+            }
+            else if (i == 3)
+            {
+                page17.seats_b[i][j].setTexture(seatsbg18);
+                page17.seats_b[i][j].setOrigin(page17.seats_b[i][j].getLocalBounds().width / 4, page17.seats_b[i][j].getLocalBounds().height / 4);
+                page17.seats_b[i][j].setPosition(page17.seats_b[0][0].getPosition().x + (j * 50), page17.seats_b[2][0].getPosition().y + (13 * i));
+                page17.seats_b[i][j].setScale(0.3, 0.3);
+                page17.seats_b[i][j].setColor(Color::White);
+            }
+        }
+    }
+    page17.fail.setTexture(transbox);
+    page17.fail.setPosition(630, 470);
+    page17.fail.setScale(8, 4);
+    page17.fail.setColor(Color(0, 0, 0, 0));
 
     page17.next.setTexture(transbox);
     page17.next.setPosition(1650, 970);
@@ -2857,30 +3058,28 @@ void set_page_17(PAGE17& page17, countries_offers offers1[])
     page17.Next.setCharacterSize(45);
     page17.Next.setPosition(1690, 980);
     page17.Next.setString("Next");
+    /////////////////////////////////////
 
-    //////////////////////////////////////////////////////////////////
-    string data[1];
-    Text inputdata[1];
-    int count = 0;
-    inputdata[0].setPosition(page17.smapbusiness.getPosition().x + 20, page18.smapeconomy.getPosition().y + 350);
-    for (int i = 0; i < 1; i++)
-    {
-        inputdata[i].setCharacterSize(40);
-        inputdata[i].setFillColor(Color(0, 0, 0));
-        inputdata[i].setFont(f2);
-    }
     MouseRect.setFillColor(Color(0, 0, 0, 0));
     while (window.isOpen())
     {
         Event event;
-        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
-        for (int i = 0; i < 1; i++)
+
+        if (MouseRect.getGlobalBounds().intersects(page17.fail.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            inputdata[i].setString(data[i]);
+            page17.Fail.setFont(f2);
+            page17.Fail.setFillColor(Color::Red);
+            page17.Fail.setCharacterSize(45);
+            page17.Fail.setPosition(250, 880);
+            page17.Fail.setString("Please modify the class of your reservation");
         }
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y - 20);
         if (MouseRect.getGlobalBounds().intersects(page17.next.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_18(page18, offers1);
+            if (passenger1.seats == "0")
+                page17.Fail.setString("Please choose seat");
+            else
+                return;
         }
         while (window.pollEvent(event))
         {
@@ -2888,26 +3087,47 @@ void set_page_17(PAGE17& page17, countries_offers offers1[])
             {
                 window.close();
             }
-            if (event.type == Event::TextEntered)
+            for (int i = 0; i < 4; i++)
             {
-                data[count] += static_cast<char>(event.text.unicode);
-            }
-            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Enter)
-            {
-                count++;
-                count %= 1;
-            }
-            if (Keyboard::isKeyPressed(Keyboard::BackSpace) && data[count].size() > 0)
-            {
-                data[count].resize(data[count].size() - 1);
+
+                for (int j = 0; j < 5; j++)
+                {
+                    if (MouseRect.getGlobalBounds().intersects(page17.seats_b[i][j].getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+                    {
+                        cout << i << "\t" << j << endl;
+                        page17.seats_b[i][j].setColor(Color(38, 34, 98));
+                        if (i == 0)
+                            s1 = "F";
+                        else if (i == 1)
+                            s1 = "E";
+                        else if (i == 2)
+                            s1 = "B";
+                        else if (i == 3)
+                            s1 = "A";
+                        s2 = to_string(j + 1);
+                        passenger1.seats = s1 + s2;
+                        flight1.passengers.push_back(passenger1);
+                        for (int a = 0; a < 4; a++)
+                        {
+
+                            for (int b = 0; b < 5; b++)
+                            {
+                                if (a == i && b == j)
+                                {
+                                    continue;
+                                }
+                                else
+                                    page17.seats_b[a][b].setColor(Color::White);
+                            }
+
+                        }
+                    }
+                }
+
             }
         }
         window.clear();
         draw_page_17(page17);
-        for (int i = 0; i < 1; i++)
-        {
-            window.draw(inputdata[i]);
-        }
         window.draw(MouseRect);
         window.display();
         draw_page_17(page17);
@@ -2918,23 +3138,78 @@ void set_page_17(PAGE17& page17, countries_offers offers1[])
 void draw_page_18(PAGE18 page18)
 {
     window.draw(page18.background);
-    window.draw(page18.smapeconomy);
+    //window.draw(page18.smapeconomy);
+    for (int i = 0; i < 4; i++)
+    {
+
+        for (int j = 0; j < 15; j++)
+        {
+            window.draw(page18.seats_e[i][j]);
+
+        }
+
+    }
+    window.draw(page18.fail);
+    window.draw(page18.Fail);
     window.draw(page18.next);
     window.draw(page18.Next);
 }
-void set_page_18(PAGE18& page18, countries_offers offers1[])
+void set_page_18(PAGE18& page18, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
+    string s1, s2;
     Mouse ms;
-    PAGE22 page22;
+    //PAGE22 page22;
 
     page18.background.setTexture(bg18);
-    page18.background.setScale(1.9, 1.9);
-    page18.background.setPosition(-15, 0);
+    page18.background.setScale(1.5, 1.6);
+    page18.background.setPosition(0, 0);
     page18.background.setOrigin(0, 0);
 
     page18.smapeconomy.setTexture(inputbox);
-    page18.smapeconomy.setPosition(997, 250);
+    page18.smapeconomy.setPosition(700, 250);
     page18.smapeconomy.setScale(1.4, 1.4);
+
+    page18.seats_e[0][0].setTexture(seatsbg18);
+    page18.seats_e[0][0].setOrigin(page18.seats_e[0][0].getLocalBounds().width / 4, page18.seats_e[0][0].getLocalBounds().height / 4);
+    page18.seats_e[0][0].setPosition(610, 496);
+    page18.seats_e[0][0].setScale(0.092, 0.5);
+    page18.seats_e[0][0].setColor(Color::Blue);
+
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 15; j++)
+        {
+            if (i == 0 || i == 1)
+            {
+                page18.seats_e[i][j].setTexture(seatsbg18);
+                page18.seats_e[i][j].setOrigin(page18.seats_e[i][j].getLocalBounds().width / 4, page18.seats_e[i][j].getLocalBounds().height / 4);
+                page18.seats_e[i][j].setPosition(page18.seats_e[0][0].getPosition().x + (j * 71), page18.seats_e[0][0].getPosition().y + (40 * i));
+                page18.seats_e[i][j].setScale(0.3, 0.3);
+                page18.seats_e[i][j].setColor(Color::White);
+            }
+            else if (i == 2)
+            {
+                page18.seats_e[i][j].setTexture(seatsbg18);
+                page18.seats_e[i][j].setOrigin(page18.seats_e[i][j].getLocalBounds().width / 4, page18.seats_e[i][j].getLocalBounds().height / 4);
+                page18.seats_e[i][j].setPosition(page18.seats_e[0][0].getPosition().x + (j * 71), page18.seats_e[0][0].getPosition().y + (60 * i));
+                page18.seats_e[i][j].setScale(0.3, 0.3);
+                page18.seats_e[i][j].setColor(Color::White);
+            }
+            else if (i == 3)
+            {
+                page18.seats_e[i][j].setTexture(seatsbg18);
+                page18.seats_e[i][j].setOrigin(page18.seats_e[i][j].getLocalBounds().width / 4, page18.seats_e[i][j].getLocalBounds().height / 4);
+                page18.seats_e[i][j].setPosition(page18.seats_e[0][0].getPosition().x + (j * 71), page18.seats_e[2][0].getPosition().y + (13 * i));
+                page18.seats_e[i][j].setScale(0.3, 0.3);
+                page18.seats_e[i][j].setColor(Color::White);
+            }
+        }
+    }
+    page18.fail.setTexture(transbox);
+    page18.fail.setPosition(330, 470);
+    page18.fail.setScale(1, 6);
+    page18.fail.setColor(Color(0, 0, 0, 0));
+
 
     page18.next.setTexture(transbox);
     page18.next.setPosition(1650, 970);
@@ -2944,29 +3219,28 @@ void set_page_18(PAGE18& page18, countries_offers offers1[])
     page18.Next.setCharacterSize(45);
     page18.Next.setPosition(1690, 980);
     page18.Next.setString("Next");
-    ////////////////////////////////////////////////////
-    string data[1];
-    Text inputdata[1];
-    int count = 0;
-    inputdata[0].setPosition(page18.smapeconomy.getPosition().x + 50, page18.smapeconomy.getPosition().y + 6);
-    for (int i = 0; i < 1; i++)
-    {
-        inputdata[i].setCharacterSize(40);
-        inputdata[i].setFillColor(Color(0, 0, 0));
-        inputdata[i].setFont(f2);
-    }
+    ///////////////////////////////////////////////////////////////
+
     MouseRect.setFillColor(Color(0, 0, 0, 0));
     while (window.isOpen())
     {
         Event event;
-        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
-        for (int i = 0; i < 1; i++)
+
+        if (MouseRect.getGlobalBounds().intersects(page18.fail.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            inputdata[i].setString(data[i]);
+            page18.Fail.setFont(f2);
+            page18.Fail.setFillColor(Color::Red);
+            page18.Fail.setCharacterSize(45);
+            page18.Fail.setPosition(250, 880);
+            page18.Fail.setString("Please modify the class of your reservation");
         }
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page18.next.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_22(page22, offers1);
+            if (passenger1.seats == "0")
+                page18.Fail.setString("Please choose seat");
+            else
+                return;
         }
         while (window.pollEvent(event))
         {
@@ -2974,26 +3248,48 @@ void set_page_18(PAGE18& page18, countries_offers offers1[])
             {
                 window.close();
             }
-            if (event.type == Event::TextEntered)
+            for (int i = 0; i < 4; i++)
             {
-                data[count] += static_cast<char>(event.text.unicode);
-            }
-            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Enter)
-            {
-                count++;
-                count %= 1;
-            }
-            if (Keyboard::isKeyPressed(Keyboard::BackSpace) && data[count].size() > 0)
-            {
-                data[count].resize(data[count].size() - 1);
+
+                for (int j = 0; j < 15; j++)
+                {
+                    if (MouseRect.getGlobalBounds().intersects(page18.seats_e[i][j].getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+                    {
+                        cout << i << "\t" << j << endl;
+                        page18.seats_e[i][j].setColor(Color(38, 34, 98));
+                        if (i == 0)
+                            s1 = "D";
+                        else if (i == 1)
+                            s1 = "C";
+                        else if (i == 2)
+                            s1 = "B";
+                        else if (i == 3)
+                            s1 = "A";
+                        s2 = to_string(j + 6);
+                        passenger1.seats = s1 + s2;
+                        flight1.passengers.push_back(passenger1);
+                        for (int a = 0; a < 4; a++)
+                        {
+
+                            for (int b = 0; b < 15; b++)
+                            {
+                                if (a == i && b == j)
+                                {
+                                    continue;
+                                }
+                                else
+                                    page18.seats_e[a][b].setColor(Color::White);
+                            }
+
+                        }
+
+                    }
+                }
+
             }
         }
         window.clear();
         draw_page_18(page18);
-        for (int i = 0; i < 1; i++)
-        {
-            window.draw(inputdata[i]);
-        }
         window.draw(MouseRect);
         window.display();
         draw_page_18(page18);
@@ -3010,7 +3306,7 @@ void drawpage19(PAGE19 page19) {
     window.draw(page19.Digital);
     window.draw(page19.Back);
 }
-void setpage19(PAGE19& page19, countries_offers offers1[]) {
+void setpage19(PAGE19& page19, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo) {
     PAGE4 page4;
     PAGE20 page20;
     PAGE21 page21;
@@ -3062,17 +3358,17 @@ void setpage19(PAGE19& page19, countries_offers offers1[]) {
 
         if (MouseRect.getGlobalBounds().intersects(page19.Block2.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage20(page20, offers1);
+            setpage20(page20, offers1, schedule2, info, flightinfo);
         }
 
         if (MouseRect.getGlobalBounds().intersects(page19.Block1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage21(page21, offers1);
+            setpage21(page21, offers1, schedule2, info, flightinfo);
         }
 
         if (MouseRect.getGlobalBounds().intersects(page19.Block3.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_4(page4, offers1);
+            Set_page_4(page4, offers1, schedule2, info, flightinfo);
         }
 
         while (window.pollEvent(event))
@@ -3102,7 +3398,7 @@ void drawpage20(PAGE20 page20) {
     window.draw(page20.Block5);
     window.draw(page20.Fail);
 }
-void setpage20(PAGE20& page20, countries_offers offers1[]) {
+void setpage20(PAGE20& page20, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo) {
     PAGE22 page22;
     PAGE19 page19;
     page20.background.setTexture(bg20);
@@ -3179,7 +3475,7 @@ void setpage20(PAGE20& page20, countries_offers offers1[]) {
         }
         if (MouseRect.getGlobalBounds().intersects(page20.Block1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage19(page19, offers1);
+            setpage19(page19, offers1, schedule2, info, flightinfo);
         }
         if (MouseRect.getGlobalBounds().intersects(page20.Block2.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
@@ -3192,7 +3488,7 @@ void setpage20(PAGE20& page20, countries_offers offers1[]) {
                 }
             }
 
-            set_page_22(page22, offers1);
+            set_page_22(page22, offers1, schedule2, info, flightinfo);
         }
         while (window.pollEvent(event))
         {
@@ -3236,7 +3532,7 @@ void drawpage21(PAGE21 page21) {
     window.draw(page21.Back);
 
 }
-void setpage21(PAGE21& page21, countries_offers offers1[])
+void setpage21(PAGE21& page21, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     PAGE19 page19;
     PAGE22 page22;
@@ -3287,20 +3583,20 @@ void setpage21(PAGE21& page21, countries_offers offers1[])
 
         if (MouseRect.getGlobalBounds().intersects(page21.Block3.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage19(page19, offers1);
+            setpage19(page19, offers1, schedule2, info, flightinfo);
         }
         if (MouseRect.getGlobalBounds().intersects(page21.Block1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
             page21.Block1.setColor(Color(74, 127, 211));
             page21.Block2.setColor(Color(255, 255, 255, 80));
-            set_page_22(page22, offers1);
+            set_page_22(page22, offers1, schedule2, info, flightinfo);
 
         }
         if (MouseRect.getGlobalBounds().intersects(page21.Block2.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
             page21.Block2.setColor(Color(74, 127, 211));
             page21.Block1.setColor(Color(255, 255, 255, 80));
-            set_page_22(page22, offers1);
+            set_page_22(page22, offers1, schedule2, info, flightinfo);
         }
 
         while (window.pollEvent(event))
@@ -3322,7 +3618,7 @@ void draw_page_22(PAGE22 page22)
     window.draw(page22.done);
     window.draw(page22.DONE);
 }
-void set_page_22(PAGE22& page22, countries_offers offers1[])
+void set_page_22(PAGE22& page22, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
     PAGE4 page4;
@@ -3351,7 +3647,9 @@ void set_page_22(PAGE22& page22, countries_offers offers1[])
         MouseRect.setPosition(ms.getPosition().x - 5, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page22.done.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_4(page4, offers1);
+            flight1.user = info[USER].email;
+            flightinfo.push_back(flight1);
+            Set_page_4(page4, offers1, schedule2, info, flightinfo);
         };
         while (window.pollEvent(event))
         {
@@ -3367,7 +3665,7 @@ void set_page_22(PAGE22& page22, countries_offers offers1[])
     }
 }
 
-void setpage23(PAGE23& page23, countries_offers offers1[])
+void setpage23(PAGE23& page23, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     PAGE4 page4;
     page23.background.setTexture(bg23);
@@ -3425,7 +3723,7 @@ void setpage23(PAGE23& page23, countries_offers offers1[])
         sf::Event event;
         if (MouseRect.getGlobalBounds().intersects(page23.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            Set_page_4(page4, offers1);
+            Set_page_4(page4, offers1, schedule2, info, flightinfo);
         }
         while (window.pollEvent(event))
         {
@@ -3499,7 +3797,7 @@ void draw_page_24(PAGE24 page24) {
     window.draw(page24.Cancle);
     window.draw(page24.Back);
 }
-void set_page_24(PAGE24& page24, countries_offers offers1[])
+void set_page_24(PAGE24& page24, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
 
@@ -3616,7 +3914,7 @@ void drawpage25(PAGE25 page25) {
     window.draw(page25.Block1);
     window.draw(page25.Next);
 }
-void setpage25(PAGE25& page25, countries_offers offers1[]) {
+void setpage25(PAGE25& page25, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo) {
     page25.background.setTexture(bg25);
     page25.background.setScale(2, 2.5);
     page25.background.setPosition(0, 0);
@@ -3662,7 +3960,7 @@ void setpage25(PAGE25& page25, countries_offers offers1[]) {
 
 }
 
-void setpage26(PAGE26& page26, countries_offers offers1[])
+void setpage26(PAGE26& page26, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     page26.background.setTexture(bg26);
     page26.background.setScale(2.18, 2.18);
@@ -3778,7 +4076,7 @@ void drawpage27(PAGE27 page27) {
     window.draw(page27.button2);
     window.draw(page27.buttontext2);
 }
-void setpage27(PAGE27& page27, countries_offers offers1[]) {
+void setpage27(PAGE27& page27, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo) {
 
     page27.background.setTexture(bg27);
     page27.background.setScale(2.85, 2.85);
@@ -3843,12 +4141,12 @@ void draw_page_28(PAGE28 page28)
     window.draw(page28.next);
     window.draw(page28.Next);
 }
-void set_page_28(PAGE28& page28, countries_offers offers1[])
+void set_page_28(PAGE28& page28, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
-
+    PAGE29 page29;
     page28.background.setTexture(bg28);
-    page28.background.setScale(1.8, 1.8);
+    page28.background.setScale(1.9, 1.9);
     page28.background.setPosition(-15, 0);
     page28.background.setOrigin(0, 0);
 
@@ -3868,8 +4166,8 @@ void set_page_28(PAGE28& page28, countries_offers offers1[])
         MouseRect.setPosition(ms.getPosition().x - 5, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page28.next.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            ////////////////////////////      ///////////////////////////
-        };
+            set_page_29(page29, offers1, schedule2, info, flightinfo);
+        }
         while (window.pollEvent(event))
         {
             if (event.type == Event::Closed)
@@ -3892,7 +4190,7 @@ void draw_page_29(PAGE29 page29)
     window.draw(page29.exit);
     window.draw(page29.Exit);
 }
-void set_page_29(PAGE29& page29, countries_offers offers1[])
+void set_page_29(PAGE29& page29, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     PAGE2 page2;
     PAGE30 page30;
@@ -3934,7 +4232,7 @@ void set_page_29(PAGE29& page29, countries_offers offers1[])
 
         if (MouseRect.getGlobalBounds().intersects(page29.begin.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage30(page30, offers1);
+            setpage30(page30, offers1, schedule2, info, flightinfo);
         };
         while (window.pollEvent(event))
         {
@@ -3963,59 +4261,60 @@ void drawpage30(PAGE30 page30) {
     window.draw(page30.buttontext4);
 
 }
-void setpage30(PAGE30& page30, countries_offers offers1[]) {
+void setpage30(PAGE30& page30, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo) {
 
     PAGE29 page29;
     PAGE31 page31;
     PAGE33 page33;
-
+    PAGE28 page28;
+    PAGE34 page34;
     page30.background.setTexture(bg30);
     page30.background.setScale(2.85, 2.85);
     page30.background.setPosition(0, 0);
     page30.background.setOrigin(0, 0);
 
     page30.button1.setTexture(block);
-    page30.button1.setPosition(300, 870);
-    page30.button1.setScale(1.2, 1.2);
+    page30.button1.setPosition(200, 870);
+    page30.button1.setScale(1.6, 1.6);
     page30.button1.setOrigin(0, 0);
 
     page30.buttontext1.setFont(f1);
     page30.buttontext1.setString("Back");
     page30.buttontext1.setCharacterSize(45);
-    page30.buttontext1.setPosition(page30.button1.getPosition().x + 44, page30.button1.getPosition().y + 5);
+    page30.buttontext1.setPosition(page30.button1.getPosition().x + 90, page30.button1.getPosition().y + 10);
     page30.buttontext1.setFillColor(Color(38, 34, 98));
 
     page30.button2.setTexture(add);
-    page30.button2.setPosition(200, 500);
-    page30.button2.setScale(1.9, 1.9);
+    page30.button2.setPosition(700, 450);
+    page30.button2.setScale(2.5, 2.5);
     page30.button2.setOrigin(0, 0);
 
     page30.buttontext2.setFont(f2);
     page30.buttontext2.setString("Add Flight");
     page30.buttontext2.setCharacterSize(45);
-    page30.buttontext2.setPosition(page30.button2.getPosition().x + 157, page30.button2.getPosition().y + 70);
+    page30.buttontext2.setPosition(page30.button2.getPosition().x + 200, page30.button2.getPosition().y + 100);
     page30.buttontext2.setFillColor(Color(38, 34, 98));
 
     page30.button3.setTexture(edit);
-    page30.button3.setPosition(800, 500);
-    page30.button3.setScale(1.9, 1.9);
+    page30.button3.setPosition(30, 160);
+    page30.button3.setScale(2.5, 2.5);
     page30.button3.setOrigin(0, 0);
 
     page30.buttontext3.setFont(f2);
     page30.buttontext3.setString("Edit Flight");
     page30.buttontext3.setCharacterSize(45);
-    page30.buttontext3.setPosition(page30.button3.getPosition().x + 155, page30.button3.getPosition().y + 70);
+    page30.buttontext3.setPosition(page30.button3.getPosition().x + 200, page30.button3.getPosition().y + 100);
     page30.buttontext3.setFillColor(Color(38, 34, 98));
 
     page30.button4.setTexture(del);
-    page30.button4.setPosition(1400, 500);
-    page30.button4.setScale(2, 1.9);
+    page30.button4.setPosition(1400, 800);
+    page30.button4.setScale(2.5, 2.5);
     page30.button4.setOrigin(0, 0);
 
     page30.buttontext4.setFont(f2);
     page30.buttontext4.setString("Delete Flight");
     page30.buttontext4.setCharacterSize(45);
-    page30.buttontext4.setPosition(page30.button4.getPosition().x + 132, page30.button4.getPosition().y + 70);
+    page30.buttontext4.setPosition(page30.button4.getPosition().x + 200, page30.button4.getPosition().y + 100);
     page30.buttontext4.setFillColor(Color(38, 34, 98));
 
     // Dynamic
@@ -4028,19 +4327,29 @@ void setpage30(PAGE30& page30, countries_offers offers1[]) {
         MouseRect.setPosition(ms.getPosition().x - 5, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page30.button1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_29(page29, offers1);
+            set_page_29(page29, offers1, schedule2, info, flightinfo);
         }
         if (MouseRect.getGlobalBounds().intersects(page30.button2.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_31(page31, offers1);
+            set_page_31(page31, offers1, schedule2, info, flightinfo);
         }
         if (MouseRect.getGlobalBounds().intersects(page30.button3.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage33(page33, offers1);
+            int x1 = setpage33(page33, offers1, schedule2, info, flightinfo);
+            setpage34(page34, x1, offers1, schedule2, info, flightinfo);
         }
         if (MouseRect.getGlobalBounds().intersects(page30.button4.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage33(page33, offers1);
+            int x2 = setpage33(page33, offers1, schedule2, info, flightinfo);
+            schedule2[x2].dep = "0";
+            schedule2[x2].arv = "0";
+            schedule2[x2].duration = 0;
+            schedule2[x2].tm2 = 0;
+            schedule2[x2].th1 = 0;
+            schedule2[x2].th2 = 0;
+            schedule2[x2].price = 0;
+            schedule2[x2].seats = 200;
+            set_page_28(page28, offers1, schedule2, info, flightinfo);
         }
         while (window.pollEvent(event))
         {
@@ -4072,9 +4381,14 @@ void draw_page_31(PAGE31 page31) {
     window.draw(page31.back);
     window.draw(page31.Next);
     window.draw(page31.Back);
+    window.draw(page31.from_country31);
+    window.draw(page31.to_country31);
 }
-void set_page_31(PAGE31& page31, countries_offers offers1[])
+void set_page_31(PAGE31& page31, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
+    int i = getindex2(schedule2);
+    string m1, m2;
+
     PAGE30 page30;
     PAGE32 page32;
     SPLIT31 split31;
@@ -4158,27 +4472,27 @@ void set_page_31(PAGE31& page31, countries_offers offers1[])
         if (MouseRect.getGlobalBounds().intersects(page31.from.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
             //cout << page14.frombox.getPosition().x << endl;
-            int x1 = set_split31(split31, page31.from.getPosition().x, page31.from.getPosition().y + 72);
-            string m1 = set_country31(country31, page31.from.getPosition().x, page31.from.getPosition().y + 72, x1);
-
+            int x1 = set_split31(split31, page31.from.getPosition().x, page31.from.getPosition().y + 72, offers1, schedule2, info, flightinfo);
+            m1 = set_country31(country31, page31.from.getPosition().x, page31.from.getPosition().y + 72, x1, offers1, schedule2, info, flightinfo);
+            schedule2[i].dep = m1;
             page31.from_country31.setFont(f1);
             page31.from_country31.setString(m1);
             page31.from_country31.setFillColor(Color(39, 34, 99));
-            page31.from_country31.setCharacterSize(30);
+            page31.from_country31.setCharacterSize(25);
             // page31.from_country31.setOrigin(page31..getLocalBounds().width / 2, page31.bus.getLocalBounds().height / 2);
-            page31.from_country31.setPosition(page31.from.getPosition().x - 70, page31.from.getPosition().y - 8);
+            page31.from_country31.setPosition(page31.from.getPosition().x + 10, page31.from.getPosition().y + 10);
         }
         if (MouseRect.getGlobalBounds().intersects(page31.to.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            int x2 = set_split31(split31, page31.to.getPosition().x, page31.to.getPosition().y + 72);
-            string m2 = set_country31(country31, page31.to.getPosition().x, page31.to.getPosition().y + 72, x2);
-
+            int x2 = set_split31(split31, page31.to.getPosition().x, page31.to.getPosition().y + 72, offers1, schedule2, info, flightinfo);
+            m2 = set_country31(country31, page31.to.getPosition().x, page31.to.getPosition().y + 72, x2, offers1, schedule2, info, flightinfo);
+            schedule2[i].arv = m2;
             page31.to_country31.setFont(f1);
             page31.to_country31.setString(m2);
             page31.to_country31.setFillColor(Color(39, 34, 99));
-            page31.to_country31.setCharacterSize(30);
+            page31.to_country31.setCharacterSize(25);
             //page31.to_country31.setOrigin(page31.bus.getLocalBounds().width / 2, page31.bus.getLocalBounds().height / 2);
-            page31.to_country31.setPosition(page31.to.getPosition().x - 70, page31.to.getPosition().y - 4);
+            page31.to_country31.setPosition(page31.to.getPosition().x + 10, page31.to.getPosition().y + 10);
         }
         MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
         for (int i = 0; i < 5; i++)
@@ -4187,11 +4501,17 @@ void set_page_31(PAGE31& page31, countries_offers offers1[])
         }
         if (MouseRect.getGlobalBounds().intersects(page31.back.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage30(page30, offers1);
+            setpage30(page30, offers1, schedule2, info, flightinfo);
         }
         if (MouseRect.getGlobalBounds().intersects(page31.next.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_32(page32, offers1);
+            schedule2[i].duration = stoi(data[0]);
+            schedule2[i].tm2 = stoi(data[1]);
+            schedule2[i].th1 = stoi(data[4]);
+            schedule2[i].price = stoi(data[3]);
+            schedule2[i].seats = stoi(data[3]);
+            schedule2[i].th2 = schedule2[i].th1 + schedule2[i].duration;
+            set_page_32(page32, offers1, schedule2, info, flightinfo);
         }
         while (window.pollEvent(event))
         {
@@ -4232,7 +4552,7 @@ void draw_page_32(PAGE32 page32)
     window.draw(page32.next);
     window.draw(page32.Next);
 }
-void set_page_32(PAGE32& page32, countries_offers offers1[])
+void set_page_32(PAGE32& page32, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
 
@@ -4275,7 +4595,7 @@ void set_page_32(PAGE32& page32, countries_offers offers1[])
 
 }
 
-void setpage33(PAGE33& page33, countries_offers offers1[])
+int setpage33(PAGE33& page33, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     PAGE30 page30;
     page33.background.setTexture(bg33);
@@ -4310,16 +4630,89 @@ void setpage33(PAGE33& page33, countries_offers offers1[])
     sf::RectangleShape slider(sf::Vector2f(SLIDER_WIDTH, SLIDER_HEIGHT));
     slider.setPosition(SLIDER_X, SLIDER_Y);
     slider.setFillColor(Color(39, 34, 99));
-
-    for (int i = 0; i < 100; i++)
+    int i = 0;
+    for (int j = 0; j < 100; j++)
     {
-        page33.block[i].setTexture(newoffersblock);
-        page33.block[i].setScale(1.7, 2.);
-        page33.block[i].setPosition(100, ((250) + (275 * i)));
-        page33.block[i].setColor(Color(255, 255, 255, 180));
-        page33.num[i].setFont(f1);
-        page33.num[i].setPosition(page33.block[i].getPosition().x, page33.block[i].getPosition().y);
-        page33.num[i].setString(to_string(i));
+        if (schedule2[i].dep == "0")
+            continue;
+        else
+        {
+            page33.block[i].setTexture(newoffersblock);
+            page33.block[i].setScale(1.7, 2.);
+            page33.block[i].setPosition(100, ((250) + (275 * i)));
+            page33.block[i].setColor(Color(255, 255, 255, 180));
+            page33.num[i].setFont(f1);
+            page33.num[i].setPosition(page33.block[i].getPosition().x, page33.block[i].getPosition().y);
+            page33.num[i].setString(to_string(i));
+
+
+            string price = to_string(schedule2[i].price);
+            string flight_num = schedule2[i].num;
+            string date = to_string(((2 * i) + 5) % 30);
+            string th1 = to_string(schedule2[i].th1);
+            string th2 = to_string(schedule2[i].th2);
+            string tm2 = to_string(schedule2[i].tm2);
+
+            page33.dep[i].setFont(f4);
+            page33.dep[i].setCharacterSize(42);
+            page33.dep[i].setOrigin(page33.dep[i].getLocalBounds().width / 2, page33.dep[i].getLocalBounds().height / 2);
+            page33.dep[i].setPosition(page33.block[i].getPosition().x + 528, page33.block[i].getPosition().y + 35);
+            page33.dep[i].setString(schedule2[i].dep);
+            page33.dep[i].setFillColor(Color(0, 0, 0));
+
+            page33.arv[i].setFont(f4);
+            page33.arv[i].setCharacterSize(40);
+            page33.arv[i].setOrigin(page33.arv[i].getLocalBounds().width / 2, page33.arv[i].getLocalBounds().height / 2);
+            page33.arv[i].setPosition(page33.block[i].getPosition().x + 468, page33.block[i].getPosition().y + 105);
+            page33.arv[i].setString(schedule2[i].arv);
+            page33.arv[i].setFillColor(Color(0, 0, 0));
+
+            page33.price[i].setFont(f4);
+            page33.price[i].setCharacterSize(40);
+            page33.price[i].setOrigin(page33.price[i].getLocalBounds().width / 2, page33.price[i].getLocalBounds().height / 2);
+            page33.price[i].setPosition(page33.block[i].getPosition().x + 1490, page33.block[i].getPosition().y + 105);
+            page33.price[i].setString(price + " $");
+            page33.price[i].setFillColor(Color(0, 0, 0));
+
+            page33.num[i].setFont(f4);
+            page33.num[i].setCharacterSize(45);
+            page33.num[i].setOrigin(page33.price[i].getLocalBounds().width / 2, page33.price[i].getLocalBounds().height / 2);
+            page33.num[i].setPosition(page33.block[i].getPosition().x + 270, page33.block[i].getPosition().y + 117);
+            page33.num[i].setString(flight_num);
+            page33.num[i].setFillColor(Color(0, 0, 0));
+
+            page33.date[i].setFont(f4);
+            page33.date[i].setCharacterSize(42);
+            page33.date[i].setOrigin(page33.date[i].getLocalBounds().width / 2, page33.date[i].getLocalBounds().height / 2);
+            page33.date[i].setPosition(page33.block[i].getPosition().x + 240, page33.block[i].getPosition().y + 35);
+            page33.date[i].setString(date + "/6/2023");
+            page33.date[i].setFillColor(Color(0, 0, 0));
+
+            page33.th1[i].setFont(f4);
+            page33.th1[i].setCharacterSize(40);
+            page33.th1[i].setOrigin(page33.th1[i].getLocalBounds().width / 2, page33.th1[i].getLocalBounds().height / 2);
+            page33.th1[i].setPosition(page33.dep[i].getPosition().x + 680, page33.dep[i].getPosition().y);
+            page33.th1[i].setString("(" + th1 + ":00)");
+            page33.th1[i].setFillColor(Color(0, 0, 0));
+
+            page33.th2[i].setFont(f4);
+            page33.th2[i].setCharacterSize(40);
+            page33.th2[i].setOrigin(page33.th2[i].getLocalBounds().width / 2, page33.th2[i].getLocalBounds().height / 2);
+            page33.th2[i].setPosition(page33.arv[i].getPosition().x + 730, page33.arv[i].getPosition().y);
+            page33.th2[i].setString("(" + th2 + ":" + tm2 + ")");
+            page33.th2[i].setFillColor(Color(0, 0, 0));
+
+            page33.level[i].setFont(f4);
+            page33.level[i].setCharacterSize(37);
+            page33.level[i].setOrigin(page33.level[i].getLocalBounds().width / 2, page33.level[i].getLocalBounds().height / 2);
+            page33.level[i].setPosition(page33.block[i].getPosition().x + 1494, page33.block[i].getPosition().y + 35);
+            if (i % 2 == 0)
+                page33.level[i].setString("ECONOMY");
+            else
+                page33.level[i].setString("BUSINESS");
+            page33.level[i].setFillColor(Color(0, 0, 0));
+            i++;
+        }
     }
 
     const float SCROLLBAR_RANGE = SCROLLBAR_HEIGHT - SLIDER_HEIGHT;
@@ -4334,7 +4727,14 @@ void setpage33(PAGE33& page33, countries_offers offers1[])
         sf::Event event;
         if (MouseRect.getGlobalBounds().intersects(page33.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage30(page30, offers1);
+            setpage30(page30, offers1, schedule2, info, flightinfo);
+        }
+        for (int i = 0; i < 100; i++)
+        {
+            if (MouseRect.getGlobalBounds().intersects(page33.block[i].getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+            {
+                return i;
+            }
         }
         while (window.pollEvent(event))
         {
@@ -4357,6 +4757,14 @@ void setpage33(PAGE33& page33, countries_offers offers1[])
                         //controll the number 
                         page33.block[i].setPosition(100, ((250) + (275 * i)) + (9 * percentage) * (-2970));//(200 / 2 - 1080 / 2));
                         page33.num[i].setPosition(page33.block[i].getPosition().x, page33.block[i].getPosition().y);
+                        page33.dep[i].setPosition(page33.block[i].getPosition().x + 528, page33.block[i].getPosition().y + 35);
+                        page33.arv[i].setPosition(page33.block[i].getPosition().x + 468, page33.block[i].getPosition().y + 105);
+                        page33.price[i].setPosition(page33.block[i].getPosition().x + 1490, page33.block[i].getPosition().y + 105);
+                        page33.num[i].setPosition(page33.block[i].getPosition().x + 270, page33.block[i].getPosition().y + 117);
+                        page33.date[i].setPosition(page33.block[i].getPosition().x + 240, page33.block[i].getPosition().y + 35);
+                        page33.th1[i].setPosition(page33.dep[i].getPosition().x + 680, page33.dep[i].getPosition().y);
+                        page33.th2[i].setPosition(page33.arv[i].getPosition().x + 730, page33.arv[i].getPosition().y);
+                        page33.level[i].setPosition(page33.block[i].getPosition().x + 1494, page33.block[i].getPosition().y + 35);
                     }
                     slider.setPosition(SLIDER_X, SCROLLBAR_Y + sliderPosition);
                 }
@@ -4378,11 +4786,18 @@ void setpage33(PAGE33& page33, countries_offers offers1[])
         window.draw(page33.background);
         for (int i = 0; i < 100; i++)
         {
+
             window.draw(page33.block[i]);
-        }
-        for (int i = 0; i < 100; i++)
-        {
+            window.draw(page33.dep[i]);
+            window.draw(page33.arv[i]);
+            window.draw(page33.price[i]);
+            window.draw(page33.th1[i]);
+            window.draw(page33.th2[i]);
+            window.draw(page33.tm2[i]);
+            window.draw(page33.date[i]);
             window.draw(page33.num[i]);
+            window.draw(page33.level[i]);
+
         }
         window.draw(MouseRect);
         window.draw(page33.back_b);
@@ -4403,7 +4818,7 @@ void drawpage34(PAGE34 page34) {
     window.draw(page34.Departure);
 
 }
-void setpage34(PAGE34& page34, countries_offers offers1[])
+void setpage34(PAGE34& page34, int i, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     PAGE35 page35;
     PAGE36 page36;
@@ -4458,15 +4873,15 @@ void setpage34(PAGE34& page34, countries_offers offers1[])
 
         if (MouseRect.getGlobalBounds().intersects(page34.Button1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_35(page35, offers1);
+            set_page_35(page35, i, offers1, schedule2, info, flightinfo);
         }
         if (MouseRect.getGlobalBounds().intersects(page34.Button2.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            set_page_36(page36, offers1);
+            set_page_36(page36, i, offers1, schedule2, info, flightinfo);
         }
         if (MouseRect.getGlobalBounds().intersects(page34.Block1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage30(page30, offers1);
+            setpage30(page30, offers1, schedule2, info, flightinfo);
         }
         while (window.pollEvent(event))
         {
@@ -4491,10 +4906,11 @@ void draw_page_35(PAGE35 page35)
     window.draw(page35.next);
     window.draw(page35.Next);
 }
-void set_page_35(PAGE35& page35, countries_offers offers1[])
+void set_page_35(PAGE35& page35, int i, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     PAGE34 page34;
     PAGE37 page37;
+    PAGE30 page30;
     Mouse ms;
 
     page35.background.setTexture(bg35);
@@ -4547,11 +4963,12 @@ void set_page_35(PAGE35& page35, countries_offers offers1[])
         }
         if (MouseRect.getGlobalBounds().intersects(page35.back.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage34(page34, offers1);
+            setpage30(page30, offers1, schedule2, info, flightinfo);
         }
-        if (MouseRect.getGlobalBounds().intersects(page35.back.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        if (MouseRect.getGlobalBounds().intersects(page35.next.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage37(page37, offers1);
+            schedule2[i].price = stoi(data[0]);
+            setpage37(page37, offers1, schedule2, info, flightinfo);
         }
         while (window.pollEvent(event))
         {
@@ -4595,11 +5012,12 @@ void draw_page_36(PAGE36 page36)
     window.draw(page36.next);
     window.draw(page36.Next);
 }
-void set_page_36(PAGE36& page36, countries_offers offers1[])
+void set_page_36(PAGE36& page36, int i, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
     PAGE34 page34;
     PAGE37 page37;
+    PAGE30 page30;
     page36.background.setTexture(bg36);
     page36.background.setScale(1.85, 1.85);
     page36.background.setPosition(-10, 0);
@@ -4651,11 +5069,13 @@ void set_page_36(PAGE36& page36, countries_offers offers1[])
         }
         if (MouseRect.getGlobalBounds().intersects(page36.back.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage34(page34, offers1);
+            setpage30(page30, offers1, schedule2, info, flightinfo);
         }
-        if (MouseRect.getGlobalBounds().intersects(page36.back.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        if (MouseRect.getGlobalBounds().intersects(page36.next.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            setpage37(page37, offers1);
+            schedule2[i].th1 = stoi(data[0]);
+            schedule2[i].th2 = schedule2[i].th1 + schedule2[i].duration;
+            setpage37(page37, offers1, schedule2, info, flightinfo);
         }
         while (window.pollEvent(event))
         {
@@ -4697,7 +5117,8 @@ void drawpage37(PAGE37 page37) {
     window.draw(page37.buttontext1);
 
 }
-void setpage37(PAGE37& page37, countries_offers offers1[]) {
+void setpage37(PAGE37& page37, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo) {
+    PAGE29 page29;
 
     page37.background.setTexture(bg37);
     page37.background.setScale(2.85, 2.85);
@@ -4722,7 +5143,7 @@ void setpage37(PAGE37& page37, countries_offers offers1[]) {
         Event event;
         if (MouseRect.getGlobalBounds().intersects(page37.button1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            // Page 27
+            set_page_29(page29, offers1, schedule2, info, flightinfo);
         }
         while (window.pollEvent(event))
         {
@@ -4739,116 +5160,70 @@ void setpage37(PAGE37& page37, countries_offers offers1[]) {
 
 
 }
-//void setpage38(PAGE38& page38)
-//{
-//
-//    PAGE4 page4;
-//
-//    page38.bg38.setTexture(bg38);
-//    page38.bg38.setScale(2.18, 2.18);
-//    page38.bg38.setPosition(1920 / 2 - 10, 1080 / 2);
-//    page38.bg38.setOrigin(page38.bg38.getLocalBounds().width / 2, page38.bg38.getLocalBounds().height / 2);
-//
-//    page38.back_b.setTexture(transbox);
-//    page38.back_b.setOrigin(page38.back_b.getLocalBounds().width / 2, page38.back_b.getLocalBounds().height / 2);
-//    page38.back_b.setPosition(1920 / 2 - 750, 1080 / 2 + 450);
-//    page38.back_b.setScale(1.7, 1.7);
-//
-//    page38.back_t.setFont(f2);
-//    page38.back_t.setString("Back");
-//    page38.back_t.setCharacterSize(60);
-//    page38.back_t.setOrigin(page38.back_t.getLocalBounds().width / 2, page38.back_t.getLocalBounds().height / 2);
-//    page38.back_t.setPosition(page38.back_b.getPosition().x - 10, page38.back_b.getPosition().y - 15);
-//    page38.back_t.setFillColor(Color(39, 34, 99));
-//
-//    const int SCROLLBAR_WIDTH = 20;
-//    const int SCROLLBAR_HEIGHT = 1070;
-//    const int SCROLLBAR_X = 1900 - SCROLLBAR_WIDTH;
-//    const int SCROLLBAR_Y = 0;
-//    sf::RectangleShape scrollbar(sf::Vector2f(SCROLLBAR_WIDTH, SCROLLBAR_HEIGHT));
-//    scrollbar.setPosition(SCROLLBAR_X, SCROLLBAR_Y);
-//    scrollbar.setFillColor(sf::Color::White);
-//
-//    const int SLIDER_WIDTH = 20;
-//    const int SLIDER_HEIGHT = 100;
-//    const int SLIDER_X = 1900 - SLIDER_WIDTH;
-//    const int SLIDER_Y = SCROLLBAR_Y;
-//    sf::RectangleShape slider(sf::Vector2f(SLIDER_WIDTH, SLIDER_HEIGHT));
-//    slider.setPosition(SLIDER_X, SLIDER_Y);
-//    slider.setFillColor(Color(65, 95, 145));
-//
-//    for (int i = 0; i < 5; i++)
-//    {
-//        page38.block[i].setTexture(newoffersblock);
-//        page38.block[i].setScale(1.9, 2.);
-//        page38.block[i].setPosition(100, ((250) + (275 * i)));
-//        page38.block[i].setColor(Color(255, 255, 255, 180));
-//    }
-//
-//    const float SCROLLBAR_RANGE = SCROLLBAR_HEIGHT - SLIDER_HEIGHT;
-//    float sliderPosition = 0;
-//
-//    MouseRect.setFillColor(sf::Color::Black);
-//    Mouse ms;
-//    while (window.isOpen())
-//    {
-//        Event event;
-//        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
-//        if (MouseRect.getGlobalBounds().intersects(page38.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
-//        {
-//            Set_page_4(page4);
-//        }
-//        while (window.pollEvent(event))
-//        {
-//            if (event.type == sf::Event::Closed)
-//                window.close();
-//            else if (event.type == sf::Event::MouseWheelScrolled)
-//            {
-//                if (event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)
-//                {
-//                    //controll the speed
-//                    sliderPosition += event.mouseWheelScroll.delta * 10;
-//                    if (sliderPosition < 0)
-//                        sliderPosition = 0;
-//                    else if (sliderPosition > SCROLLBAR_RANGE)
-//                        sliderPosition = SCROLLBAR_RANGE;
-//                    float percentage = sliderPosition / SCROLLBAR_RANGE;
-//
-//                    for (int i = 0; i < 5; i++)
-//                    {
-//                        //controll the number 
-//                        page38.block[i].setPosition(100, ((250) + (275 * i)) + (9 * percentage) * (-70));//(200 / 2 - 1080 / 2));
-//                    }
-//                    slider.setPosition(SLIDER_X, SCROLLBAR_Y + sliderPosition);
-//                }
-//            }
-//            else if (event.type == sf::Event::MouseButtonPressed)
-//            {
-//                if (slider.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
-//                {
-//                    sliderPosition = event.mouseButton.y - SCROLLBAR_Y - (SLIDER_HEIGHT / 2);
-//                    if (sliderPosition < 0)
-//                        sliderPosition = 0;
-//                    else if (sliderPosition > SCROLLBAR_RANGE)
-//                        sliderPosition = SCROLLBAR_RANGE;
-//                }
-//            }
-//        }
-//        window.draw(MouseRect);
-//        window.clear();
-//        window.draw(page38.bg38);
-//        for (int i = 0; i < 5; i++)
-//        {
-//            window.draw(page38.block[i]);
-//        }
-//        window.draw(page38.back_b);
-//        window.draw(page38.back_t);
-//        window.draw(scrollbar);
-//        window.draw(slider);
-//        window.display();
-//    }
-//}
 
+void setpage38(PAGE38& page38, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
+{
+
+    PAGE4 page4;
+
+    page38.bg38.setTexture(bg38);
+    page38.bg38.setScale(2.18, 2.18);
+    page38.bg38.setPosition(1920 / 2 - 10, 1080 / 2);
+    page38.bg38.setOrigin(page38.bg38.getLocalBounds().width / 2, page38.bg38.getLocalBounds().height / 2);
+
+    page38.back_b.setTexture(transbox);
+    page38.back_b.setOrigin(page38.back_b.getLocalBounds().width / 2, page38.back_b.getLocalBounds().height / 2);
+    page38.back_b.setPosition(1920 / 2 - 750, 1080 / 2 + 450);
+    page38.back_b.setScale(1.7, 1.7);
+
+    page38.back_t.setFont(f2);
+    page38.back_t.setString("Back");
+    page38.back_t.setCharacterSize(60);
+    page38.back_t.setOrigin(page38.back_t.getLocalBounds().width / 2, page38.back_t.getLocalBounds().height / 2);
+    page38.back_t.setPosition(page38.back_b.getPosition().x - 10, page38.back_b.getPosition().y - 15);
+    page38.back_t.setFillColor(Color(39, 34, 99));
+
+
+
+    for (int i = 0; i < 3; i++)
+    {
+        page38.block[i].setTexture(newoffersblock);
+        page38.block[i].setScale(1.7, 2.);
+        page38.block[i].setPosition(100, ((200) + (270 * i)));
+        page38.block[i].setColor(Color(255, 255, 255, 180));
+    }
+
+
+
+    MouseRect.setFillColor(sf::Color::Black);
+    Mouse ms;
+    while (window.isOpen())
+    {
+        Event event;
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
+        if (MouseRect.getGlobalBounds().intersects(page38.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            Set_page_4(page4, offers1, schedule2, info, flightinfo);
+        }
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+
+        }
+        window.draw(MouseRect);
+        window.clear();
+        window.draw(page38.bg38);
+        for (int i = 0; i < 3; i++)
+        {
+            window.draw(page38.block[i]);
+        }
+        window.draw(page38.back_b);
+        window.draw(page38.back_t);
+
+        window.display();
+    }
+}
 
 void draw_split12(SPLIT12 split12)
 {
@@ -4862,7 +5237,7 @@ void draw_split12(SPLIT12 split12)
         window.draw(split12.contient[i]);
     }
 }
-int set_split12(SPLIT12& split12, int x, int y)
+int set_split12(SPLIT12& split12, int x, int y, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
 
@@ -4928,7 +5303,7 @@ void draw_country12(COUNTRY12 country12)
         window.draw(country12.countries[i]);
     }
 }
-string set_country12(COUNTRY12& country12, int x, int y, int cont)
+string set_country12(COUNTRY12& country12, int x, int y, int cont, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
     string Country[5][4] = { { "Bahrain_(Manama)","China_(Beijing)","Saudi_Arabia_(Riyadh)","United_Arab_Emirates_\n(Abu_Dhabi)" }, { "Algeria_(Algiers)","Tunisia_(Tunisia)","Morocco_(Marakesh)","Sudan_(Khartoum)" }, { "EGY_Alexandria_(ALY)","EGY_Cairo_(CAI)","EGY_Luxor_(LXR)","EGY_Sharm_Elshekh_(SSH)" }, { "France_(Paris)","Russia_(Moscow)","Spain_(Madrid)","United_Kingdom_(London)" }, { "Canada_(Ottawa)","United_States_(Washington)","Brazil_(Brasilia)","Argentina_(Buenos_Aires)" } };
@@ -4975,7 +5350,6 @@ string set_country12(COUNTRY12& country12, int x, int y, int cont)
     }
 }
 
-
 void draw_split13(SPLIT13 split13)
 {
     window.draw(split13.background);
@@ -4988,7 +5362,7 @@ void draw_split13(SPLIT13 split13)
         window.draw(split13.contient[i]);
     }
 }
-int set_split13(SPLIT13& split13, int x, int y)
+int set_split13(SPLIT13& split13, int x, int y, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
 
@@ -5054,7 +5428,7 @@ void draw_country13(COUNTRY13 country13)
         window.draw(country13.countries[i]);
     }
 }
-string set_country13(COUNTRY13& country13, int x, int y, int cont)
+string set_country13(COUNTRY13& country13, int x, int y, int cont, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
     string Country[5][4] = { { "Bahrain_(Manama)","China_(Beijing)","Saudi_Arabia_(Riyadh)","United_Arab_Emirates_\n(Abu_Dhabi)" }, { "Algeria_(Algiers)","Tunisia_(Tunisia)","Morocco_(Marakesh)","Sudan_(Khartoum)" }, { "EGY_Alexandria_(ALY)","EGY_Cairo_(CAI)","EGY_Luxor_(LXR)","EGY_Sharm_Elshekh_(SSH)" }, { "France_(Paris)","Russia_(Moscow)","Spain_(Madrid)","United_Kingdom_(London)" }, { "Canada_(Ottawa)","United_States_(Washington)","Brazil_(Brasilia)","Argentina_(Buenos_Aires)" } };
@@ -5115,7 +5489,7 @@ void draw_split(SPLIT split)
         window.draw(split.contient[i]);
     }
 }
-int set_split(SPLIT& split, int x, int y)
+int set_split(SPLIT& split, int x, int y, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
 
@@ -5184,7 +5558,7 @@ void draw_country(COUNTRY country)
         window.draw(country.countries[i]);
     }
 }
-string set_country(COUNTRY& country, int x, int y, int cont)
+string set_country(COUNTRY& country, int x, int y, int cont, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
     string Country[5][4] = { { "Bahrain_(Manama)","China_(Beijing)","Saudi_Arabia_(Riyadh)","United_Arab_Emirates_\n(Abu_Dhabi)" }, { "Algeria_(Algiers)","Tunisia_(Tunisia)","Morocco_(Marakesh)","Sudan_(Khartoum)" }, { "EGY_Alexandria_(ALY)","EGY_Cairo_(CAI)","EGY_Luxor_(LXR)","EGY_Sharm_Elshekh_(SSH)" }, { "France_(Paris)","Russia_(Moscow)","Spain_(Madrid)","United_Kingdom_(London)" }, { "Canada_(Ottawa)","United_States_(Washington)","Brazil_(Brasilia)","Argentina_(Buenos_Aires)" } };
@@ -5249,7 +5623,7 @@ void draw_split31(SPLIT31 split31)
         window.draw(split31.contient[i]);
     }
 }
-int set_split31(SPLIT31& split31, int x, int y)
+int set_split31(SPLIT31& split31, int x, int y, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
 
@@ -5315,7 +5689,7 @@ void draw_country31(COUNTRY31 country31)
         window.draw(country31.countries[i]);
     }
 }
-string set_country31(COUNTRY31& country31, int x, int y, int cont)
+string set_country31(COUNTRY31& country31, int x, int y, int cont, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
     string Country[5][4] = { { "Bahrain_(Manama)","China_(Beijing)","Saudi_Arabia_(Riyadh)","United_Arab_Emirates_\n(Abu_Dhabi)" }, { "Algeria_(Algiers)","Tunisia_(Tunisia)","Morocco_(Marakesh)","Sudan_(Khartoum)" }, { "EGY_Alexandria_(ALY)","EGY_Cairo_(CAI)","EGY_Luxor_(LXR)","EGY_Sharm_Elshekh_(SSH)" }, { "France_(Paris)","Russia_(Moscow)","Spain_(Madrid)","United_Kingdom_(London)" }, { "Canada_(Ottawa)","United_States_(Washington)","Brazil_(Brasilia)","Argentina_(Buenos_Aires)" } };
@@ -5365,7 +5739,7 @@ string set_country31(COUNTRY31& country31, int x, int y, int cont)
 
 /////////////////
 
-void getdata2(countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info)
+void getdata2(countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     ifstream AH("offers.txt");
     if (AH.is_open())
@@ -5376,6 +5750,24 @@ void getdata2(countries_offers offers1[], countries_offers2 schedule2[], vector<
             AH >> offers1[i].dep >> offers1[i].arv >> offers1[i].t_h >> offers1[i].t_m >> offers1[i].price;
         }
         AH.close();
+    }
+
+    ifstream AH2("reservations.txt");
+    if (AH2.is_open())
+    {
+        for (int i = 0; (!AH2.eof()); i++)
+        {
+            flightinfo.push_back(flight1);
+            AH2 >> flightinfo[i].from >> flightinfo[i].to >> flightinfo[i].price >> flightinfo[i].th1 >> flightinfo[i].th2 >> flightinfo[i].tm2 >> flightinfo[i].passengers_number >> flightinfo[i].flight_num >> flightinfo[i].level >> flightinfo[i].user >> flightinfo[i].myDate.
+                Day >> flightinfo[i].myDate.Month >> flightinfo[i].myDate.Year;
+            for (int j = 0; j < flightinfo[i].passengers_number; j++)
+            {
+                flightinfo[i].passengers.push_back(passenger1);
+                AH2 >> flightinfo[i].passengers[j].first_name >> flightinfo[i].passengers[j].last_name >> flightinfo[i].passengers[j].gender >> flightinfo[i].passengers[j].title >> flightinfo[i].passengers[j].passport_id >> flightinfo[i].passengers[j].birthdate.Day >> flightinfo[i].passengers[j].birthdate.Month >> flightinfo[i].passengers[j].birthdate.Year >> flightinfo[i].passengers[j].seats;
+            }
+        }
+
+        AH2.close();
     }
 
     ifstream AH3("users.txt");
@@ -5408,7 +5800,7 @@ void getdata2(countries_offers offers1[], countries_offers2 schedule2[], vector<
     }
 
 }
-void senddata2(countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info)
+void senddata2(countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     ofstream ah1("offers.txt");
     if (ah1.is_open())
@@ -5435,6 +5827,26 @@ void senddata2(countries_offers offers1[], countries_offers2 schedule2[], vector
         ah4.close();
     }
 
+    ofstream ah3("reservations.txt");
+    if (ah3.is_open())
+    {
+        for (int i = 0; i < flightinfo.size(); i++)
+        {
+            if (flightinfo[i].from == "0")
+                continue;
+            else
+            {
+                ah3 << flightinfo[i].from << "\t" << flightinfo[i].to << "\t" << flightinfo[i].price << "\t" << flightinfo[i].th1 << "\t" << flightinfo[i].th2 << "\t" << flightinfo[i].tm2 << "\t" << flightinfo[i].passengers_number << "\t" << flightinfo[i].flight_num << "\t" << flightinfo[i].level << "\t" << flightinfo[i].user << "\t" << flightinfo[i].myDate.
+                    Day << "\t" << flightinfo[i].myDate.Month << "\t" << flightinfo[i].myDate.Year << "\t";
+                for (int j = 0; j < flightinfo[i].passengers.size(); j++)
+                {
+                    ah3 << flightinfo[i].passengers[j].first_name << "\t" << flightinfo[i].passengers[j].last_name << "\t" << flightinfo[i].passengers[j].gender << "\t" << flightinfo[i].passengers[j].title << "\t" << flightinfo[i].passengers[j].passport_id << "\t" << flightinfo[i].passengers[j].birthdate.Day << "\t" << flightinfo[i].passengers[j].birthdate.Month << "\t" << flightinfo[i].passengers[j].birthdate.Year << "\t" << flightinfo[i].passengers[j].seats << "\t";
+                }
+                ah3 << "\n";
+            }
+        }
+    }
+
     ofstream ah5("countries admin.txt");
     if (ah5.is_open())
     {
@@ -5450,27 +5862,37 @@ int check(string email, string password, vector<user>& info)
 {
     email.resize(email.size() - 1);
     password.resize(password.size() - 1);
-    //int n = false;
+    int x = 3;
     for (int i = 0; i < info.size(); i++)
     {
-
-        if ((email == info[i].email) && (password == info[i].password))
+        if ((email == info[i].email) && (password == info[i].password) && (info[i].kind == "admin"))
         {
-            if (info[i].kind == "admin")
-
-                return 1;
-
-            else
-                return 2;
-
-
+            USER = i;
+            x = 1;
+        }
+        else if ((email == info[i].email) && (password == info[i].password) && (info[i].kind == "user"))
+        {
+            USER = i;
+            x = 2;
         }
         else
         {
-
-            return 0;
-
+            USER = 0;
+            continue;
         }
     }
-    //return n;
+    return x;
+}
+int getindex2(countries_offers2 schedule2[])
+{
+    int ind = 1000;
+    for (int i = 0; i < 100; i++)
+    {
+        if (schedule2[i].dep == "0")
+        {
+            ind = i;
+            break;
+        }
+    }
+    return ind;
 }

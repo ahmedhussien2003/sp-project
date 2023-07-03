@@ -49,6 +49,7 @@
     del.loadFromFile("D:/sfml pic/delete.png");
     dep.loadFromFile("D:/sfml pic/pic1.png");
     price.loadFromFile("D:/sfml pic/pic2.png");
+    seatsbg18.loadFromFile("D:/sfml pic/seatsbg18.png");
 
     f1.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
     f2.loadFromFile("C:/Windows/Fonts/cambriai.ttf");
