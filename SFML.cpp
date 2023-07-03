@@ -10,7 +10,9 @@
 
 using namespace std;
 using namespace sf;
-int USER = 100;
+int USER = 0;
+int NUM = 0;
+int passengerindex = 0;
 struct PAGE1 {
     Sprite background;
     Sprite Block;
@@ -279,6 +281,12 @@ struct PAGE23
     Sprite back_b;
     Text back_t;
     Text num[10];
+    Text flightnum[10];
+    Text from[10];
+    Text to[10];
+    Text date[10];
+    Text Class[10];
+    Sprite edit[10];
 };
 struct PAGE24 {
     Sprite background;
@@ -302,11 +310,21 @@ struct PAGE25 {
 };
 struct PAGE26
 {
+
     Sprite background;
     Sprite block[7];
     Sprite back_b;
     Text back_t;
     Text num[7];
+    Text flightnum[7];
+    Text from[7];
+    Text to[7];
+    Text date[7];
+    Text Class[7];
+    Text name[7];
+    Text passportid[7];
+    Text seat[7];
+    Sprite edit[7];
 };
 struct PAGE27 {
     Sprite background;
@@ -679,7 +697,7 @@ int main()
     vector<Data>flightinfo;
 
     getdata2(offers1, schedule2, info, flightinfo);
-    //setpage1(page1, offers1, schedule2, info, flightinfo);
+    setpage1(page1, offers1, schedule2, info, flightinfo);
     //set_page_2(page2);
     //setpage3(page3, offers1, info);
     //Set_page_4(page4, offers1);
@@ -701,14 +719,14 @@ int main()
     //setpage20(page20,offers1);
     //setpage21(page21,offers1);
     //set_page_22(page22,offers1);
-    //setpage23(page23,offers1);
+    //setpage23(page23, offers1, schedule2, info, flightinfo);
     //set_page_24(page24,offers1);
-    //setpage26(page26);
+    //setpage26(page26, offers1, schedule2, info, flightinfo);
     //set_page_28(page28, offers1, schedule2, info, flightinfo);
     //set_page_29(page29,offers1);
     //setpage30(page30, offers1, schedule2, info, flightinfo);
     //set_page_31(page31, offers1, schedule2, info, flightinfo);
-    setpage33(page33, offers1, schedule2, info, flightinfo);
+    //setpage33(page33, offers1, schedule2, info, flightinfo);
     //setpage34(page34,offers1);
     //set_page_35(page35,offers1);
     //set_page_36(page36,offers1);
@@ -1185,6 +1203,7 @@ void setpage3(PAGE3& page3, countries_offers offers1[], countries_offers2 schedu
                         user1.data.Month = stoi(data[6]);
                         user1.data.Year = stoi(data[7]);
                         user1.kind = "user";
+                        USER = info.size() - 1;
                         info.push_back(user1);
 
                         Set_page_4(page4, offers1, schedule2, info, flightinfo);
@@ -3668,6 +3687,7 @@ void set_page_22(PAGE22& page22, countries_offers offers1[], countries_offers2 s
 void setpage23(PAGE23& page23, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     PAGE4 page4;
+    PAGE24 page24;
     page23.background.setTexture(bg23);
     page23.background.setScale(2.18, 2.18);
     page23.background.setPosition(1920 / 2 - 10, 1080 / 2);
@@ -3701,7 +3721,7 @@ void setpage23(PAGE23& page23, countries_offers offers1[], countries_offers2 sch
     slider.setPosition(SLIDER_X, SLIDER_Y);
     slider.setFillColor(Color(39, 34, 99));
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < flightinfo.size() - 1; i++)
     {
         page23.block[i].setTexture(tripsblock);
         page23.block[i].setScale(1.8, 1.4);
@@ -3710,6 +3730,55 @@ void setpage23(PAGE23& page23, countries_offers offers1[], countries_offers2 sch
         page23.num[i].setFont(f1);
         page23.num[i].setPosition(page23.block[i].getPosition().x, page23.block[i].getPosition().y);
         page23.num[i].setString(to_string(i));
+
+        string flight_num = flightinfo[i].flight_num;
+        string d1 = to_string(flightinfo[i].myDate.Day);
+        string d2 = to_string(flightinfo[i].myDate.Month);
+        string d3 = to_string(flightinfo[i].myDate.Year);
+        string date = d1 + "/" + d2 + "/" + d3;
+        string th1 = to_string(flightinfo[i].th1);
+        string th2 = to_string(flightinfo[i].th2);
+        string tm2 = to_string(flightinfo[i].tm2);
+
+        page23.from[i].setFont(f4);
+        page23.from[i].setCharacterSize(40);
+        page23.from[i].setOrigin(page23.from[i].getLocalBounds().width / 2, page23.from[i].getLocalBounds().height / 2);
+        page23.from[i].setPosition(page23.block[i].getPosition().x + 170, page23.block[i].getPosition().y + 130);
+        page23.from[i].setString(flightinfo[i].from);
+        page23.from[i].setFillColor(Color(0, 0, 0));
+
+        page23.to[i].setFont(f4);
+        page23.to[i].setCharacterSize(40);
+        page23.to[i].setOrigin(page23.to[i].getLocalBounds().width / 2, page23.to[i].getLocalBounds().height / 2);
+        page23.to[i].setPosition(page23.block[i].getPosition().x + 900, page23.block[i].getPosition().y + 130);
+        page23.to[i].setString(flightinfo[i].to);
+        page23.to[i].setFillColor(Color(0, 0, 0));
+
+        page23.flightnum[i].setFont(f4);
+        page23.flightnum[i].setCharacterSize(40);
+        page23.flightnum[i].setOrigin(page23.flightnum[i].getLocalBounds().width / 2, page23.flightnum[i].getLocalBounds().height / 2);
+        page23.flightnum[i].setPosition(page23.block[i].getPosition().x + 250, page23.block[i].getPosition().y + 20);
+        page23.flightnum[i].setString(flightinfo[i].flight_num);
+        page23.flightnum[i].setFillColor(Color(0, 0, 0));
+
+        page23.date[i].setFont(f4);
+        page23.date[i].setCharacterSize(40);
+        page23.date[i].setOrigin(page23.date[i].getLocalBounds().width / 2, page23.date[i].getLocalBounds().height / 2);
+        page23.date[i].setPosition(page23.block[i].getPosition().x + 800, page23.block[i].getPosition().y + 20);
+        page23.date[i].setString(date);
+        page23.date[i].setFillColor(Color(0, 0, 0));
+
+        page23.Class[i].setFont(f4);
+        page23.Class[i].setCharacterSize(40);
+        page23.Class[i].setOrigin(page23.Class[i].getLocalBounds().width / 2, page23.Class[i].getLocalBounds().height / 2);
+        page23.Class[i].setPosition(page23.block[i].getPosition().x + 1270, page23.block[i].getPosition().y + 20);
+        page23.Class[i].setString(flightinfo[i].level);
+        page23.Class[i].setFillColor(Color(0, 0, 0));
+
+        page23.edit[i].setTexture(transbox);
+        page23.edit[i].setPosition(page23.block[i].getPosition().x + 950, page23.block[i].getPosition().y + 100);
+        page23.edit[i].setScale(3, 2.5);
+        page23.edit[i].setColor(Color(0, 0, 0, 0));
     }
 
     const float SCROLLBAR_RANGE = SCROLLBAR_HEIGHT - SLIDER_HEIGHT;
@@ -3724,6 +3793,14 @@ void setpage23(PAGE23& page23, countries_offers offers1[], countries_offers2 sch
         if (MouseRect.getGlobalBounds().intersects(page23.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
             Set_page_4(page4, offers1, schedule2, info, flightinfo);
+        }
+        for (int i = 0; i < flightinfo.size() - 1; i++)
+        {
+            if (MouseRect.getGlobalBounds().intersects(page23.edit[i].getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+            {
+                NUM = i;
+                set_page_24(page24, offers1, schedule2, info, flightinfo);
+            }
         }
         while (window.pollEvent(event))
         {
@@ -3741,11 +3818,17 @@ void setpage23(PAGE23& page23, countries_offers offers1[], countries_offers2 sch
                         sliderPosition = SCROLLBAR_RANGE;
                     float percentage = sliderPosition / SCROLLBAR_RANGE;
 
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < flightinfo.size() - 1; i++)
                     {
                         //controll the number 
-                        page23.block[i].setPosition(200, ((350) + (350 * i)) + (9 * percentage) * (-320));//(200 / 2 - 1080 / 2));
+                        page23.block[i].setPosition(200, ((350) + (350 * i)) + (9 * percentage) * (-15));//(200 / 2 - 1080 / 2));
                         page23.num[i].setPosition(page23.block[i].getPosition().x, page23.block[i].getPosition().y);
+                        page23.from[i].setPosition(page23.block[i].getPosition().x + 170, page23.block[i].getPosition().y + 130);
+                        page23.to[i].setPosition(page23.block[i].getPosition().x + 900, page23.block[i].getPosition().y + 130);
+                        page23.flightnum[i].setPosition(page23.block[i].getPosition().x + 250, page23.block[i].getPosition().y + 20);
+                        page23.date[i].setPosition(page23.block[i].getPosition().x + 800, page23.block[i].getPosition().y + 20);
+                        page23.Class[i].setPosition(page23.block[i].getPosition().x + 1270, page23.block[i].getPosition().y + 20);
+                        page23.edit[i].setPosition(page23.block[i].getPosition().x + 70, page23.block[i].getPosition().y + 100);
                     }
                     slider.setPosition(SLIDER_X, SCROLLBAR_Y + sliderPosition);
                 }
@@ -3769,13 +3852,17 @@ void setpage23(PAGE23& page23, countries_offers offers1[], countries_offers2 sch
         for (int i = 0; i < 10; i++)
         {
             window.draw(page23.block[i]);
-        }
-        for (int i = 0; i < 10; i++)
-        {
+            window.draw(page23.flightnum[i]);
+            window.draw(page23.from[i]);
+            window.draw(page23.to[i]);
+            window.draw(page23.date[i]);
             window.draw(page23.num[i]);
+            window.draw(page23.Class[i]);
+            window.draw(page23.edit[i]);
         }
         window.draw(page23.back_b);
         window.draw(page23.back_t);
+
         window.draw(scrollbar);
         window.draw(slider);
         window.display();
@@ -3800,6 +3887,11 @@ void draw_page_24(PAGE24 page24) {
 void set_page_24(PAGE24& page24, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
     Mouse ms;
+    PAGE4 page4;
+    PAGE17 page17;
+    PAGE18 page18;
+    PAGE26 page26;
+    PAGE27 page27;
 
     page24.background.setTexture(bg24);
     page24.background.setScale(2.4, 2.4);
@@ -3873,24 +3965,38 @@ void set_page_24(PAGE24& page24, countries_offers offers1[], countries_offers2 s
         MouseRect.setPosition(ms.getPosition().x - 5, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page24.clas.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            ////////////////////
-        };
+            if (flightinfo[NUM].level == "ECONOMY")
+                flightinfo[NUM].level = "BUSINESS";
+            else if (flightinfo[NUM].level == "BUSINESS")
+                flightinfo[NUM].level = "ECONOMY";
+        }
         if (MouseRect.getGlobalBounds().intersects(page24.seat.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            /////////////////////////////////////   /////////////////////////
-        };
+            setpage26(page26, offers1, schedule2, info, flightinfo);
+            if (flightinfo[NUM].level == "ECONOMY")
+            {
+
+                set_page_18(page18, offers1, schedule2, info, flightinfo);
+            }
+            else if (flightinfo[NUM].level == "BUSINESS")
+            {
+
+                set_page_17(page17, offers1, schedule2, info, flightinfo);
+            }
+            flightinfo[NUM].passengers[passengerindex].seats = passenger1.seats;
+        }
         if (MouseRect.getGlobalBounds().intersects(page24.home.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            //////////////////     /////////////////
-        };
+            Set_page_4(page4, offers1, schedule2, info, flightinfo);
+        }
         if (MouseRect.getGlobalBounds().intersects(page24.remove.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            /////////////////     ////////////////////
+
         };
         if (MouseRect.getGlobalBounds().intersects(page24.cancle.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            ////////////////////           /////////////////
-        };
+            setpage27(page27, offers1, schedule2, info, flightinfo);
+        }
         if (MouseRect.getGlobalBounds().intersects(page24.back.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
             ///////////////////          //////////////////
@@ -3962,6 +4068,7 @@ void setpage25(PAGE25& page25, countries_offers offers1[], countries_offers2 sch
 
 void setpage26(PAGE26& page26, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
 {
+    PAGE23 page23;
     page26.background.setTexture(bg26);
     page26.background.setScale(2.18, 2.18);
     page26.background.setPosition(1920 / 2 - 10, 1080 / 2);
@@ -3995,7 +4102,7 @@ void setpage26(PAGE26& page26, countries_offers offers1[], countries_offers2 sch
     slider.setPosition(SLIDER_X, SLIDER_Y);
     slider.setFillColor(Color(39, 34, 99));
 
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < flightinfo[NUM].passengers_number; i++)
     {
         page26.block[i].setTexture(passengersblock);
         page26.block[i].setScale(1.8, 2);
@@ -4004,18 +4111,108 @@ void setpage26(PAGE26& page26, countries_offers offers1[], countries_offers2 sch
         page26.num[i].setFont(f1);
         page26.num[i].setPosition(page26.block[i].getPosition().x, page26.block[i].getPosition().y);
         page26.num[i].setString(to_string(i));
+
+        string flight_num = flightinfo[NUM].flight_num;
+        string d1 = to_string(flightinfo[NUM].myDate.Day);
+        string d2 = to_string(flightinfo[NUM].myDate.Month);
+        string d3 = to_string(flightinfo[NUM].myDate.Year);
+        string date = d1 + "/" + d2 + "/" + d3;
+        string th1 = to_string(flightinfo[NUM].th1);
+        string th2 = to_string(flightinfo[NUM].th2);
+        string tm2 = to_string(flightinfo[NUM].tm2);
+
+        page26.from[i].setFont(f4);
+        page26.from[i].setCharacterSize(40);
+        page26.from[i].setOrigin(page26.from[i].getLocalBounds().width / 2, page26.from[i].getLocalBounds().height / 2);
+        page26.from[i].setPosition(page26.block[i].getPosition().x + 170, page26.block[i].getPosition().y + 330);
+        page26.from[i].setString(flightinfo[NUM].from);
+        page26.from[i].setFillColor(Color(0, 0, 0));
+
+        page26.to[i].setFont(f4);
+        page26.to[i].setCharacterSize(40);
+        page26.to[i].setOrigin(page26.to[i].getLocalBounds().width / 2, page26.to[i].getLocalBounds().height / 2);
+        page26.to[i].setPosition(page26.block[i].getPosition().x + 900, page26.block[i].getPosition().y + 330);
+        page26.to[i].setString(flightinfo[NUM].to);
+        page26.to[i].setFillColor(Color(0, 0, 0));
+
+        page26.flightnum[i].setFont(f4);
+        page26.flightnum[i].setCharacterSize(50);
+        page26.flightnum[i].setOrigin(page26.flightnum[i].getLocalBounds().width / 2, page26.flightnum[i].getLocalBounds().height / 2);
+        page26.flightnum[i].setPosition(page26.block[i].getPosition().x + 250, page26.block[i].getPosition().y + 180);
+        page26.flightnum[i].setString(flightinfo[NUM].flight_num);
+        page26.flightnum[i].setFillColor(Color(0, 0, 0));
+
+        page26.date[i].setFont(f4);
+        page26.date[i].setCharacterSize(50);
+        page26.date[i].setOrigin(page26.date[i].getLocalBounds().width / 2, page26.date[i].getLocalBounds().height / 2);
+        page26.date[i].setPosition(page26.block[i].getPosition().x + 800, page26.block[i].getPosition().y + 180);
+        page26.date[i].setString(date);
+        page26.date[i].setFillColor(Color(0, 0, 0));
+
+        page26.Class[i].setFont(f4);
+        page26.Class[i].setCharacterSize(40);
+        page26.Class[i].setOrigin(page26.Class[i].getLocalBounds().width / 2, page26.Class[i].getLocalBounds().height / 2);
+        page26.Class[i].setPosition(page26.block[i].getPosition().x + 1240, page26.block[i].getPosition().y + 180);
+        page26.Class[i].setString(flightinfo[NUM].level);
+        page26.Class[i].setFillColor(Color(0, 0, 0));
+
+        page26.name[i].setFont(f4);
+        page26.name[i].setCharacterSize(50);
+        page26.name[i].setOrigin(page26.name[i].getLocalBounds().width / 2, page26.name[i].getLocalBounds().height / 2);
+        page26.name[i].setPosition(page26.block[i].getPosition().x + 450, page26.block[i].getPosition().y + 40);
+        page26.name[i].setString(flightinfo[NUM].passengers[i].first_name + " " + flightinfo[NUM].passengers[i].last_name);
+        page26.name[i].setFillColor(Color(0, 0, 0));
+
+        page26.seat[i].setFont(f4);
+        page26.seat[i].setCharacterSize(50);
+        page26.seat[i].setOrigin(page26.seat[i].getLocalBounds().width / 2, page26.seat[i].getLocalBounds().height / 2);
+        page26.seat[i].setPosition(page26.block[i].getPosition().x + 250, page26.block[i].getPosition().y + 480);
+        page26.seat[i].setString(flightinfo[NUM].passengers[i].seats);
+        page26.seat[i].setFillColor(Color(0, 0, 0));
+
+        page26.passportid[i].setFont(f4);
+        page26.passportid[i].setCharacterSize(50);
+        page26.passportid[i].setOrigin(page26.passportid[i].getLocalBounds().width / 2, page26.passportid[i].getLocalBounds().height / 2);
+        page26.passportid[i].setPosition(page26.block[i].getPosition().x + 1100, page26.block[i].getPosition().y + 480);
+        page26.passportid[i].setString(flightinfo[NUM].passengers[i].passport_id);
+        page26.passportid[i].setFillColor(Color(0, 0, 0));
+
+        page26.edit[i].setTexture(transbox);
+        page26.edit[i].setPosition(page26.block[i].getPosition().x + 950, page26.block[i].getPosition().y + 450);
+        page26.edit[i].setScale(3, 2.5);
+        page26.edit[i].setColor(Color(0, 0, 0, 0));
     }
 
     const float SCROLLBAR_RANGE = SCROLLBAR_HEIGHT - SLIDER_HEIGHT;
     float sliderPosition = 0;
 
+    MouseRect.setFillColor(sf::Color::Black);
+    Mouse ms;
     while (window.isOpen())
     {
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
         sf::Event event;
+        for (int i = 0; i < flightinfo[NUM].passengers_number; i++)
+        {
+            if (MouseRect.getGlobalBounds().intersects(page26.edit[i].getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+            {
+                passengerindex = i;
+                cout << passengerindex;
+                return;
+            }
+        }
+        if (MouseRect.getGlobalBounds().intersects(page26.back_b.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
+        {
+            setpage23(page23, offers1, schedule2, info, flightinfo);
+        }
         while (window.pollEvent(event))
         {
+
             if (event.type == sf::Event::Closed)
                 window.close();
+
+
+
             else if (event.type == sf::Event::MouseWheelScrolled)
             {
                 if (event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)
@@ -4028,11 +4225,20 @@ void setpage26(PAGE26& page26, countries_offers offers1[], countries_offers2 sch
                         sliderPosition = SCROLLBAR_RANGE;
                     float percentage = sliderPosition / SCROLLBAR_RANGE;
 
-                    for (int i = 0; i < 7; i++)
+                    for (int i = 0; i < flightinfo[NUM].passengers_number - 1; i++)
                     {
                         //controll the number 
-                        page26.block[i].setPosition(200, ((250) + (830 * i)) + (9 * percentage) * (-555));//(200 / 2 - 1080 / 2));
+                        page26.block[i].setPosition(200, ((250) + (830 * i)) + (9 * percentage) * (-100));//(200 / 2 - 1080 / 2));-555
                         page26.num[i].setPosition(page26.block[i].getPosition().x, page26.block[i].getPosition().y);
+                        page26.from[i].setPosition(page26.block[i].getPosition().x + 170, page26.block[i].getPosition().y + 330);
+                        page26.to[i].setPosition(page26.block[i].getPosition().x + 900, page26.block[i].getPosition().y + 330);
+                        page26.flightnum[i].setPosition(page26.block[i].getPosition().x + 250, page26.block[i].getPosition().y + 180);
+                        page26.date[i].setPosition(page26.block[i].getPosition().x + 800, page26.block[i].getPosition().y + 180);
+                        page26.Class[i].setPosition(page26.block[i].getPosition().x + 1240, page26.block[i].getPosition().y + 180);
+                        page26.name[i].setPosition(page26.block[i].getPosition().x + 450, page26.block[i].getPosition().y + 40);
+                        page26.passportid[i].setPosition(page26.block[i].getPosition().x + 1100, page26.block[i].getPosition().y + 480);
+                        page26.seat[i].setPosition(page26.block[i].getPosition().x + 250, page26.block[i].getPosition().y + 480);
+                        page26.edit[i].setPosition(page26.block[i].getPosition().x + 950, page26.block[i].getPosition().y + 450);
                     }
                     slider.setPosition(SLIDER_X, SCROLLBAR_Y + sliderPosition);
                 }
@@ -4055,10 +4261,16 @@ void setpage26(PAGE26& page26, countries_offers offers1[], countries_offers2 sch
         for (int i = 0; i < 7; i++)
         {
             window.draw(page26.block[i]);
-        }
-        for (int i = 0; i < 7; i++)
-        {
+            window.draw(page26.flightnum[i]);
+            window.draw(page26.from[i]);
+            window.draw(page26.to[i]);
+            window.draw(page26.date[i]);
             window.draw(page26.num[i]);
+            window.draw(page26.Class[i]);
+            window.draw(page26.name[i]);
+            window.draw(page26.seat[i]);
+            window.draw(page26.passportid[i]);
+            window.draw(page26.edit[i]);
         }
         window.draw(page26.back_b);
         window.draw(page26.back_t);
@@ -4076,7 +4288,10 @@ void drawpage27(PAGE27 page27) {
     window.draw(page27.button2);
     window.draw(page27.buttontext2);
 }
-void setpage27(PAGE27& page27, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo) {
+void setpage27(PAGE27& page27, countries_offers offers1[], countries_offers2 schedule2[], vector< user>& info, vector<Data>& flightinfo)
+{
+    PAGE4 page4;
+    PAGE23 page23;
 
     page27.background.setTexture(bg27);
     page27.background.setScale(2.85, 2.85);
@@ -4113,11 +4328,12 @@ void setpage27(PAGE27& page27, countries_offers offers1[], countries_offers2 sch
 
         if (MouseRect.getGlobalBounds().intersects(page27.button1.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-            // Page 28
+            flightinfo.erase(flightinfo.begin() + NUM);
+            Set_page_4(page4, offers1, schedule2, info, flightinfo);
         }
         if (MouseRect.getGlobalBounds().intersects(page27.button2.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
-
+            setpage23(page23, offers1, schedule2, info, flightinfo);
         }
         while (window.pollEvent(event))
         {
@@ -4211,7 +4427,7 @@ void set_page_29(PAGE29& page29, countries_offers offers1[], countries_offers2 s
     page29.Exit.setString("EXIT");
 
     page29.begin.setTexture(transbox);
-    page29.begin.setPosition(1550, 950);
+    page29.begin.setPosition(1550, 900);
     page29.begin.setScale(1.6, 1.4);
     page29.Begin.setFont(f2);
     page29.Begin.setFillColor(Color(38, 34, 98));
@@ -4223,17 +4439,17 @@ void set_page_29(PAGE29& page29, countries_offers offers1[], countries_offers2 s
     {
         Event event;
         MouseRect.setFillColor(Color(0, 0, 0, 0));
-        MouseRect.setPosition(ms.getPosition().x - 5, ms.getPosition().y);
+        MouseRect.setPosition(ms.getPosition().x - 15, ms.getPosition().y);
         if (MouseRect.getGlobalBounds().intersects(page29.exit.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
             window.close();
-            //set_page_2(page2, offers1,info);
-        };
+
+        }
 
         if (MouseRect.getGlobalBounds().intersects(page29.begin.getGlobalBounds()) && Mouse::isButtonPressed(Mouse::Left))
         {
             setpage30(page30, offers1, schedule2, info, flightinfo);
-        };
+        }
         while (window.pollEvent(event))
         {
             if (event.type == Event::Closed)
@@ -4303,7 +4519,7 @@ void setpage30(PAGE30& page30, countries_offers offers1[], countries_offers2 sch
     page30.buttontext3.setFont(f2);
     page30.buttontext3.setString("Edit Flight");
     page30.buttontext3.setCharacterSize(45);
-    page30.buttontext3.setPosition(page30.button3.getPosition().x + 200, page30.button3.getPosition().y + 100);
+    page30.buttontext3.setPosition(page30.button3.getPosition().x + 200, page30.button3.getPosition().y);
     page30.buttontext3.setFillColor(Color(38, 34, 98));
 
     page30.button4.setTexture(del);
